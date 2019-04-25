@@ -1,6 +1,6 @@
 import { Input, Component, OnInit } from '@angular/core';
-import {NgbCalendar, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import { Person } from 'src/app/models/person';
+import { RestService } from '../../services/rest.service';
 
 interface Alert {
   type: string;
@@ -20,13 +20,12 @@ const ALERTS: Alert[] = [{
 })
 
 export class InicioComponent implements OnInit {
-  model: NgbDateStruct;
-  today = this.calendar.getToday();
   person: Person;
   alerts: Alert[];
   
-  constructor(private calendar: NgbCalendar) { 
-    this.person = new Person('','','','',null,'','','','','','');
+  constructor(public rest: RestService) { 
+    this.rest.setPerson(this.person);
+    this.person = new Person('','','','','','','','','','','','','','','','','','','','','');
   }
 
   close(alert: Alert) {
@@ -40,4 +39,20 @@ export class InicioComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit(){
+    console.log(this.person);
+    this.rest.setPerson(this.person).subscribe(
+      response => {
+        if(response){
+          console.log(this.message);
+        }else{
+          console.log('Error al guardar')
+        }
+      },
+      error => {
+        console.log(<any>error);
+      }
+    )
+    
+  }
 }

@@ -7,25 +7,25 @@
     </div>
     <div class="row backdiv">
         <div class="col-md-12 col-sm-12">
-            <form>
+            <form (ngSubmit)="onSubmit()">
                 <div class="form-row">
                     <div class="form-group col-sm-12 col-md-6">
                         <label>Primer Nombre</label>
-                        <input [(ngModel)]="person.PrimerNombre" name="PrimerNombre" type="text" class="form-control">
+                        <input [(ngModel)]="person.FirstName" name="FirstName" type="text" class="form-control">
                     </div>
                     <div class="form-group col-md-6">
                         <label>Segundo Nombre</label>
-                        <input [(ngModel)]="person.SegundoNombre" name="SegundoNombre" type="text" class="form-control">
+                        <input [(ngModel)]="person.SecondName" name="SecondName" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label>Primer Apellido</label>
-                        <input [(ngModel)]="person.PrimerApellido" name="PrimerApellido" type="text" class="form-control">
+                        <input [(ngModel)]="person.Surname" name="Surname" type="text" class="form-control">
                     </div>
                     <div class="form-group col-md-4">
                         <label>Segundo Apellido</label>
-                        <input [(ngModel)]="person.SegundoApellido" name="SegundoApellido" type="text" class="form-control">
+                        <input [(ngModel)]="person.SecondSurname" name="SecondSurname" type="text" class="form-control">
                     </div>
                     <div class="form-group col-md-4">
                         <label>Apellido Casad@</label>
@@ -36,11 +36,7 @@
                     <div class="form-group col-md-4">
                         <label>Fecha de nacimiento</label>
                         <div class="input-group">
-                        <input [(ngModel)]="person.Fecha" name="Fecha" class="form-control" placeholder="yyyy-mm-dd"
-                                name="dp" ngbDatepicker [footerTemplate]="footerTemplate" #d="ngbDatepicker">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-                        </div>
+                        <input [(ngModel)]="person.Date" name="Date" type="date" class="form-control" placeholder="yyyy-mm-dd">
                         </div>
                         <ng-template #footerTemplate>
                             <hr class="my-0">
@@ -60,7 +56,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label>Genero</label>
-                        <select [(ngModel)]="person.Genero" name="Genero" class="form-control">
+                        <select [(ngModel)]="person.Gender" name="Gender" class="form-control">
                             <option>Masculino</option>
                             <option>Femenino</option>
                             <option>Otro</option>
@@ -69,35 +65,35 @@
                 </div>
                 <div class="form-group">
                     <label>Dirección de correo electrónico</label>
-                    <input type="email" class="form-control" aria-describedby="emailHelp">
+                    <input type="email" [(ngModel)]="person.Email" name="Email" class="form-control" aria-describedby="emailHelp">
                     <small id="emailHelp" class="form-text text-muted">Nosotros jamás compartiremos tu dirección.</small>
                     </div>
                 <div class="form-group">
                     <label>Direción</label>
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Direccion" name="Direccion" type="text" class="form-control" placeholder="Departamento">
+                            <input [(ngModel)]="person.Departament" name="Departament" type="text" class="form-control" placeholder="Departamento">
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" class="form-control" placeholder="Municipio">
+                            <input [(ngModel)]="person.Municipality" type="text" class="form-control" name="Municipality" placeholder="Municipio">
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" class="form-control" placeholder="Zona">
+                            <input [(ngModel)]="person.Zone" type="text" class="form-control" name="Zone" placeholder="Zona">
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" class="form-control" placeholder="Colonia o residencia">
+                            <input [(ngModel)]="person.Colony" type="text" class="form-control" name="Colony" placeholder="Colonia o residencia">
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" class="form-control" placeholder="Avenida">
+                            <input [(ngModel)]="person.Avenue" type="text" class="form-control" name="Avenue" placeholder="Avenida">
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" class="form-control" placeholder="Calle">
+                            <input [(ngModel)]="person.Street" type="text" class="form-control" name="Street" placeholder="Calle">
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" class="form-control" placeholder="Manzana o sector">
+                            <input [(ngModel)]="person.Block" type="text" class="form-control" name="Block" placeholder="Manzana o sector">
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" class="form-control" placeholder="Número de casa">
+                            <input [(ngModel)]="person.HouseNumber" type="text" class="form-control" name="HouseNumber" placeholder="Número de casa">
                         </div>
                     </div>
                 </div>
@@ -105,13 +101,13 @@
                     <label>Número de teléfono</label>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <input [(ngModel)]="person.Telefono" name="Telefono" type="number" class="form-control" placeholder="Célular">
+                            <input [(ngModel)]="person.Mobile" name="Mobile" type="number" class="form-control" placeholder="Célular">
                         </div>
                         <div class="form-group col-md-4">
-                            <input type="number" class="form-control" placeholder="Teléfono de casa">
+                            <input [(ngModel)]="person.Phone" type="number" class="form-control" name="Phone" placeholder="Teléfono de casa">
                         </div>
                         <div class="form-group col-md-4">
-                            <input type="number" class="form-control" placeholder="Otro">
+                            <input [(ngModel)]="person.Other" type="number" class="form-control" name="Other" placeholder="Otro">
                         </div>
                     </div>
                 </div>
@@ -126,7 +122,7 @@
                 <p *ngFor="let alert of alerts">
                     <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
                 </p>
-                <button type="button" class="btn btn-primary" (click)="message()">Enviar</button>
+                <button type="submit" class="btn btn-primary" (click)="message()">Enviar</button>
             </form>
         </div>
     </div>
