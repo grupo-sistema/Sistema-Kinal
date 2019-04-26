@@ -5,38 +5,40 @@
             <hr>
         </div>
     </div>
+    <label >*Campos obligatorios</label>
+                    
     <div class="row backdiv">
         <div class="col-md-12 col-sm-12">
             <form (ngSubmit)="onSubmit()">
                 <div class="form-row">
                     <div class="form-group col-sm-12 col-md-6">
-                        <label>Primer Nombre</label>
-                        <input [(ngModel)]="person.FirstName" name="FirstName" type="text" class="form-control">
+                        <label>Primer Nombre*</label>
+                        <input [(ngModel)]="person.FirstName" name="FirstName" type="text" class="form-control" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label>Segundo Nombre</label>
-                        <input [(ngModel)]="person.SecondName" name="SecondName" type="text" class="form-control">
+                        <label>Segundo Nombre*</label>
+                        <input [(ngModel)]="person.SecondName" name="SecondName" type="text" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label>Primer Apellido</label>
-                        <input [(ngModel)]="person.Surname" name="Surname" type="text" class="form-control">
+                        <label>Primer Apellido*</label>
+                        <input [(ngModel)]="person.Surname" name="Surname" type="text" class="form-control" required>
                     </div>
                     <div class="form-group col-md-4">
-                        <label>Segundo Apellido</label>
-                        <input [(ngModel)]="person.SecondSurname" name="SecondSurname" type="text" class="form-control">
+                        <label>Segundo Apellido*</label>
+                        <input [(ngModel)]="person.SecondSurname" name="SecondSurname" type="text" class="form-control" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label>Apellido Casad@</label>
-                        <input [(ngModel)]="person.apellidoCasada" name="ApellidaCasada" type="text" class="form-control">
+                        <input [(ngModel)]="person.apellidoCasada" name="ApellidaCasada" type="text" class="form-control"> 
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label>Fecha de nacimiento</label>
+                        <label>Fecha de nacimiento*</label>
                         <div class="input-group">
-                        <input [(ngModel)]="person.Date" name="Date" type="date" class="form-control" placeholder="yyyy-mm-dd">
+                        <input [(ngModel)]="person.Date" name="Date" type="date" class="form-control" placeholder="yyyy-mm-dd" required>
                         </div>
                         <ng-template #footerTemplate>
                             <hr class="my-0">
@@ -44,8 +46,8 @@
                         </ng-template>
                     </div>
                     <div class="form-group col-md-4">
-                        <label>Religión</label>
-                        <select [(ngModel)]="person.Religion" name="Religion" class="form-control">
+                        <label>Religión*</label>
+                        <select [(ngModel)]="person.Religion" name="Religion" class="form-control" required>
                             <option>Católicismo</option>
                             <option>Evangelismo</option>
                             <option>Cristianismo</option>
@@ -55,8 +57,8 @@
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <label>Genero</label>
-                        <select [(ngModel)]="person.Gender" name="Gender" class="form-control">
+                        <label>Genero*</label>
+                        <select [(ngModel)]="person.Gender" name="Gender" class="form-control" required>
                             <option>Masculino</option>
                             <option>Femenino</option>
                             <option>Otro</option>
@@ -64,65 +66,70 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Dirección de correo electrónico</label>
-                    <input type="email" [(ngModel)]="person.Email" name="Email" class="form-control" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted">Nosotros jamás compartiremos tu dirección.</small>
+                    <label>Dirección de correo electrónico*</label>
+                    <input type="email" [(ngModel)]="person.Email" name="Email" class="form-control" aria-describedby="emailHelp" required>
+                    <small id="emailHelp" class="form-text text-muted">Nosotros nunca compartiremos tu dirección.</small>
                     </div>
                 <div class="form-group">
-                    <label>Direción</label>
+                    <label>Direción*</label>
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Departament" name="Departament" type="text" class="form-control" placeholder="Departamento">
+                            <input [(ngModel)]="person.Departament" name="Departament" type="text" class="form-control" placeholder="Departamento" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Municipality" type="text" class="form-control" name="Municipality" placeholder="Municipio">
+                            <input [(ngModel)]="person.Municipality" type="text" class="form-control" name="Municipality" placeholder="Municipio" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Zone" type="text" class="form-control" name="Zone" placeholder="Zona">
+                            <input [(ngModel)]="person.Zone" type="text" class="form-control" name="Zone" placeholder="Zona" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Colony" type="text" class="form-control" name="Colony" placeholder="Colonia o residencia">
+                            <input [(ngModel)]="person.Colony" type="text" class="form-control" name="Colony" placeholder="Colonia o residencia" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Avenue" type="text" class="form-control" name="Avenue" placeholder="Avenida">
+                            <input [(ngModel)]="person.Avenue" type="text" class="form-control" name="Avenue" placeholder="Avenida" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Street" type="text" class="form-control" name="Street" placeholder="Calle">
+                            <input [(ngModel)]="person.Street" type="text" class="form-control" name="Street" placeholder="Calle" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Block" type="text" class="form-control" name="Block" placeholder="Manzana o sector">
+                            <input [(ngModel)]="person.Block" type="text" class="form-control" name="Block" placeholder="Manzana o sector" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.HouseNumber" type="text" class="form-control" name="HouseNumber" placeholder="Número de casa">
+                            <input [(ngModel)]="person.HouseNumber" type="text" class="form-control" name="HouseNumber" placeholder="Número de casa" required>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Número de teléfono</label>
+                    <label>Número de teléfono*</label>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <input [(ngModel)]="person.Mobile" name="Mobile" type="number" class="form-control" placeholder="Célular">
+                            <input [(ngModel)]="person.Mobile" name="Mobile" type="number" class="form-control" placeholder="Célular" required>
                         </div>
                         <div class="form-group col-md-4">
-                            <input [(ngModel)]="person.Phone" type="number" class="form-control" name="Phone" placeholder="Teléfono de casa">
+                            <input [(ngModel)]="person.Phone" type="number" class="form-control" name="Phone" placeholder="Teléfono de casa" required>
                         </div>
                         <div class="form-group col-md-4">
-                            <input [(ngModel)]="person.Other" type="number" class="form-control" name="Other" placeholder="Otro">
+                            <input [(ngModel)]="person.Other" type="number" class="form-control" name="Other" placeholder="Otro" required="false">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <input [(ngModel)]="hola" class="form-check-input" type="checkbox" id="gridCheck" name="check">
                     <label class="form-check-label" for="gridCheck">
-                        Acepto que toda mi información escrita es concretamente cierta.
+                        Acepto que toda mi información será confidencial y solamente con usos administrativos.
                     </label>
                     </div>
                 </div>
                 <p *ngFor="let alert of alerts">
-                    <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
+                    <ngb-alert [type]="alert.type" (close)="close(alert)" >{{ alert.message }}</ngb-alert>
                 </p>
-                <button type="submit" class="btn btn-primary" (click)="message()">Enviar</button>
+            <div *ngIf="hola == true">
+                <button type="submit"  class="btn btn-primary" (click)="message()">Enviar</button>
+            </div>
+            <div hidden="true" class="alert alert-warning" role="alert" name="alerta">
+                Debe aceptar nuestros términos y condiciones para poder continuar.
+              </div>
             </form>
         </div>
     </div>

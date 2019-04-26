@@ -1,6 +1,8 @@
 import { Input, Component, OnInit } from '@angular/core';
 import { Person } from 'src/app/models/person';
 import { RestService } from '../../services/rest.service';
+import { checkAndUpdateBinding } from '@angular/core/src/view/util';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 interface Alert {
   type: string;
@@ -10,7 +12,7 @@ interface Alert {
 const ALERTS: Alert[] = [{
   type: 'success',
   message: 'Datos enviados correctamente',
-}
+},
 ];
 
 @Component({
@@ -21,6 +23,7 @@ const ALERTS: Alert[] = [{
 
 export class InicioComponent implements OnInit {
   person: Person;
+  hola;
   alerts: Alert[];
   
   constructor(public rest: RestService) { 
@@ -33,26 +36,32 @@ export class InicioComponent implements OnInit {
   }
 
   message() {
-    this.alerts = Array.from(ALERTS);
+    if(this.person.FirstName == "" && this.person.SecondName == "" && this.person.Surname =="" && this.person.SecondSurname=="" && this.person.Date=="" && this.person.Religion=="" && this.person.Gender=="" && this.person.Email=="" && this.person.Departament=="" && this.person.Municipality=="" && this.person.Zone=="" && this.person.Colony=="" && this.person.Avenue=="" && this.person.Street=="" && this.person.Block=="" && this.person.HouseNumber=="" && this.person.Mobile=="" && this.person.Phone==""){
+      this.alerts = Array.from(ALERTS);
+    }
   }
 
   ngOnInit() {
   }
 
   onSubmit(){
-    console.log(this.person);
-    this.rest.setPerson(this.person).subscribe(
-      response => {
-        if(response){
-          console.log(this.message);
-        }else{
-          console.log('Error al guardar')
+    if(this.hola){
+      console.log(this.person);
+      this.rest.setPerson(this.person).subscribe(
+        response => {
+          if(response){
+            this.message();
+            console.log(this.message);
+          }else{
+            console.log('Error al guardar')
+          }
+        },
+        error => {
+          console.log(<any>error);
         }
-      },
-      error => {
-        console.log(<any>error);
-      }
-    )
-    
+      )
+    }else{
+      ("no")
+    }
   }
 }
