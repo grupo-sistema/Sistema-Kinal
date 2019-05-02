@@ -39,7 +39,7 @@ export class InicioComponent implements OnInit {
   }
 
   message() {
-    
+    Swal.fire("Datos guardados correctamente", "You clicked the button!", "success")
   }
 
   ngOnInit() {}
