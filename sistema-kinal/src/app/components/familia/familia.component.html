@@ -9,43 +9,52 @@
       <form (ngSubmit)="onSubmit()">
         <div class="cajita form-row">
           <div class="input-group mb-3 backdiv">
-            <input class="form-control" #myInput [(ngModel)]="search" (input)="filtrar()"  name="search" type="text" placeholder="Ingresa preferiblemente el primer nombre y el primero apellido.">
+            <input class="form-control" #myInput [(ngModel)]="search" (input)="filtrar()" name="search" type="text"
+              placeholder="Ingresa preferiblemente el primer nombre y el primero apellido.">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit"><i class='fas fa-search' style='font-size:12px; margin-right: 5px;'></i>Buscar</button>
+              <button class="btn btn-outline-secondary" type="submit"><i class='fas fa-search'
+                  style='font-size:12px; margin-right: 5px;'></i>Buscar</button>
             </div>
           </div>
         </div>
       </form>
-        <h2>Personas</h2>
-        <hr style="background-color: ivory;">
-        <div class="row">
-          <div class="col-6" *ngFor='let p of persona'>
-            <div class="card mb-3" style="max-width: 540px; border-radius: 10px;">
-              <div class="row no-gutters">
-                <div class="col-md-4">
-                  <img style="padding: 25px" src="https://i.pinimg.com/originals/b5/76/e9/b576e9ba4504eb94656d724b003d8b8b.png" class="card-img">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title text">{{p.FirstName + " " + p.SecondName + " " + p.Surname + " " + p.SecondSurname}}</h5>
-                    <p class="card-text text-gray"><i class="fa fa-home" style="font-size:16px; color: rgb(158, 158, 158); margin-right: 3px;"></i>
-                      {{p.Address.Departament + ", " + p.Address.Municipality}}</p>
-                    <p class="card-text text-gray"><i class="fa fa-phone" style="font-size:16px; color: rgb(158, 158, 158); margin-right: 9px;"></i>
-                      {{p.telephone.Mobile + ", " + p.telephone.Phone}}</p>
-                    <button style="margin-top: 10px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Añadir rol familiar</button>
-                    <p class="card-text"><small class="text-muted">Ultima actividad hace 3 minutos</small></p>
-                  </div>
+      <h2>Personas</h2>
+      <hr style="background-color: ivory;">
+      <div class="row">
+        <div class="col-6" *ngFor='let p of persona'>
+          <div class="card mb-3" style="max-width: 540px; border-radius: 10px;">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img style="padding: 25px"
+                  src="https://i.pinimg.com/originals/b5/76/e9/b576e9ba4504eb94656d724b003d8b8b.png" class="card-img">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title text">
+                    {{p.FirstName + " " + p.SecondName + " " + p.Surname + " " + p.SecondSurname}}</h5>
+                  <p class="card-text text-gray"><i class="fa fa-home"
+                      style="font-size:16px; color: rgb(158, 158, 158); margin-right: 3px;"></i>
+                    {{p.Address.Departament + ", " + p.Address.Municipality}}</p>
+                  <p class="card-text text-gray"><i class="fa fa-phone"
+                      style="font-size:16px; color: rgb(158, 158, 158); margin-right: 9px;"></i>
+                    {{p.telephone.Mobile + ", " + p.telephone.Phone}}</p>
+                  <button style="margin-top: 10px;" type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#exampleModal">Añadir rol familiar</button>
+                  <p class="card-text"><small class="text-muted">Ultima actividad hace 3 minutos</small></p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </div>
 
+
 <!-- Modal -->
-<div class="modal fade"  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -54,9 +63,70 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
         <div class="form-group">
-            <div class="form-group col-md-8">
+          <div class="col-md-12 col-sm-12">
+            <!-- INPUT BUSCAR FAMILIA -->
+            <div class="input-group mb-3 backdiv">
+              <input class="form-control" name="search" type="text" placeholder="Ingresa la familia a buscar">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit"><i class='fas fa-search'
+                    style='font-size:12px; margin-right: 5px;'></i>Buscar</button>
+              </div>
+            </div>
+
+            <!-- FORM FAMILIA -->
+            <div class="row margen">
+              <div class="col-md-8">
+                  <table class="rwd-table">
+                      <tr>
+                        <th>Familias</th>
+                      </tr>
+                      <tr>
+                        <td data-th="Movie Title">Hernandez</td>
+                        <td data-th="Genre">Melgar</td>
+                      </tr>
+                    </table>
+              </div>
+            </div>
+
+            <!-- CHECKBOX -->
+            <div class="form-group col-sm-12 col-md-6">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Check1">
+                <label class="form-check-label text" for="gridCheck">
+                  Familia no existente.
+                </label>
+              </div>
+            </div>
+            
+
+            <!-- INPUTA PARA INGRESAR EL NOMBRE DE LA FAMILIA -->
+            <div class="form-row">
+                    <div class="form-group col-sm-12 col-md-7">
+                        <label>Primer y segundo apellido*</label>
+                        <input name="PrimerApellido" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6" class="margen2">
+                        <button class="btn btn-outline-secondary" type="submit"><i class='fas fa-plus'
+                          style='font-size:12px; margin-right: 5px;'></i> Registrar Familia</button>
+                    </div>
+                    </div>
+                </div>
+
+
+             <!-- DROPDOWN PARA SELECCIONAR LA FAMILIA DE ESA PERSONA -->
+             <div class="form-row">
+                <label class="text" for="inputState">Familia</label>
+                <select id="inputState" class="form-control">
+                  <option disabled>...</option>
+                  <option class="text">Hernandez Melgar</option>
+                </select>
+              </div><br>    
+
+            <!-- DROPDOWN PARA SELECCIONAR EL ROL DE ESA PERSONA -->
+            <div class="form-row">
               <label class="text" for="inputState">Rol</label>
               <select id="inputState" class="form-control">
                 <option disabled>...</option>
@@ -65,18 +135,19 @@
                 <option class="text">Encargado</option>
                 <option class="text">Hijo</option>
               </select>
-            </div>
+            </div><br>
+
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <input class="form-check-input" type="checkbox" id="Check2">
               <label class="form-check-label text" for="gridCheck">
                 Acepto los cambios que he integrado a mi persona.
               </label>
-            </div>
+            </div><br>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="message()">Guardar</button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="message()">Guardar</button>
       </div>
     </div>
   </div>

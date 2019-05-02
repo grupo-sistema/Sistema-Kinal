@@ -42,8 +42,8 @@ export class FamiliaComponent implements OnInit {
       if(!res){
           console.log("Error al buscar a la persona");
       }else{
-        console.log(res.Usuario_encontrado)
-        this.persona = res.Usuario_encontrado
+        //console.log(res.Usuario_encontrado)
+        //this.persona = res.Usuario_encontrado
       } 
     });
   }
