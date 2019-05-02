@@ -2,7 +2,6 @@ import { Input, Component, OnInit } from '@angular/core';
 import { Person } from 'src/app/models/person';
 import { RestService } from '../../services/rest.service';
 import { checkAndUpdateBinding } from '@angular/core/src/view/util';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 interface Alert {
   type: string;

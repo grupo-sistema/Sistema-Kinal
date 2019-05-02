@@ -47,13 +47,13 @@
 .toggle-btn span{
     width: 45px;
     height: 4px;
-    background-color: black;
+    background-color: whitesmoke;
     display: block;
     margin-top: 4px;
 }
 
 @media (max-width: 600px) {
     .toggle-btn{
-        background-color:whitesmoke;
+        background-color:rgba(163, 163, 163, 0.493);
     }
   }

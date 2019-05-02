@@ -5,6 +5,8 @@ var path = require("path");
 var fs = require("fs");
 var Persona = require("../models/Persona");
 
+//================================================Crear Persona============================================
+
 function InsertStudent(req, res) {
   var student = new Persona();
   var params = req.body;
@@ -35,7 +37,7 @@ function InsertStudent(req, res) {
       FirstName: params.FirstName,
       SecondName: params.SecondName,
       Surname: params.Surname,
-      SecondSurname: params.SecondName,
+      SecondSurname: params.SecondSurname,
       Date: params.Date,
       Religion: params.Religion,
       Email: params.Email,
@@ -60,13 +62,13 @@ function InsertStudent(req, res) {
           if (err) {
             res.status(500).send({ message: "No se han guardado los datos correctamente" });
           } else {
-            Persona.insertMany(student, function(err, studentSave) {
+            Persona.insertMany(student, function(err, peopleSave) {
             if (!issetAdmin) {
 
-              if (!studentSave) {
+              if (!peopleSave) {
                 res.status(500).send({ message: "Error al guardar al alumno" });
               } else {
-                res.status(200).send({ student: studentSave });
+                res.status(200).send({ Persona_guardada: peopleSave });
               }
            
             } else {
@@ -80,6 +82,7 @@ function InsertStudent(req, res) {
     res.status(404).send({ message: "Debe introducir los campos correctamente" });
   }
 }
+//================================================Listar Persona============================================
 
 function reportStudent(req, res) {
   Persona.find(/* Encuentra al usuario */ {}, (err, user) => {
@@ -87,10 +90,13 @@ function reportStudent(req, res) {
       console.log(err);
       res.status(500).send({ message: "No se puede listar" });
     } else {
-      res.status(200).send({ user: user });
+      res.status(200).send({Usuarios_del_sistema: user });
     }
   });
 }
+
+//================================================Actualizar Persona============================================
+
 function studentUpdate(req, res) {
   var studentID = req.params.id;
   var params = req.body;
@@ -144,6 +150,8 @@ function studentUpdate(req, res) {
   );
 }
 
+//================================================Eliminar Persona============================================
+
 function deleteStudent(req, res) {
   var studentID = req.params.id;
 
@@ -157,9 +165,29 @@ function deleteStudent(req, res) {
     res.send("Se ha eliminado al Usuario Correctamente");
   });
 }
+
+//================================================Buscar Persona============================================
+
+function searchPerson(req, res){
+  var params = req.body;
+
+  Persona.find({$or: [{FirstName: params.search },{SecondName: params.search},{Surname: params.search}]}, (err, encontrado)=>{
+    if(err){
+      res.status(404).send({message: 'Error general'})
+    }else{
+      if(!encontrado){
+        res.status(200).send({message: 'No hay registros'});
+      }else{
+        res.status(200).send({Usuario_encontrado: encontrado});
+      }
+    }
+  });
+}
+
 module.exports = {
   InsertStudent,
   reportStudent,
   deleteStudent,
-  studentUpdate
+  studentUpdate,
+  searchPerson
 };
