@@ -1,0 +1,39 @@
+.container{
+    padding-top: 75px;
+    padding-bottom: 7%;
+    margin: 0 0 0 100px; 
+}
+
+.text{
+    color: black;
+}
+
+.text-gray{
+    color: rgb(158, 158, 158);
+    margin-bottom: 0px;
+}
+
+.titleMain{
+    font-size: 50px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.backdiv{
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.cajita{
+    border:1px solid whitesmoke;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    padding-bottom: -20px;
+}
+
+@media (max-width: 600px) {
+    .container{
+        padding-top: 75px;
+        margin: 0 0 0 0; 
+    }
+  } 

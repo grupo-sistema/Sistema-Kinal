@@ -2,7 +2,6 @@
     <div class="row">
         <div class="col-md-12 col-sm-10">
             <h1 class="titleMain">Registro de estudiante</h1>
-            <hr>
         </div>
     </div>
     <label >*Campos obligatorios</label>
@@ -125,7 +124,7 @@
                     <ngb-alert [type]="alert.type" (close)="close(alert)" >{{ alert.message }}</ngb-alert>
                 </p>
             <div *ngIf="hola == true">
-                <button type="submit"  class="btn btn-primary">Enviar</button>
+                <button type="submit" class="bubbly-button">Enviar</button>
             </div>
             <div hidden="true" class="alert alert-warning" role="alert" name="alerta">
                 Debe aceptar nuestros términos y condiciones para poder continuar.
@@ -134,3 +133,4 @@
         </div>
     </div>
 </div>
+

@@ -31,4 +31,8 @@ export class RestService {
     var params = JSON.stringify(person_guardar);
     return this.http.post(this.endpoint + '/save-person', params,this.httpOptions).pipe(map(this.extractData));
   }
+
+  searchPerson(search){
+    return this.http.post(this.endpoint + '/search-person', {search}, this.httpOptions).pipe(map(this.extractData));
+  }
 }
