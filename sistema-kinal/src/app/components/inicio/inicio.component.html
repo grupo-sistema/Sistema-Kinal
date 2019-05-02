@@ -124,7 +124,7 @@
                     <ngb-alert [type]="alert.type" (close)="close(alert)" >{{ alert.message }}</ngb-alert>
                 </p>
             <div *ngIf="hola == true">
-                <button type="submit" class="bubbly-button">Enviar</button>
+                <button type="submit" class="bubbly-button" (click)="message()">Enviar</button>
             </div>
             <div hidden="true" class="alert alert-warning" role="alert" name="alerta">
                 Debe aceptar nuestros términos y condiciones para poder continuar.
