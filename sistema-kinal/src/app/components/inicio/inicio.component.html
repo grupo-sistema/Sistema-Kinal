@@ -65,10 +65,17 @@
                 </div>
                 <div class="form-group">
                     <label>Dirección de correo electrónico*</label>
-                    <input type="email" [(ngModel)]="person.Email" name="Email" class="form-control" aria-describedby="emailHelp" required>
-                    <small id="emailHelp" class="form-text text-muted">Nosotros nunca compartiremos tu dirección.</small>
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <input type="email" [(ngModel)]="person.Email" name="Email" class="form-control" aria-describedby="emailHelp" required>
+                            <small id="emailHelp" class="form-text text-muted">Nosotros nunca compartiremos tu dirección.</small>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <button class="btn btn-outline-secondary" style="z-index: 0;" type="submit"><i class='far fa-calendar-plus' style='font-size:12px; margin-right: 10px;'></i>Agregar otros correo</button>
+                        </div>
                     </div>
-                <div class="form-group">
+                </div>
+                <div class="form-group" style="margin-top: -20px;">
                     <label>Direción*</label>
                     <div class="form-row">
                         <div class="form-group col-md-3">
@@ -98,9 +105,14 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Número de teléfono*</label>
+                    <label >Número de teléfono*</label>
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-2">
+                            <select  [(ngModel)]="person.Mobile" name="mobile" class="form-control text" placeholder="#" required>
+                                    <option *ngFor="let c of countries" class="text" value="{{c.name}}">{{c.name}}</option>         
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
                             <input [(ngModel)]="person.Mobile" name="Mobile" type="number" class="form-control" placeholder="Célular" required>
                         </div>
                         <div class="form-group col-md-4">
@@ -128,6 +140,7 @@
             <div hidden="true" class="alert alert-warning" role="alert" name="alerta">
                 Debe aceptar nuestros términos y condiciones para poder continuar.
               </div>
+              <div><button type="submit" (click)="obtenerData()"></button></div>
             </form>
         </div>
     </div>

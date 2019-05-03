@@ -4,6 +4,7 @@ import { RestService } from "../../services/rest.service";
 import Swal from 'sweetalert2';
 import { checkAndUpdateBinding } from "@angular/core/src/view/util";
 import { Message } from "@angular/compiler/src/i18n/i18n_ast";
+import { CodigosService } from 'src/app/services/api/codigos.service';
 
 interface Alert {
   type: string;
@@ -26,12 +27,13 @@ export class InicioComponent implements OnInit {
   person: Person;
   hola;
   alerts: Alert[];
-
+  countries = [];
   constructor(public rest: RestService) {
     this.rest.setPerson(this.person);
     this.person = new Person(
       "","","","","","","","","","","","","","","","","","","","",""
     );
+    
   }
 
   close(alert: Alert) {
@@ -42,7 +44,9 @@ export class InicioComponent implements OnInit {
     Swal.fire("Datos guardados correctamente", "You clicked the button!", "success")
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.obtenerData();
+  }
 
   onSubmit() {
     if (this.hola) {
@@ -88,4 +92,13 @@ export class InicioComponent implements OnInit {
       console.log("no");
     }
   }
+
+  //Combobox de paises solamente de america (Se pueden agregar mas)
+  obtenerData(){
+  fetch('http://restcountries.eu/rest/v1/region/americas')
+  .then(response => response.json())
+  .then(json =>  {this.countries = json; console.log(this.countries)})
+  }
+
+
 }

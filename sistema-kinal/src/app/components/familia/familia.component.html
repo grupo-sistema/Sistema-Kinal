@@ -18,6 +18,27 @@
           </div>
         </div>
       </form>
+<<<<<<< HEAD
+        <h2>Personas</h2>
+        <hr style="background-color: ivory;">
+        <div class="row">
+          <div class="col-6" *ngFor='let p of persona; let indice = index'>
+            <div class="card mb-3" style="max-width: 540px; min-height: 223px; border-radius: 10px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img style="padding: 25px" src="https://i.pinimg.com/originals/b5/76/e9/b576e9ba4504eb94656d724b003d8b8b.png" class="card-img">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title text">{{p.FirstName + " " + p.SecondName + " " + p.Surname + " " + p.SecondSurname}}</h5>
+                    <p class="card-text text-gray"><i class="fa fa-home" style="font-size:16px; color: rgb(158, 158, 158); margin-right: 3px;"></i>
+                      {{p.Address.Departament + ", " + p.Address.Municipality}}</p>
+                    <p class="card-text text-gray"><i class="fa fa-phone" style="font-size:16px; color: rgb(158, 158, 158); margin-right: 9px;"></i>
+                      {{p.telephone.Mobile + ", " + p.telephone.Phone}}</p>
+                    <button style="margin-top: 10px;" (click)="getSeleccionado(indice)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Añadir rol familiar</button>
+                    <p class="card-text"><small class="text-muted">Ultima actividad hace 3 minutos</small></p>
+                  </div>
+=======
       <h2>Personas</h2>
       <hr style="background-color: ivory;">
       <div class="row">
@@ -41,6 +62,7 @@
                   <button style="margin-top: 10px;" type="button" class="btn btn-primary" data-toggle="modal"
                     data-target="#exampleModal">Añadir rol familiar</button>
                   <p class="card-text"><small class="text-muted">Ultima actividad hace 3 minutos</small></p>
+>>>>>>> f7f460ef5fc7bf048bca87fcf256008f65764642
                 </div>
               </div>
             </div>

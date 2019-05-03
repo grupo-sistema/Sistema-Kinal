@@ -10,7 +10,7 @@ var PersonaSchema = Schema({
     SecondSurname: String,
     Date: String,
     Religion: String,
-    Email: String,
+    Email: [],
     Gender: String,
     Address: Object,
         Departament: String,
