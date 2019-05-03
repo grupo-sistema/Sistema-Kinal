@@ -66,12 +66,26 @@
                 <div class="form-group">
                     <label>Dirección de correo electrónico*</label>
                     <div class="form-row">
-                        <div class="form-group col-md-8">
-                            <input type="email" [(ngModel)]="person.Email" name="Email" class="form-control" aria-describedby="emailHelp" required>
+                        <div class="form-group col-md-5">
+                            <input type="email" [(ngModel)]="email" name="email" class="form-control" aria-describedby="emailHelp" required>
                             <small id="emailHelp" class="form-text text-muted">Nosotros nunca compartiremos tu dirección.</small>
                         </div>
+                        <div class="form-group col-md-3" >
+                            <button class="btn btn-outline-secondary" style="z-index: 0;" (click)="guardarCorreos()" ><i class='far fa-calendar-plus' style='font-size:12px; margin-right: 10px;'></i>Agregar otros correo</button>
+                        </div>
                         <div class="form-group col-md-4">
-                            <button class="btn btn-outline-secondary" style="z-index: 0;" type="submit"><i class='far fa-calendar-plus' style='font-size:12px; margin-right: 10px;'></i>Agregar otros correo</button>
+                            <table class="responsive-table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Apellidos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <th scope="row">Hernandez Boj</th>
+                                </tr>
+                            </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -145,4 +159,3 @@
         </div>
     </div>
 </div>
-
