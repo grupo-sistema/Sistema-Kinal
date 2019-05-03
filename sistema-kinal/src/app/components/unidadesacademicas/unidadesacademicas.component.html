@@ -1,0 +1,161 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-10">
+        <h1 class="titleMain">Unidades Academicas</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <form (ngSubmit)="onSubmit()">
+          <div class="cajita form-row">
+            <div class="input-group mb-3 backdiv">
+              <input class="form-control" style="z-index: 0;" #myInput [(ngModel)]="search" (input)="filtrar()"
+                name="search" type="text" placeholder="Ingresa preferiblemente el primer nombre y el primero apellido.">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" style="z-index: 0;" type="submit"><i class='fas fa-search'
+                    style='font-size:12px; margin-right: 5px;'></i>Buscar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <h2>Personas</h2>
+        <hr style="background-color: ivory;">
+        <div class="row">
+          <div class="col-6" *ngFor='let p of persona'>
+            <div class="card mb-3" style="max-width: 540px; min-height: 223px; border-radius: 10px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img style="padding: 25px"
+                    src="https://i.pinimg.com/originals/b5/76/e9/b576e9ba4504eb94656d724b003d8b8b.png" class="card-img">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title text">
+                      {{p.FirstName + " " + p.SecondName + " " + p.Surname + " " + p.SecondSurname}}</h5>
+                    <p class="card-text text-gray"><i class="fa fa-home"
+                        style="font-size:16px; color: rgb(158, 158, 158); margin-right: 3px;"></i>
+                      {{p.Address.Departament + ", " + p.Address.Municipality}}</p>
+                    <p class="card-text text-gray"><i class="fa fa-phone"
+                        style="font-size:16px; color: rgb(158, 158, 158); margin-right: 9px;"></i>
+                      {{p.telephone.Mobile + ", " + p.telephone.Phone}}</p>
+                    <button style="margin-top: 10px;" type="button" class="btn btn-primary" data-toggle="modal"
+                      data-target="#exampleModal">Añadir rol familiar</button>
+                    <p class="card-text"><small class="text-muted">Ultima actividad hace 3 minutos</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text" id="exampleModalLabel">Ingreso de rol familiar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+  
+             
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="col-md-12 col-sm-12">
+  
+               <!-- INPUT PARA BUSCAR FAMILIA -->
+               <div class="input-group mb-3 backdiv">
+                  <input class="form-control" name="search" type="text" placeholder="Ingresa la familia a buscar">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit"><i class='fas fa-search'
+                        style='font-size:12px; margin-right: 5px;'></i>Buscar</button>
+                  </div>
+                </div>
+    
+  
+              <!-- FORM TABLA FAMILIA -->
+              <h4>Familias</h4>
+              <table class="responsive-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Apellidos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Hernandez Boj</th>
+                  </tr>
+                </tbody>
+              </table>
+  
+  
+              <!-- CHECKBOX PARA CREAR UNA NUEVA FAMILIA -->
+              <div class="form-group col-sm-12 col-md-6">
+                <div class="form-check">
+                  <input [(ngModel)]="addFamilia" class="form-check-input" type="checkbox" id="Check1">
+                  <label class="form-check-label text" for="gridCheck">
+                    Familia no existente.
+                  </label>
+                </div>
+              </div>
+  
+  
+              <!-- INPUTA PARA INGRESAR EL NOMBRE DE LA FAMILIA -->
+              <div class="form-row" *ngIf="addFamilia == true">
+                <div class="form-group col-sm-12 col-md-7">
+                  <label>Primer y segundo apellido*</label>
+                  <input name="PrimerApellido" type="text" class="form-control" required>
+                </div>
+                <div class="form-group col-sm-12 col-md-6" class="margen2">
+                  <button class="btn btn-outline-secondary" type="submit"><i class='fas fa-plus'
+                      style='font-size:12px; margin-right: 5px;'></i> Registrar Familia</button>
+                </div>
+              </div>
+            </div>
+  
+  
+            <!-- DROPDOWN PARA SELECCIONAR LA FAMILIA DE ESA PERSONA -->
+            <div class="form-row">
+              <label class="text" for="inputState">Familia</label>
+              <select id="inputState" class="form-control">
+                <option disabled>...</option>
+                <option class="text">Hernandez Boj</option>
+              </select>
+            </div><br>
+  
+            <!-- DROPDOWN PARA SELECCIONAR EL ROL DE ESA PERSONA -->
+            <div class="form-row">
+              <label class="text" for="inputState">Rol</label>
+              <select id="inputState" class="form-control">
+                <option disabled>...</option>
+                <option class="text">Padre</option>
+                <option class="text">Madre</option>
+                <option class="text">Encargado</option>
+                <option class="text">Hijo</option>
+              </select>
+            </div><br>
+  
+            <!-- CHECKBOX PARA GENERAR BOTONES -->
+            <div class="form-check">
+              <input [(ngModel)]="accion" class="form-check-input" type="checkbox" id="Check2">
+              <label class="form-check-label text" for="gridCheck">
+                Acepto los cambios que he integrado a esta persona.
+              </label>
+            </div><br>
+  
+             <!-- BOTONES FOOTER DEL MODAL -->
+            <div class="modal-footer" *ngIf="accion == true">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" (click)="message()">Guardar</button>
+            </div>
+  
+  
+          </div>
+        </div>
+      </div>
+    </div>
