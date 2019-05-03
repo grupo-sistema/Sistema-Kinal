@@ -55,18 +55,3 @@ label{
     margin-top: 31px;
     margin-left: 10px;
 }
-
-
-/* CONTENIDO CSS DE LA TABLA DE FAMILIAS DENTRO DEL MODAL */
-
-.colorin{
-  color: black;
-}
-
-/* EFECTO ZOOM */
-
-.card:hover{
-  transform: scale(1.1);
-  transition: transform .6s;
-}
-
