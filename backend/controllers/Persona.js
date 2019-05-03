@@ -19,7 +19,6 @@ function InsertStudent(req, res) {
     params.SecondSurname &&
     params.Date &&
     params.Religion &&
-    params.Email &&
     params.Gender &&
     params.Departament &&
     params.Municipality &&
@@ -40,7 +39,6 @@ function InsertStudent(req, res) {
       SecondSurname: params.SecondSurname,
       Date: params.Date,
       Religion: params.Religion,
-      Email: params.Email,
       Gender: params.Gender,
       Address: (direccion = {
         Departament: params.Departament,
@@ -58,7 +56,7 @@ function InsertStudent(req, res) {
         Other: params.Other
       })
     };
-    Persona.findOne({ email: student.Email.toLowerCase() },(err, issetAdmin) => {
+    Persona.findOne({ FirstName: student.FirstName.toLowerCase() },(err, issetAdmin) => {
           if (err) {
             res.status(500).send({ message: "No se han guardado los datos correctamente" });
           } else {
@@ -184,10 +182,34 @@ function searchPerson(req, res){
   });
 }
 
+//================================================Crear Persona============================================
+
+function InsertEmail(req, res) {
+  var personID = req.params.id;
+  var params = req.body;
+
+  if (params.Correo){
+    Persona.findById({_id: personID}, (err,encontrado)=>{
+      if(err){
+        res.status(500).send({message: "Error"});
+      }else{
+        if(!encontrado){
+          res.status(404).send({message: "No existe esa persona"});
+        }else{
+          encontrado.Email.push({Correo: params.Correo});
+          encontrado.save();
+          res.status(200).send({Correo_Ingresado: encontrado});
+        }
+      }
+    })
+  }
+}
+
 module.exports = {
   InsertStudent,
   reportStudent,
   deleteStudent,
   studentUpdate,
-  searchPerson
+  searchPerson,
+  InsertEmail
 };

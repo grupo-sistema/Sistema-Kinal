@@ -10,12 +10,19 @@ import { Person } from 'src/app/models/person';
 export class FamiliaComponent implements OnInit {
   persona: Person[];
   search: string;
+  seleccionado;
+  index;
 
   constructor(public rest: RestService) {
    }
 
   ngOnInit() {
     this.getPerson();
+  }
+
+  getSeleccionado(indice){
+    this.seleccionado = this.persona[indice];
+    console.log(this.seleccionado);
   }
 
   getPerson(){
@@ -27,7 +34,10 @@ export class FamiliaComponent implements OnInit {
 
   filtrar(){
     let personaSearch = this.persona.filter(encontrado=>{
-      return (encontrado.FirstName.indexOf(this.search)>-1);
+      return (encontrado.FirstName.indexOf(this.search)>-1 ||
+      encontrado.SecondName.indexOf(this.search)>-1 ||
+      encontrado.Surname.indexOf(this.search)>-1 ||
+      encontrado.SecondSurname.indexOf(this.search)>-1);
     })
     console.log(personaSearch);
     if(this.search == ""){
