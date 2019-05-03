@@ -36,15 +36,4 @@ export class FamiliaComponent implements OnInit {
       this.persona = personaSearch;
     }
   }
-
-  onSubmit(){
-    this.rest.searchPerson(this.search).subscribe((res) => {
-      if(!res){
-          console.log("Error al buscar a la persona");
-      }else{
-        //console.log(res.Usuario_encontrado)
-        //this.persona = res.Usuario_encontrado
-      } 
-    });
-  }
 }
