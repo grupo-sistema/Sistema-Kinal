@@ -90,7 +90,7 @@
                             <input [(ngModel)]="person.Street" type="text" class="form-control" name="Street" placeholder="Calle" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Block" type="text" class="form-control" name="Block" placeholder="Manzana o sector" required>
+                            <input [(ngModel)]="person.Block" type="text" class="form-control" name="Block" placeholder="Manzana o sector"  required>
                         </div>
                         <div class="form-group col-md-3">
                             <input [(ngModel)]="person.HouseNumber" type="text" class="form-control" name="HouseNumber" placeholder="Número de casa" required>
@@ -102,17 +102,17 @@
                     <div class="form-row">
                         <div class="form-group col-md-2">
                             <select  [(ngModel)]="person.Mobile" name="mobile" class="form-control text" placeholder="#" required>
-                                    <option *ngFor="let c of countries" class="text" value="{{c.name}}">{{c.name}}</option>         
+                                    <option *ngFor="let c of countries" class="text" value="{{c.name}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
                             </select>
                         </div>
                         <div class="form-group col-md-2">
                             <input [(ngModel)]="person.Mobile" name="Mobile" type="number" class="form-control" placeholder="Célular" required>
                         </div>
                         <div class="form-group col-md-4">
-                            <input [(ngModel)]="person.Phone" type="number" class="form-control" name="Phone" placeholder="Teléfono de casa" required>
+                            <input [(ngModel)]="person.Phone" type="number" class="form-control" name="Phone" placeholder="Teléfono de casa" maxlength="8" required>
                         </div>
                         <div class="form-group col-md-4">
-                            <input [(ngModel)]="person.Other" type="number" class="form-control" name="Other" placeholder="Otro" required="false">
+                            <input [(ngModel)]="person.Other" type="number" class="form-control" name="Other" placeholder="Otro" maxlength="8">
                         </div>
                     </div>
                 </div>
@@ -133,7 +133,6 @@
             <div hidden="true" class="alert alert-warning" role="alert" name="alerta">
                 Debe aceptar nuestros términos y condiciones para poder continuar.
               </div>
-              <div><button type="submit" (click)="obtenerData()"></button></div>
             </form>
         </div>
     </div>
