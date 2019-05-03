@@ -11,7 +11,7 @@
           <div class="input-group mb-3 backdiv">
             <input class="form-control" #myInput [(ngModel)]="search" (input)="filtrar()"  name="search" type="text" placeholder="Ingresa preferiblemente el primer nombre y el primero apellido.">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit"><i class='fas fa-search' style='font-size:12px; margin-right: 5px;'></i>Buscar</button>
+              <button class="btn btn-outline-secondary" style="z-index: 0;" type="submit"><i class='fas fa-search' style='font-size:12px; margin-right: 5px;'></i>Buscar</button>
             </div>
           </div>
         </div>
@@ -20,7 +20,7 @@
         <hr style="background-color: ivory;">
         <div class="row">
           <div class="col-6" *ngFor='let p of persona'>
-            <div class="card mb-3" style="max-width: 540px; border-radius: 10px;">
+            <div class="card mb-3" style="max-width: 540px; min-height: 223px; border-radius: 10px;">
               <div class="row no-gutters">
                 <div class="col-md-4">
                   <img style="padding: 25px" src="https://i.pinimg.com/originals/b5/76/e9/b576e9ba4504eb94656d724b003d8b8b.png" class="card-img">

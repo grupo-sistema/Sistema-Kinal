@@ -1,5 +1,5 @@
 <div id="sidebar">
-  <div class="toggle-btn" onclick="show()">
+  <div class="toggle-btn" style="margin-top: -10px;" onclick="show()">
     <span style="margin-top: 10px;"></span>
     <span></span>
     <span style="margin-bottom: 10px;"></span>
@@ -12,5 +12,10 @@
     <li class="logOut"><a href="">Log out</a></li>
   </ul>
 </div>
+
+<nav class="navbar fixed-top navbar-expand" style="height: 80px; background-color: black; z-index:1; position: sticky;">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  </div>
+</nav>
 
 <router-outlet></router-outlet>
