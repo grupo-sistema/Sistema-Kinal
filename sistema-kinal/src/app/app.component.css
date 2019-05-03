@@ -9,7 +9,7 @@
     background-color: black;
     left: -300px;
     transition: 0.4s;
-    z-index: 1;
+    z-index: 2;
 }
 
 #sidebar.active{
@@ -51,9 +51,3 @@
     display: block;
     margin-top: 4px;
 }
-
-@media (max-width: 600px) {
-    .toggle-btn{
-        background-color:rgba(163, 163, 163, 0.493);
-    }
-  }
