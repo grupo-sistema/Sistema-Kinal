@@ -1,6 +1,7 @@
 import { Input, Component, OnInit } from "@angular/core";
 import { Person } from "src/app/models/person";
 import { RestService } from "../../services/rest.service";
+import Swal from 'sweetalert2';
 import { checkAndUpdateBinding } from "@angular/core/src/view/util";
 import { Message } from "@angular/compiler/src/i18n/i18n_ast";
 
@@ -38,7 +39,7 @@ export class InicioComponent implements OnInit {
   }
 
   message() {
-
+    Swal.fire("Datos guardados correctamente", "You clicked the button!", "success")
   }
 
   ngOnInit() {}
@@ -81,7 +82,7 @@ export class InicioComponent implements OnInit {
           }
         );
       } else {
-        alert("Debe llenar todos los campos necesarios para continuar");
+        Swal.fire("Debe llenar todos los campos necesarios para continuar");
       }
     } else {
       console.log("no");

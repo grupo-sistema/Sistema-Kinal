@@ -47,20 +47,20 @@
                     <div class="form-group col-md-4">
                         <label>Religión*</label>
                         <select [(ngModel)]="person.Religion" name="Religion" class="form-control" required>
-                            <option>Católicismo</option>
-                            <option>Evangelismo</option>
-                            <option>Cristianismo</option>
-                            <option>Testigo de Jehová</option>
-                            <option>Judaísmo</option>
-                            <option>Otro</option>
+                            <option class="text">Católicismo</option>
+                            <option class="text">Evangelismo</option>
+                            <option class="text">Cristianismo</option>
+                            <option class="text">Testigo de Jehová</option>
+                            <option class="text">Judaísmo</option>
+                            <option class="text">Otro</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label>Genero*</label>
                         <select [(ngModel)]="person.Gender" name="Gender" class="form-control" required>
-                            <option>Masculino</option>
-                            <option>Femenino</option>
-                            <option>Otro</option>
+                            <option class="text">Masculino</option>
+                            <option class="text">Femenino</option>
+                            <option class="text">Otro</option>
                         </select>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                     <ngb-alert [type]="alert.type" (close)="close(alert)" >{{ alert.message }}</ngb-alert>
                 </p>
             <div *ngIf="hola == true">
-                <button type="submit" class="bubbly-button">Enviar</button>
+                <button type="submit" class="bubbly-button" (click)="message()">Enviar</button>
             </div>
             <div hidden="true" class="alert alert-warning" role="alert" name="alerta">
                 Debe aceptar nuestros términos y condiciones para poder continuar.
