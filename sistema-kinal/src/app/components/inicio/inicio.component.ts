@@ -25,23 +25,32 @@ const ALERTS: Alert[] = [
 })
 export class InicioComponent implements OnInit {
   person: Person;
-  hola;
   alerts: Alert[];
+  email: string;
+  correosGuardados = [];
   countries = [];
+  hola;
+
   constructor(public rest: RestService) {
     this.rest.setPerson(this.person);
     this.person = new Person(
       "","","","","","","","","","","","","","","","","","","","",""
     );
-    
   }
 
+  // =========================================================================Funciones=============================================================
+  
   close(alert: Alert) {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
   }
 
   message() {
     Swal.fire("Datos guardados correctamente", "You clicked the button!", "success")
+  }
+
+  guardarCorreos(){
+    this.correosGuardados.push(this.email)
+    console.log(this.correosGuardados)
   }
 
   ngOnInit() {
@@ -89,7 +98,6 @@ export class InicioComponent implements OnInit {
         Swal.fire("Debe llenar todos los campos necesarios para continuar");
       }
     } else {
-      console.log("no");
     }
   }
 
@@ -99,6 +107,4 @@ export class InicioComponent implements OnInit {
   .then(response => response.json())
   .then(json =>  {this.countries = json; console.log(this.countries)})
   }
-
-
 }
