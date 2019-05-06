@@ -28,7 +28,7 @@ export class InicioComponent implements OnInit {
   constructor(public rest: RestService) {
     this.rest.setPerson(this.person);
     this.person = new Person(
-      "","","","","","",[],"","","","","","","","","","","","","",""
+      "","","","","","",[],"","","","","","","","","","","",[],[],[]
     );
   }
 
@@ -102,6 +102,9 @@ export class InicioComponent implements OnInit {
     if(this.hola){
       if (this.person.FirstName != "" && this.person.SecondName != "" && this.person.Surname != "" && this.person.SecondSurname != "" && this.person.Date != "" && this.person.Religion != "" && this.person.Gender != "" && this.person.Departament != "" &&this.person.Municipality != "") {
         console.log(this.person);
+        this.person.Mobile = this.mobilesGuardados;
+        this.person.Phone = this.phonesGuardados;
+        this.person.Other = this.othersGuardados;
         this.person.Email = this.correosGuardados;
         this.rest.setPerson(this.person).subscribe(
           response => {
