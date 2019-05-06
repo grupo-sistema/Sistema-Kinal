@@ -38,6 +38,8 @@ function InsertStudent(req, res) {
       Surname: params.Surname,
       SecondSurname: params.SecondSurname,
       Date: params.Date,
+      MarriedSurname: params.MarriedSurname,
+      CivilStatus: params.CivilStatus,
       Religion: params.Religion,
       Gender: params.Gender,
       Email: params.Email,
@@ -63,7 +65,6 @@ function InsertStudent(req, res) {
           } else {
             Persona.insertMany(student, function(err, peopleSave) {
             if (!issetAdmin) {
-
               if (!peopleSave) {
                 res.status(500).send({ message: "Error al guardar al alumno" });
               } else {
