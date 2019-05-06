@@ -64,30 +64,32 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Dirección de correo electrónico*</label>
                     <div class="form-row">
-                        <div class="form-group col-md-5">
-                            <input type="email" [(ngModel)]="email" name="email" class="form-control" aria-describedby="emailHelp" required>
-                            <small id="emailHelp" class="form-text text-muted">Nosotros nunca compartiremos tu dirección.</small>
-                        </div>
-                        <div class="form-group col-md-3" >
-                            <button class="btn btn-outline-secondary" style="z-index: 4;" (click)="guardarCorreos()" ><i class='fas fa-address-card' style='font-size:12px; margin-right: 10px;'></i>Agregar otro correo</button>
+                        <div class="form-group col-md-8">
+                            <label>Dirección de correo electrónico*</label>
+                            <div class="form-row">
+                                <div class="form-group col-md-8">
+                                    <input type="email" [(ngModel)]="email" name="email" class="form-control" aria-describedby="emailHelp" required>
+                                    <small id="emailHelp" class="form-text text-muted">Nosotros nunca compartiremos tu dirección de email.</small>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <button class="btn btn-outline-secondary" style="z-index: 4;" (click)="guardarCorreos()" ><i class='fas fa-address-card' style='font-size:12px; margin-right: 10px;'></i>Agregar correo a la lista</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group col-md-4">
+                            <label>Correos registrados:</label>
                             <div class="table-responsive">
                                 <table class="table">
-                                  <thead>
-                                      <td scope="col" class="colorin">Correo</td>
-                                  </thead>
                                     <tr *ngFor='let c of correosGuardados'>
-                                      <th scope="row" class="colorin">{{c}}</th>
+                                        <th scope="row" class="colorin">{{c}}</th>
                                     </tr>
                                 </table>
-                              </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="form-group" style="margin-top: -20px;">
+                <div class="form-group" style="margin-top: -30px;">
                     <label>Direción*</label>
                     <div class="form-row">
                         <div class="form-group col-md-3">
@@ -117,21 +119,58 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label >Número de teléfono*</label>
                     <div class="form-row">
-                        <div class="form-group col-md-2">
-                            <select  [(ngModel)]="person.Mobile" name="mobile" class="form-control text" placeholder="#" required>
-                                    <option *ngFor="let c of countries" class="text" value="{{c.name}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input [(ngModel)]="person.Mobile" name="Mobile" type="number" class="form-control" placeholder="Célular" required>
+                        <div class="form-group col-md-8">
+                            <label >Número de teléfono</label>
+                            <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <select class="form-control text" required>
+                                        <option *ngFor="let c of countries" class="text" value="{{c.name}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <input [(ngModel)]="mobile" name="mobile" type="number" class="form-control" placeholder="Célular" required>
+                                </div>
+                                <div class="form-group col-md-2" >
+                                    <button class="btn btn-outline-secondary" style="z-index: 4;" (click)="guardarMobile()"><i class="material-icons" style="font-size:20px">add</i><i class="material-icons" style="font-size:20px;">phone_android</i></button>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <select class="form-control text" required>
+                                        <option *ngFor="let c of countries" class="text" value="{{c.name}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <input [(ngModel)]="phone" type="number" class="form-control" name="phone" placeholder="Teléfono de casa" maxlength="8" required>
+                                </div>
+                                <div class="form-group col-md-2" >
+                                    <button class="btn btn-outline-secondary" style="z-index: 4;" (click)="guardarPhone()"><i class="material-icons" style="font-size:20px">add</i><i class="material-icons" style="font-size:20px;">phone</i></button>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <select class="form-control text" required>
+                                        <option *ngFor="let c of countries" class="text" value="{{c.name}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <input [(ngModel)]="other" type="number" class="form-control" name="other" placeholder="Otros" maxlength="8">
+                                </div>
+                                <div class="form-group col-md-2" >
+                                    <button class="btn btn-outline-secondary" style="z-index: 4;" (click)="guardarOther()"><i class="material-icons" style="font-size:20px">add</i><i class="material-icons" style="font-size:20px;">phonelink</i></button>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group col-md-4">
-                            <input [(ngModel)]="person.Phone" type="number" class="form-control" name="Phone" placeholder="Teléfono de casa" maxlength="8" required>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <input [(ngModel)]="person.Other" type="number" class="form-control" name="Other" placeholder="Otro" maxlength="8">
+                            <label>Números registrados:</label>
+                            <div class="table-responsive" style="max-height: 160px">
+                                <table class="table">
+                                    <tr *ngFor='let n of numerosGuardados'>
+                                        <th scope="row" class="colorin">{{n}}</th>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -139,7 +178,7 @@
                     <div class="form-check">
                     <input [(ngModel)]="hola" class="form-check-input" type="checkbox" id="gridCheck" name="check" >
                     <label class="form-check-label" for="gridCheck">
-                        Acepto que toda mi información será confidencial y solamente con usos administrativos.
+                        Acepto que toda mi información será confidencial y será usada solamente con usos administrativos.
                     </label>
                     </div>
                 </div>
@@ -147,7 +186,7 @@
                     <ngb-alert [type]="alert.type" (close)="close(alert)" >{{ alert.message }}</ngb-alert>
                 </p>
             <div *ngIf="hola == true">
-                <button type="submit" class="bubbly-button" style="z-index: 0;" (click)="message()">Enviar</button>
+                <button type="submit" class="bubbly-button" style="z-index: 6;" (click)="message()">Enviar</button>
             </div>
             <div hidden="true" class="alert alert-warning" role="alert" name="alerta">
                 Debe aceptar nuestros términos y condiciones para poder continuar.

@@ -6,18 +6,6 @@ import { checkAndUpdateBinding } from "@angular/core/src/view/util";
 import { Message } from "@angular/compiler/src/i18n/i18n_ast";
 import { CodigosService } from 'src/app/services/api/codigos.service';
 
-interface Alert {
-  type: string;
-  message: string;
-}
-
-const ALERTS: Alert[] = [
-  {
-    type: "success",
-    message: "Datos enviados correctamente"
-  }
-];
-
 @Component({
   selector: "app-inicio",
   templateUrl: "./inicio.component.html",
@@ -25,8 +13,14 @@ const ALERTS: Alert[] = [
 })
 export class InicioComponent implements OnInit {
   person: Person;
-  alerts: Alert[];
   email: string;
+  phone: string;
+  mobile: string;
+  other: string;
+  mobilesGuardados = [];
+  phonesGuardados = [];
+  othersGuardados = [];
+  numerosGuardados = [];
   correosGuardados = [];
   countries = [];
   hola;
@@ -40,12 +34,50 @@ export class InicioComponent implements OnInit {
 
   // =========================================================================Funciones=============================================================
   
-  close(alert: Alert) {
-    this.alerts.splice(this.alerts.indexOf(alert), 1);
-  }
-
   message() {
     Swal.fire("Datos guardados correctamente", "You clicked the button!", "success")
+  }
+
+  guardarMobile(){
+    if(this.mobilesGuardados.length == 3){
+      console.log("Ya no puedes guardar mas mobiles")
+    }else{
+      if(this.mobile == "" || this.mobile == undefined){
+        console.log("No has metido datos");
+      }else{
+        this.mobilesGuardados.push(this.mobile)
+        this.numerosGuardados.push(this.mobile)
+        console.log(this.numerosGuardados)
+      }
+    }
+  }
+
+  guardarPhone(){
+    if(this.phonesGuardados.length == 3){
+      console.log("Ya no puedes guardar mas telefonos")
+    }else{
+      if(this.phone == "" || this.phone == undefined){
+        console.log("No has metido datos");
+      }else{
+        this.phonesGuardados.push(this.phone)
+        this.numerosGuardados.push(this.phone)
+        console.log(this.numerosGuardados)
+      }
+    }
+  }
+
+  guardarOther(){
+    if(this.othersGuardados.length == 3){
+      console.log("Ya no puedes guardar otros números")
+    }else{
+      if(this.other == "" || this.other == undefined){
+        console.log("No has metido datos");
+      }else{
+        this.othersGuardados.push(this.other)
+        this.numerosGuardados.push(this.other)
+        console.log(this.other)
+      }
+    }
   }
 
   guardarCorreos(){
@@ -75,7 +107,6 @@ export class InicioComponent implements OnInit {
           response => {
             if (response) {
               this.message();
-              console.log(this.message);
             } else {
               console.log("Error al guardar");
             }
