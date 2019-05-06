@@ -17,6 +17,7 @@ export class InicioComponent implements OnInit {
   phone: string;
   mobile: string;
   other: string;
+  EstadoCivil: string;
   mobilesGuardados = [];
   phonesGuardados = [];
   othersGuardados = [];
@@ -81,6 +82,8 @@ export class InicioComponent implements OnInit {
   }
 
   guardarCorreos(){
+    
+    console.log(this.person)
     if(this.correosGuardados.length == 3){
       console.log("Ya no puedes guardar mas datos")
     }
