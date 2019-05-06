@@ -34,7 +34,7 @@ export class InicioComponent implements OnInit {
   constructor(public rest: RestService) {
     this.rest.setPerson(this.person);
     this.person = new Person(
-      "","","","","","","","","","","","","","","","","","","","",""
+      "","","","","","",[],"","","","","","","","","","","","","",""
     );
   }
 
@@ -49,8 +49,17 @@ export class InicioComponent implements OnInit {
   }
 
   guardarCorreos(){
-    this.correosGuardados.push(this.email)
-    console.log(this.correosGuardados)
+    if(this.correosGuardados.length == 3){
+      console.log("Ya no puedes guardar mas datos")
+    }
+    else{
+      if(this.email == "" || this.email == undefined){
+        console.log("No has metido datos");
+      }else{
+        this.correosGuardados.push(this.email)
+        console.log(this.correosGuardados)
+      }
+    } 
   }
 
   ngOnInit() {
@@ -58,29 +67,10 @@ export class InicioComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.hola) {
-      if (
-        this.person.FirstName != "" &&
-        this.person.SecondName != "" &&
-        this.person.Surname != "" &&
-        this.person.SecondSurname != "" &&
-        this.person.Date != "" &&
-        this.person.Religion != "" &&
-        this.person.Gender != "" &&
-        this.person.Email != "" &&
-        this.person.Departament != "" &&
-        this.person.Municipality != "" &&
-        this.person.Zone != "" &&
-        this.person.Colony != "" &&
-        this.person.Avenue != "" &&
-        this.person.Street != "" &&
-        this.person.Block != "" &&
-        this.person.HouseNumber != "" &&
-        this.person.Mobile != "" &&
-        this.person.Phone != "" &&
-        this.person.Other != ""
-      ) {
+    if(this.hola){
+      if (this.person.FirstName != "" && this.person.SecondName != "" && this.person.Surname != "" && this.person.SecondSurname != "" && this.person.Date != "" && this.person.Religion != "" && this.person.Gender != "" && this.person.Departament != "" &&this.person.Municipality != "") {
         console.log(this.person);
+        this.person.Email = this.correosGuardados;
         this.rest.setPerson(this.person).subscribe(
           response => {
             if (response) {
@@ -97,7 +87,7 @@ export class InicioComponent implements OnInit {
       } else {
         Swal.fire("Debe llenar todos los campos necesarios para continuar");
       }
-    } else {
+    }else{
     }
   }
 

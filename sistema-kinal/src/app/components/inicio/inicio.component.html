@@ -71,21 +71,19 @@
                             <small id="emailHelp" class="form-text text-muted">Nosotros nunca compartiremos tu dirección.</small>
                         </div>
                         <div class="form-group col-md-3" >
-                            <button class="btn btn-outline-secondary" style="z-index: 0;" (click)="guardarCorreos()" ><i class='far fa-calendar-plus' style='font-size:12px; margin-right: 10px;'></i>Agregar otros correo</button>
+                            <button class="btn btn-outline-secondary" style="z-index: 4;" (click)="guardarCorreos()" ><i class='fas fa-address-card' style='font-size:12px; margin-right: 10px;'></i>Agregar otro correo</button>
                         </div>
                         <div class="form-group col-md-4">
-                            <table class="responsive-table">
-                            <thead>
-                                <tr>
-                                <th scope="col">Apellidos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <th scope="row">Hernandez Boj</th>
-                                </tr>
-                            </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table">
+                                  <thead>
+                                      <td scope="col" class="colorin">Correo</td>
+                                  </thead>
+                                    <tr *ngFor='let c of correosGuardados'>
+                                      <th scope="row" class="colorin">{{c}}</th>
+                                    </tr>
+                                </table>
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -149,7 +147,7 @@
                     <ngb-alert [type]="alert.type" (close)="close(alert)" >{{ alert.message }}</ngb-alert>
                 </p>
             <div *ngIf="hola == true">
-                <button type="submit" class="bubbly-button" (click)="message()">Enviar</button>
+                <button type="submit" class="bubbly-button" style="z-index: 0;" (click)="message()">Enviar</button>
             </div>
             <div hidden="true" class="alert alert-warning" role="alert" name="alerta">
                 Debe aceptar nuestros términos y condiciones para poder continuar.

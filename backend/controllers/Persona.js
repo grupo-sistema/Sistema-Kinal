@@ -40,6 +40,7 @@ function InsertStudent(req, res) {
       Date: params.Date,
       Religion: params.Religion,
       Gender: params.Gender,
+      Email: params.Email,
       Address: (direccion = {
         Departament: params.Departament,
         Municipality: params.Municipality,
