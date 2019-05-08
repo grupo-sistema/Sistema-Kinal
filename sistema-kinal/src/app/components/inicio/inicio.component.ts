@@ -29,7 +29,7 @@ export class InicioComponent implements OnInit {
   constructor(public rest: RestService) {
     this.rest.setPerson(this.person);
     this.person = new Person(
-      "","","","","","",[],"","","","","","","","","","","",[],[],[]
+      "","","","","","","","",[],"","","","","","","","","","","",[],[],[]
     );
   }
 
