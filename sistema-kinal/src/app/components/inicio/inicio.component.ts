@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { checkAndUpdateBinding } from "@angular/core/src/view/util";
 import { Message } from "@angular/compiler/src/i18n/i18n_ast";
 import { CodigosService } from "src/app/services/api/codigos.service";
+import { count } from 'rxjs/operators';
 
 @Component({
   selector: "app-inicio",
@@ -29,7 +30,7 @@ export class InicioComponent implements OnInit {
   constructor(public rest: RestService) {
     this.rest.setPerson(this.person);
     this.person = new Person(
-      "","","","","","",[],"","","","","","","","","","","",[],[],[]
+      "","","","","","","","",[],"","","","","","","","","","","",[],[],[]
     );
   }
 
@@ -51,8 +52,8 @@ export class InicioComponent implements OnInit {
       if (this.mobile == "" || this.mobile == undefined) {
         console.log("No has metido datos");
       } else {
-        this.mobilesGuardados.push(this.mobile);
-        this.numerosGuardados.push(this.mobile);
+        this.mobilesGuardados.push("+" + " " + this.mobile);
+        this.numerosGuardados.push("+" + " " + this.mobile);
         console.log(this.numerosGuardados);
       }
     }
@@ -65,8 +66,8 @@ export class InicioComponent implements OnInit {
       if (this.phone == "" || this.phone == undefined) {
         console.log("No has metido datos");
       } else {
-        this.phonesGuardados.push(this.phone);
-        this.numerosGuardados.push(this.phone);
+        this.phonesGuardados.push("+" + " " + this.phone);
+        this.numerosGuardados.push("+" + " " + this.phone);
         console.log(this.numerosGuardados);
       }
     }
@@ -79,9 +80,9 @@ export class InicioComponent implements OnInit {
       if (this.other == "" || this.other == undefined) {
         console.log("No has metido datos");
       } else {
-        this.othersGuardados.push(this.other);
-        this.numerosGuardados.push(this.other);
-        console.log(this.other);
+        this.othersGuardados.push("+" + " " + this.other);
+        this.numerosGuardados.push("+" + " " + this.other);
+        console.log(this.numerosGuardados);
       }
     }
   }
@@ -108,7 +109,6 @@ export class InicioComponent implements OnInit {
 
   onSubmit() {
     if(this.hola){
-      if (this.person.FirstName != "" && this.person.SecondName != "" && this.person.Surname != "" && this.person.SecondSurname != "" && this.person.Date != "" && this.person.Religion != "" && this.person.Gender != "" && this.person.Departament != "" &&this.person.Municipality != "") {
         console.log(this.person);
         this.person.Mobile = this.mobilesGuardados;
         this.person.Phone = this.phonesGuardados;
@@ -125,12 +125,12 @@ export class InicioComponent implements OnInit {
           error => {
             console.log(<any>error);
           }
-        }
+        )
         error => {
           console.log(<any>error);
         }
-      }
     }
+  }
 
   //Combobox de paises solamente de america (Se pueden agregar mas)
   obtenerData() {
