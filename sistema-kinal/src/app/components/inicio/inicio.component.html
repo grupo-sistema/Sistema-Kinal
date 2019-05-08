@@ -5,7 +5,7 @@
         </div>
     </div>
     <label >*Campos obligatorios</label>
-                    
+   
     <div class="row backdiv">
         <div class="col-md-12 col-sm-12">
             <form (ngSubmit)="onSubmit()">
@@ -73,7 +73,7 @@
                                     <small id="emailHelp" class="form-text text-muted">Nosotros nunca compartiremos tu dirección de email.</small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <button class="btn btn-outline-secondary" style="z-index: 4;" (click)="guardarCorreos()" ><i class='fas fa-address-card' style='font-size:12px; margin-right: 10px;'></i>Agregar correo a la lista</button>
+                                    <button class="btn btn-outline-secondary" style="z-index: 4;" (click)="guardarCorreos()"><i class='fas fa-address-card' style='font-size:12px; margin-right: 10px;' ></i>Agregar correo a la lista</button>
                                 </div>
                             </div>
                         </div>
@@ -188,9 +188,6 @@
             <div *ngIf="hola == true">
                 <button type="submit" class="bubbly-button" style="z-index: 6;" (click)="message()">Enviar</button>
             </div>
-            <div hidden="true" class="alert alert-warning" role="alert" name="alerta">
-                Debe aceptar nuestros términos y condiciones para poder continuar.
-              </div>
             </form>
         </div>
     </div>
