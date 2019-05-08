@@ -4,9 +4,11 @@ export class Person{
         public SecondName: String,
         public Surname: String,
         public SecondSurname: String,
+        public MarriedSurname: String,
+        public CivlStatus: String,
         public Date: String,
         public Religion: String,
-        public Email: [],
+        public Email: any[],
         public Gender: String,
         public Address: Object,
             public Departament: String,
@@ -18,8 +20,8 @@ export class Person{
             public Block: String,
             public HouseNumber: String,
         public telephone: Object,
-            public Mobile: String,
-            public Phone: String,
-            public Other: String
+            public Mobile: any[],
+            public Phone: any[],
+            public Other: any[]
     ){}
 }

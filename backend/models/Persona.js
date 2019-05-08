@@ -8,6 +8,8 @@ var PersonaSchema = Schema({
     SecondName: String,
     Surname: String,
     SecondSurname: String,
+    MarriedSurname: String,
+    CivlStatus: String,
     Date: String,
     Religion: String,
     Email: [],
@@ -21,10 +23,12 @@ var PersonaSchema = Schema({
         Street: String,
         Block: String,
         HouseNumber: String,
-    telephone: Object,
-        Mobile: String,
-        Phone: String,
-        Other: String
+    telephone: {
+        Mobile: [],
+        Phone: [],
+        Other: []
+    }
+        
 });
 
 

@@ -17,6 +17,7 @@ export class InicioComponent implements OnInit {
   phone: string;
   mobile: string;
   other: string;
+  EstadoCivil: string;
   mobilesGuardados = [];
   phonesGuardados = [];
   othersGuardados = [];
@@ -28,7 +29,7 @@ export class InicioComponent implements OnInit {
   constructor(public rest: RestService) {
     this.rest.setPerson(this.person);
     this.person = new Person(
-      "","","","","","",[],"","","","","","","","","","","","","",""
+      "","","","","","",[],"","","","","","","","","","","",[],[],[]
     );
   }
 
@@ -85,11 +86,14 @@ export class InicioComponent implements OnInit {
     }
   }
 
-  guardarCorreos() {
-    if (this.correosGuardados.length == 3) {
-      console.log("Ya no puedes guardar mas datos");
-    } else {
-      if (this.email == "" || this.email == undefined) {
+  guardarCorreos(){
+    
+    console.log(this.person)
+    if(this.correosGuardados.length == 3){
+      console.log("Ya no puedes guardar mas datos")
+    }
+    else{
+      if(this.email == "" || this.email == undefined){
         console.log("No has metido datos");
       } else {
         this.correosGuardados.push(this.email);
@@ -103,23 +107,30 @@ export class InicioComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.hola) {
-      console.log(this.person);
-      this.rest.setPerson(this.person).subscribe(
-        response => {
-          if (response) {
-            this.message();
-          } else {
-            console.log("Error al guardar");
+    if(this.hola){
+      if (this.person.FirstName != "" && this.person.SecondName != "" && this.person.Surname != "" && this.person.SecondSurname != "" && this.person.Date != "" && this.person.Religion != "" && this.person.Gender != "" && this.person.Departament != "" &&this.person.Municipality != "") {
+        console.log(this.person);
+        this.person.Mobile = this.mobilesGuardados;
+        this.person.Phone = this.phonesGuardados;
+        this.person.Other = this.othersGuardados;
+        this.person.Email = this.correosGuardados;
+        this.rest.setPerson(this.person).subscribe(
+          response => {
+            if (response) {
+              this.message();
+            } else {
+              console.log("Error al guardar");
+            }
+          },
+          error => {
+            console.log(<any>error);
           }
-        },
+        }
         error => {
           console.log(<any>error);
         }
-      );
-    } else {
+      }
     }
-  }
 
   //Combobox de paises solamente de america (Se pueden agregar mas)
   obtenerData() {
