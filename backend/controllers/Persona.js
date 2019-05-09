@@ -43,7 +43,7 @@ function InsertStudent(req, res) {
       Religion: params.Religion,
       Gender: params.Gender,
       Email: params.Email,
-      Address: (direccion = {
+      Address : (direccion ={
         Departament: params.Departament,
         Municipality: params.Municipality,
         Zone: params.Zone,
@@ -51,8 +51,9 @@ function InsertStudent(req, res) {
         Avenue: params.Avenue,
         Street: params.Street,
         Block: params.Block,
-        HouseNumber: params.HouseNumber
-      }),
+        HouseNumber: params.HouseNumber,
+        Specific: params.Specific
+    }),
       telephone: (telefono = {
         Mobile: params.Mobile,
         Phone: params.Phone,
@@ -64,17 +65,17 @@ function InsertStudent(req, res) {
             res.status(500).send({ message: "No se han guardado los datos correctamente" });
           } else {
             Persona.insertMany(student, function(err, peopleSave) {
-            if (!issetAdmin) {
-              if (!peopleSave) {
-                res.status(500).send({ message: "Error al guardar al alumno" });
-              } else {
-                res.status(200).send({ Persona_guardada: peopleSave });
-              }
-           
-            } else {
-              res.status(500).send({ message: "No puede guardar datos duplicados" });
-            }
-        });
+                if (!issetAdmin) {
+                  if (!peopleSave) {
+                    res.status(500).send({ message: "Error al guardar al alumno" });
+                  } else {
+                    res.status(200).send({ Persona_guardada: peopleSave });
+                  }
+              
+                } else {
+                  res.status(500).send({ message: "No puede guardar datos duplicados" });
+                }
+            });
           }
       }
     );

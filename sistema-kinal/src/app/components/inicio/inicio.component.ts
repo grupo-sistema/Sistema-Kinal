@@ -18,19 +18,23 @@ export class InicioComponent implements OnInit {
   phone: string;
   mobile: string;
   other: string;
-  EstadoCivil: string;
+  plusmobile: string;
+  plusphone: string;
+  plusother: string;
+  mostrar = false;
   mobilesGuardados = [];
   phonesGuardados = [];
   othersGuardados = [];
   numerosGuardados = [];
   correosGuardados = [];
+  direccionesGuardadas = [];
   countries = [];
   hola;
 
   constructor(public rest: RestService) {
     this.rest.setPerson(this.person);
     this.person = new Person(
-      "","","","","","","","",[],"","","","","","","","","","","",[],[],[]
+      "","","","","","","","",[],"","","","","","","","","","","","",[],[],[]
     );
   }
 
@@ -45,6 +49,15 @@ export class InicioComponent implements OnInit {
     }
   }
 
+  validarAC(){
+    if(this.person.Gender == "Femenino" && this.person.CivilStatus == "Casada"){
+      this.mostrar = true;
+    }else{
+      this.mostrar = false;
+      this.person.MarriedSurname = "";
+    }
+  }
+
   guardarMobile() {
     if (this.mobilesGuardados.length == 3) {
       console.log("Ya no puedes guardar mas mobiles");
@@ -52,9 +65,14 @@ export class InicioComponent implements OnInit {
       if (this.mobile == "" || this.mobile == undefined) {
         console.log("No has metido datos");
       } else {
-        this.mobilesGuardados.push("+" + " " + this.mobile);
-        this.numerosGuardados.push("+" + " " + this.mobile);
-        console.log(this.numerosGuardados);
+        if (this.plusmobile == undefined) {
+          console.log("Selecciona una extension");
+        } else {
+          this.mobilesGuardados.push("+" + "(" + this.plusmobile + ")" + " " + this.mobile);
+          this.numerosGuardados.push("+" + "(" + this.plusmobile + ")" + " " + this.mobile);
+          this.mobile = "";
+          console.log(this.numerosGuardados);
+        }
       }
     }
   }
@@ -66,9 +84,14 @@ export class InicioComponent implements OnInit {
       if (this.phone == "" || this.phone == undefined) {
         console.log("No has metido datos");
       } else {
-        this.phonesGuardados.push("+" + " " + this.phone);
-        this.numerosGuardados.push("+" + " " + this.phone);
-        console.log(this.numerosGuardados);
+        if (this.plusphone == undefined) {
+          console.log("Selecciona una extension");
+        } else {
+          this.phonesGuardados.push("+" + "(" + this.plusphone + ")" + " " + this.phone);
+          this.numerosGuardados.push("+" + "(" + this.plusphone + ")" + " " + this.phone);
+          this.phone = "";
+          console.log(this.numerosGuardados);
+        }
       }
     }
   }
@@ -80,25 +103,43 @@ export class InicioComponent implements OnInit {
       if (this.other == "" || this.other == undefined) {
         console.log("No has metido datos");
       } else {
-        this.othersGuardados.push("+" + " " + this.other);
-        this.numerosGuardados.push("+" + " " + this.other);
-        console.log(this.numerosGuardados);
+        if (this.plusother == undefined) {
+          console.log("Selecciona una extension");
+        } else {
+          this.othersGuardados.push("+" + "(" + this.plusother + ")" + " " + this.other);
+          this.numerosGuardados.push("+" + "(" + this.plusother + ")" + " " + this.other);
+          this.other = "";
+          console.log(this.numerosGuardados);
+        }
       }
     }
   }
 
   guardarCorreos(){
-    
-    console.log(this.person)
     if(this.correosGuardados.length == 3){
-      console.log("Ya no puedes guardar mas datos")
+      console.log("Ya no puedes guardar mas correos")
     }
     else{
       if(this.email == "" || this.email == undefined){
-        console.log("No has metido datos");
+        console.log("No has metido correos");
       } else {
         this.correosGuardados.push(this.email);
+        this.email = "";
         console.log(this.correosGuardados);
+      }
+    }
+  }
+
+  guardarDirecciones(){
+    if(this.person.Departament == "" || this.person.Municipality == "" || this.person.Zone == "" || (this.person.Colony == "" || undefined) || (this.person.Avenue == "" || undefined) || (this.person.Street == "" || undefined) || (this.person.Block == "" || undefined) || (this.person.HouseNumber == "" || undefined) || (this.person.Specific == "" || undefined)){
+      console.log("Llena los datos que te faltan")
+    }else{
+      if(this.direccionesGuardadas.length == 3){
+        console.log("Ya no puedes guardar mas direcciones")
+      }
+      else{
+          this.direccionesGuardadas.push(this.person.Departament + ", " + this.person.Municipality + ". " + this.person.Zone + " '" + this.person.Colony + "' " + this.person.Avenue + "Ave. " + this.person.Street + "calle. Bloque " + this.person.Block + " " + this.person.HouseNumber + ". '" + this.person.Specific + "' ");
+          console.log(this.direccionesGuardadas);
       }
     }
   }

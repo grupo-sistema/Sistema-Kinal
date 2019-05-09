@@ -23,6 +23,7 @@ var PersonaSchema = Schema({
         Street: String,
         Block: String,
         HouseNumber: String,
+        Specific: String,
     telephone: {
         Mobile: [],
         Phone: [],

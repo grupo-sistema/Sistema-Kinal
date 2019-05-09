@@ -28,16 +28,16 @@
                         <label>Segundo Apellido*</label>
                         <input [(ngModel)]="person.SecondSurname" name="SecondSurname" type="text" class="form-control" required>
                     </div>
-                    <div class="form-group col-md-4" hidden="true" id="apellidocasada">
-                        <label>Apellido Casad@</label>
-                        <input [(ngModel)]="person.MarriedSurname" name="MarriedSurname" type="text" class="form-control"> 
+                    <div class="form-group col-md-4" *ngIf="mostrar == true" id="apellidocasada">
+                        <label>Apellido Casada</label>
+                        <input [(ngModel)]="person.MarriedSurname"  name="MarriedSurname" type="text" class="form-control"> 
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label>Fecha de nacimiento*</label>
                         <div class="input-group">
-                        <input [(ngModel)]="person.Date" name="Date" type="date" class="form-control" placeholder="yyyy-mm-dd" required>
+                        <input style="background-color: #0D0D0D; color: whitesmoke" [(ngModel)]="person.Date" name="Date" type="date" class="form-control" placeholder="yyyy-mm-dd" required>
                         </div>
                         <ng-template #footerTemplate>
                             <hr class="my-0">
@@ -46,27 +46,30 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label>Religión*</label>
-                        <select [(ngModel)]="person.Religion" name="Religion" class="form-control" required>
-                            <option class="text">Católicismo</option>
-                            <option class="text">Evangelismo</option>
-                            <option class="text">Cristianismo</option>
-                            <option class="text">Testigo de Jehová</option>
-                            <option class="text">Judaísmo</option>
-                            <option class="text">Otro</option>
+                        <select style="background-color: #0D0D0D; color: whitesmoke" [(ngModel)]="person.Religion" name="Religion" class="form-control" required>
+                            <option value="" disabled> Sin seleccionar aún </option>
+                            <option>Católicismo</option>
+                            <option>Evangelismo</option>
+                            <option>Cristianismo</option>
+                            <option>Testigo de Jehová</option>
+                            <option>Judaísmo</option>
+                            <option>Otro</option>
                         </select>
                     </div>
                     <div class="form-group col-md-3">
                         <label>Genero*</label>
-                        <select [(ngModel)]="person.Gender" name="Gender"  class="form-control" required>
-                            <option class="text">Masculino</option>
-                            <option class="text">Femenino</option>
+                        <select style="background-color: #0D0D0D; color: whitesmoke" [(ngModel)]="person.Gender" (click)="validarAC()"  name="Gender"  class="form-control" required>
+                            <option value="" disabled> Sin seleccionar aún </option>
+                            <option>Masculino</option>
+                            <option>Femenino</option>
                         </select>
                     </div>
                     <div class="form-group col-md-3">
                         <label>Estado Civil*</label>
-                        <select class="form-control" [(ngModel)]="person.EstadoCivil" name="EstadoCivil" required>
-                            <option class="text">Solter@</option>
-                            <option class="text">Casad@</option>
+                        <select style="background-color: #0D0D0D; color: whitesmoke" class="form-control" (click)="validarAC()"  [(ngModel)]="person.CivilStatus" name="CivilStatus" required>
+                            <option value="" disabled> Sin seleccionar aún </option>
+                            <option>Soltera</option>
+                            <option>Casada</option>
                         </select>
                     </div>
                 </div>
@@ -100,28 +103,444 @@
                     <label>Direción*</label>
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Departament" name="Departament" type="text" class="form-control" placeholder="Departamento" required>
+                            <select [(ngModel)]="person.Departament" name="Departament" class="form-control" style="background-color: #0D0D0D; color: whitesmoke">
+                                <option value="" disabled> Selecciona tu departamento </option>
+                                <option value="Alta Verapaz">Alta Verapaz</option>
+                                <option value="Baja Verapaz">Baja Verapaz</option>
+                                <option value="Chimaltenango">Chimaltenango</option>
+                                <option value="Chiquimula">Chiquimula</option>
+                                <option value="Petén">Petén</option>
+                                <option value="El Progreso">El progreso</option>
+                                <option value="Quiché">Quiché</option>
+                                <option value="Escuintla">Escuintla</option>
+                                <option value="Guatemala">Guatemala</option>
+                                <option value="Huehuetenango">Huehuetenango</option>
+                                <option value="Izabal">Izabal</option>
+                                <option value="Jalapa">Jalapa</option>
+                                <option value="Jutiapa">Jutiapa</option>
+                                <option value="Quetzaltenango">Quetzaltenango</option>
+                                <option value="Retalhuleu">Retalhuleu</option>
+                                <option value="Sacatepéquez">Sacatepéquez</option>
+                                <option value="San Marcos">San Marcos</option>
+                                <option value="Santa Rosa">Santa Rosa</option>
+                                <option value="Sololá">Sololá</option>
+                                <option value="Suchitepéquez">Suchitepéquez</option>
+                                <option value="Totonicapán">Totonicapán</option>
+                                <option value="Zacapa">Zacapa</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Municipality" type="text" class="form-control" name="Municipality" placeholder="Municipio" required>
+                            <select [(ngModel)]="person.Municipality" name="Municipality" class="form-control" style="background-color: #0D0D0D; color: whitesmoke">
+                                <option value="" disabled> Selecciona tu municipio </option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Huehuetenango">Huehuetenango</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Chiantla">Chiantla</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Malacatancito">Malacatancito</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Cuilco">Cuilco</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Nentón">Nentón</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="San Pedro Necta">San Pedro Necta</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Jacaltenango">Jacaltenango</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="San lldelfonso Ixtahuac'n">San lldelfonso Ixtahuac'n</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Santa Bárbara">Santa Bárbara</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="La Libertad">La Libertad</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="La Democracia">La Democracia</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="San Miguel Acatán">San Miguel Acatán</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="San Rafael La Independencia">San Rafael La Independencia</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Todos Santos Chuchcumatán">Todos Santos Chuchcumatán</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="San Juan Atitán">San Juan Atitán</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Santa Eulalia">Santa Eulalia</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="San Mateo Ixtatán">San Mateo Ixtatán</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Colotenango">Colotenango</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="San Sebastián Huehuetenango">San Sebastián Huehuetenango</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Tectitán">Tectitán</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Concepción Huista">Concepción Huista</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="San Juan Ixcoy">San Juan Ixcoy</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="San Antonio Huista">San Antonio Huista</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="San Sebastián Coatán">San Sebastián Coatán</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Santa Cruz Barillas">Santa Cruz Barillas</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Aguacatán">Aguacatán</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="San Rafael Petzal">San Rafael Petzal"</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="San Gaspar Ixchil">San Gaspar Ixchil</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Santiago Chimaltenango">Santiago Chimaltenango</option>
+                                <option *ngIf="person.Departament == 'Huehuetenango'" value="Santa Ana Huista">Santa Ana Huista</option>
+                                
+                                <option *ngIf="person.Departament == 'Jalapa'" value="Jalapa">Jalapa</option>
+                                <option *ngIf="person.Departament == 'Jalapa'" value="San Pedro Pinula">San Pedro Pinula</option>
+                                <option *ngIf="person.Departament == 'Jalapa'" value="San Luis Jilotepeque">San Luis Jilotepeque</option>
+                                <option *ngIf="person.Departament == 'Jalapa'" value="San Manuel Chaparrón">San Manuel Chaparrón</option>
+                                <option *ngIf="person.Departament == 'Jalapa'" value="San Carlos Alzatate">San Carlos Alzatate</option>
+                                <option *ngIf="person.Departament == 'Jalapa'" value="Monjas">Monjas</option>
+                                <option *ngIf="person.Departament == 'Jalapa'" value="Mataquescuintla">Mataquescuintla</option>
+                                
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Quetzaltenango">Quetzaltenango</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Salcajá">Salcajá</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Olintepeque">Olintepeque</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="San Carlos Sija">San Carlos Sija</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Sibilia">Sibilia</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Cabrican">Cabrican</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Cajola">Cajola</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="San Miguel Siguilça">San Miguel Siguilça</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="San Juan Ostuncalco">San Juan Ostuncalco</option>  
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="San Mateo">San Mateo</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Concepción Chiquirichapa">Concepción Chiquirichapa</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="San Martín Sacatepequez">San Martín Sacatepequez</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Almolonga">Almolonga</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Cantel">Cantel</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Huitán">Huitán</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Zunil">Zunil</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Colomba">Colomba</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="San Francisco La Unión">San Francisco La Unión</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="El Palmar">El Palmar</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Coatepeque">Coatepeque</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Génova">Génova</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Flores Costa Cuca">Flores Costa Cuca</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="La Esperanza">La Esperanza</option>
+                                <option *ngIf="person.Departament == 'Quetzaltenango'" value="Palestina de los Altos">Palestina de los Altos</option>
+                
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="Antigua Guatemala">Antigua Guatemala</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="Jocotenango">Jocotenango</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="Pastores">Pastores</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="Sumpango">Sumpango</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="Santo Domingo Xenacoj">Santo Domingo Xenacoj</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="Santiago Sacatepequez">Santiago Sacatepequez</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="San Bartolomé Milpas Altas">San Bartolomé Milpas Altas</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="San Lucas Sacatepequez">San Lucas Sacatepequez</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="Santa Lucía Milpas Altas">Santa Lucía Milpas Altas</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="Magdalena Milpas Altas">Magdalena Milpas Altas</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="Santa María de Jesús">Santa María de Jesús</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="Ciudad Vieja">Ciudad Vieja</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="San Miguel Dueñas">San Miguel Dueñas</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="San Juan Alotenango">San Juan Alotenango</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="San Antonio Aguas Calientes">San Antonio Aguas Calientes</option>
+                                <option *ngIf="person.Departament == 'Sacatepéquez'" value="Santa Catarina Barahona">Santa Catarina Barahona</option>
+                                
+                                <option *ngIf="person.Departament == 'Santa Rosa'" value="Cuilapa">Cuilapa</option>
+                                <option *ngIf="person.Departament == 'Santa Rosa'" value="Berberena">Berberena</option>
+                                <option *ngIf="person.Departament == 'Santa Rosa'" value="San Rosa de Lima">San Rosa de Lima</option>
+                                <option *ngIf="person.Departament == 'Santa Rosa'" value="Casillas">Casillas</option>
+                                <option *ngIf="person.Departament == 'Santa Rosa'" value="San Rafael Las Flores">San Rafael Las Flores</option>
+                                <option *ngIf="person.Departament == 'Santa Rosa'" value="Oratorio">Oratorio</option>
+                                <option *ngIf="person.Departament == 'Santa Rosa'" value="San Juan TEcuaco">San Juan TEcuaco</option>
+                                <option *ngIf="person.Departament == 'Santa Rosa'" value="Chiquimulilla">Chiquimulilla</option>
+                                <option *ngIf="person.Departament == 'Santa Rosa'" value="Taxisco">Taxisco</option>
+                                <option *ngIf="person.Departament == 'Santa Rosa'" value="Santa María Ixhuatan">Santa María Ixhuatan</option>
+                                <option *ngIf="person.Departament == 'Santa Rosa'" value="Guazacapán">Guazacapán</option>
+                                <option *ngIf="person.Departament == 'Santa Rosa'" value="Santa Cruz Naranjo">Santa Cruz Naranjo</option>
+                                <option *ngIf="person.Departament == 'Santa Rosa'" value="Pueblo Nuevo Viñas ">Pueblo Nuevo Viñas</option>
+                                <option *ngIf="person.Departament == 'Santa Rosa'" value="Nueva Santa Rosa">Nueva Santa Rosa</option>
+                
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="Mazatenango">Mazatenango</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="Cuyotenango">Cuyotenango</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="San Francisco Zapotitlán">San Francisco Zapotitlán</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="San Bernardino">San Bernardino</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="San José El Ídolo">San José El Ídolo</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="Santo Domingo Suchitepequez">Santo Domingo Suchitepequez</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="San Lorenzo">San Lorenzo</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="Samayac">Samayac</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="San Pablo Jocopilas">San Pablo Jocopilas</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="San Antonio Suchitepéquez">San Antonio Suchitepéquez</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="San Miguel Panán">San Miguel Panán</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="San Gabriel">San Gabriel</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="Chicacao">Chicacao</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="Patulul">Patulul</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="Santa Bárbara">Santa Bárbara</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="San Juan Bautista">San Juan Bautista</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="Santo Tomás La Unión">Santo Tomás La Unión</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="Zunilito">Zunilito</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="Pueblo Nuevo Suchitepéquez">Pueblo Nuevo Suchitepéquez</option>
+                                <option *ngIf="person.Departament == 'Suchitepéquez'" value="Río Bravo">Río Bravo</option>
+                
+                                <option *ngIf="person.Departament == 'Zacapa'" value="Zacapa">Zacapa</option>
+                                <option *ngIf="person.Departament == 'Zacapa'" value="Estanzuela">Estanzuela</option>
+                                <option *ngIf="person.Departament == 'Zacapa'" value="Río Hondo">Río Hondo</option>
+                                <option *ngIf="person.Departament == 'Zacapa'" value="gualán">gualán</option>
+                                <option *ngIf="person.Departament == 'Zacapa'" value="Teculután">Teculután</option>
+                                <option *ngIf="person.Departament == 'Zacapa'" value="Usumatlán">Usumatlán</option>
+                                <option *ngIf="person.Departament == 'Zacapa'" value="Cabañas">Cabañas</option>
+                                <option *ngIf="person.Departament == 'Zacapa'" value="San Diego">San Diego</option>
+                                <option *ngIf="person.Departament == 'Zacapa'" value="La Unión">La Unión</option>
+                                <option *ngIf="person.Departament == 'Zacapa'" value="Huite">Huite</option>
+                                
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Cobán">Cobán</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Santa Cruz Verapaz">Santa Cruz Verapaz</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="San Cristobal Verapaz">Cobán</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Tactíc">Tactíc</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Tamahú">Tamahú</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="San Miguel Tucurú">Cobán</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Panzos">Panzos</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Senahú">Sehahú</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="San Pedro Carchá">San Pedro Carchá</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="SanJuan Chamelco">SanJuan Chamelco</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Lanquín">Lanquín</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Santa María Cahabón">Santa María Cahabón</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Chisec">Chisec</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Chahal">Chahal</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Fray Bartolomé de las Casas">Fray Bartolomé de las Casas</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Santa Catarina La Tinta">Santa Cararina La Tinta</option>
+                                <option *ngIf="person.Departament == 'Baja Verapaz'" value="Salamá">Salamá</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="San Miguel Chicaj">San Miguel Chicoj</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Rabinal">Rabinal</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Cubulco">Cubulco</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Granados">Granados</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Santa Cruz El Chol">Santa Cruz El Sol</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="San Jerónimo">San Jerónimo</option>
+                                <option *ngIf="person.Departament == 'Alta Verapaz'" value="Purulhá">Purulhá</option>
+
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="Chimaltenango">Chimaltenango</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="San José Poaquil">San José Poaquil</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="San Martín Jiliotepeque">San Martín Jiliotepeque</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="San Juan Comalapa">San Juan Comalapa</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="Anta Apolonia">Santa Apolonia</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="Tecpán Guatemala">Tecpán Guatemala</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="Patzun">Patzun</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="San Miguel Pochuta">San Miguel Pochuta</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="Patzicia">Patzicia</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="Santa Cruz Balanyá">Santa Cruz Balanyá</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="Acatenango">Acatenango</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="San Pedro Yepocapa">San Pedro Yepocapa</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="San Andrés Itzapa">San Andrés Itzapa</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="Parramos">Parramos</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="Zaragoza">Zaragoza</option>
+                                <option *ngIf="person.Departament == 'Chimaltenango'" value="El Tejar">El Tejar</option>
+
+                                <option *ngIf="person.Departament == 'Chiquimula'" value="Chiquimula">Chiquimula</option>
+                                <option *ngIf="person.Departament == 'Chiquimula'" value="San José La Arada">San José La Arada</option>
+                                <option *ngIf="person.Departament == 'Chiquimula'" value="San Juan Hermita">San Juan Hermita</option>
+                                <option *ngIf="person.Departament == 'Chiquimula'" value="Jocotán">Jocotán</option>
+                                <option *ngIf="person.Departament == 'Chiquimula'" value="Camotán">Camotán</option>
+                                <option *ngIf="person.Departament == 'Chiquimula'" value="Olopa">Olopa</option>
+                                <option *ngIf="person.Departament == 'Chiquimula'" value="Esquipulas">Esquipulas</option>
+                                <option *ngIf="person.Departament == 'Chiquimula'" value="Concepción Las Minas">Concepción Las Minas</option>
+                                <option *ngIf="person.Departament == 'Chiquimula'" value="Quezaltepeque">Quezaltepeque</option>
+                                <option *ngIf="person.Departament == 'Chiquimula'" value="San Jacinto">San Jacinto</option>
+
+                                <option *ngIf="person.Departament == 'Petén'" value="Flores">Flores</option>
+                                <option *ngIf="person.Departament == 'Petén'" value="San José">San José</option>
+                                <option *ngIf="person.Departament == 'Petén'" value="San Benito">San Benito</option>
+                                <option *ngIf="person.Departament == 'Petén'" value="San Andrés">San Andrés</option>
+                                <option *ngIf="person.Departament == 'Petén'" value="La Libertad">La Libertad</option>
+                                <option *ngIf="person.Departament == 'Petén'" value="San Francisco">San Francisco</option>
+                                <option *ngIf="person.Departament == 'Petén'" value="Santa Ana">Santa Ana</option>
+                                <option *ngIf="person.Departament == 'Petén'" value="Dolores">Dolores</option>
+                                <option *ngIf="person.Departament == 'Petén'" value="San Luis">San Luis</option>
+                                <option *ngIf="person.Departament == 'Petén'" value="Sayaxche">Sayaxche</option>
+                                <option *ngIf="person.Departament == 'Petén'" value="Melchor de Mencos">Melchor de Mencos</option>
+                                <option *ngIf="person.Departament == 'Petén'" value="Poptún">Poptún</option>
+
+                                <option *ngIf="person.Departament == 'El Progreso'" value="Guastatoya">Guastatoya</option>
+                                <option *ngIf="person.Departament == 'El Progreso'" value="Morazán">Morazán</option>
+                                <option *ngIf="person.Departament == 'El Progreso'" value="San Agustín Acasaguastlan">San Agustín Acasaguastlan</option>
+                                <option *ngIf="person.Departament == 'El Progreso'" value="San Cristobal Acasaguastlan">San Cristobal Acasaguastlan</option>
+                                <option *ngIf="person.Departament == 'El Progreso'" value="El Jícaro">El Jícaro</option>
+                                <option *ngIf="person.Departament == 'El Progreso'" value="Sansare">Sansare</option>
+                                <option *ngIf="person.Departament == 'El Progreso'" value="Sanarate">Sanarate</option>
+                                <option *ngIf="person.Departament == 'El Progreso'" value="San Antonio La Paz">San Antonio La Paz</option>
+
+                                <option *ngIf="person.Departament == 'Quiché'" value="Santa Cruz del Quiché">Santa Cruz del Quiché</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="Chiche">Chiche</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="Chinique">Chinique</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="Zacualpa">Zacualpa</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="Chajul">Chajul</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="Santo Tomás Chichicastenango">Santo Tomás Chichicastenango</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="Patzité">Patzité</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="San Antonio Ilotenango">San Antonio Ilotenango</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="San Pedro Jocopilas">San Pedro Jocopilas</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="Cunén">Cunén</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="San Juan Cotzal">San Juan Cotzal</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="Joyabaj">Joyabaj</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="Santa María Nebaj">Santa María Nebaj</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="San Andrés Sajcabajá">San Andrés Sajcabajá</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="San Miguel Uspatán">San Miguel Uspatán</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="Sacapulas">Sacapulas</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="San Bartolomé Jocotenango">San Bartolomé Jocotenango</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="Canilla">Canilla</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="Chicaman">Chicaman</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="Playa Gmade - Ixcán">Playa Gmade - Ixcán</option>
+                                <option *ngIf="person.Departament == 'Quiché'" value="Pachalúm">Pachalúm</option>
+
+                                <option *ngIf="person.Departament == 'Escuintla'" value="Escuintla">Escuintla</option>
+                                <option *ngIf="person.Departament == 'Escuintla'" value="Santa Lucía Cotzumalguapa">Santa Lucía Cotzumalguapa</option>
+                                <option *ngIf="person.Departament == 'Escuintla'" value="La Democracia">La Democracia</option>
+                                <option *ngIf="person.Departament == 'Escuintla'" value="Siquinalá">Siquinalá</option>
+                                <option *ngIf="person.Departament == 'Escuintla'" value="Masagua">Masagua</option>
+                                <option *ngIf="person.Departament == 'Escuintla'" value="Pueblo Nuevo Tiquisate">Pueblo Nuevo Tiquisate</option>
+                                <option *ngIf="person.Departament == 'Escuintla'" value="La Gomera">La Gomera</option>
+                                <option *ngIf="person.Departament == 'Escuintla'" value="Guanagazapa">Guanagazapa</option>
+                                <option *ngIf="person.Departament == 'Escuintla'" value="Puerto de San José">Puerto de San José</option>
+                                <option *ngIf="person.Departament == 'Escuintla'" value="Itzapa">Iztapa</option>
+                                <option *ngIf="person.Departament == 'Escuintla'" value="Palín">Palín</option>
+                                <option *ngIf="person.Departament == 'Escuintla'" value="San Vicente Pacaya">San Vicente Pacaya</option>
+                                <option *ngIf="person.Departament == 'Escuintla'" value="Nueva Concepción">Nueva Concepción</option>
+
+                                <option *ngIf="person.Departament == 'Guatemala'" value="Guatemala">Guatemala</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="Santa Catarina Pinula">Santa Catarina Pinula</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="San José Pinula">San José Pinula</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="San José del Golfo">San José del Golfo</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="Palencia">Palencia</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="Chinautla">Chinautla</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="San Pedro Ayampuc">San Pedro Ayampuc</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="Mixco">Mixco</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="San Pedro Sacatepéquez">San Pedro Sacatepéquez</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="San Juan Sacatepéquez">San Juan Sacatepéquez</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="San Raymundo">San Raymundo</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="Chuarrancho">Chuarrancho</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="Fraijanes">Fraijanes</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="Amatitlán">Amatitlán</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="Villa Nueva">Villa Nueva</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="Villa Canales">Villa Canales</option>
+                                <option *ngIf="person.Departament == 'Guatemala'" value="San Miguel Petapa">San Miguel Petapa</option>
+
+                                <option *ngIf="person.Departament == 'Izabal'" value="Puerto Barrios">Puerto Barrios</option>
+                                <option *ngIf="person.Departament == 'Izabal'" value="Livingston">Livingston</option>
+                                <option *ngIf="person.Departament == 'Izabal'" value="El Estor">El Estor</option>
+                                <option *ngIf="person.Departament == 'Izabal'" value="Morales">Morales</option>
+                                <option *ngIf="person.Departament == 'Izabal'" value="Los Amates">Los Amates</option>
+
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="Jutiapa">Jutiapa</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="El Progreso">El Progreso</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="Santa Catarina Mita">Santa Catarina Mita</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="Agua Blanca">Agua Blanca</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="Asunción Mita">Asunción Mita</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="Yupiltepeque">Yupiltepeque</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="Atescatempa">Atescatempa</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="Jerez">Jerez</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="El Adelanto">El Adelanto</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="Zapotitlán">Zapotitlán</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="Comapa">Comapa</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="Jalpatagua">Jalpatagua</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="Conguaco">Conguaco</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="Moyuta">Moyuta</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="Pasaco">Pasaco</option>
+                                <option *ngIf="person.Departament == 'Jutiapa'" value="San José Acatempa">San José Acatempa</option>
+
+                                <option *ngIf="person.Departament == 'Retalhuleu'" value="Retalhuleu">Retalhuleu</option>
+                                <option *ngIf="person.Departament == 'Retalhuleu'" value="San Sebastian">San Sebastian</option>
+                                <option *ngIf="person.Departament == 'Retalhuleu'" value="Santa Cruz María">Santa Cruz María</option>
+                                <option *ngIf="person.Departament == 'Retalhuleu'" value="San Martín Zapotitlán">San Martín Zapotitlán</option>
+                                <option *ngIf="person.Departament == 'Retalhuleu'" value="San Felipe Retalhuleu">San Felipe Retalhuleu</option>
+                                <option *ngIf="person.Departament == 'Retalhuleu'" value="San Andrés Villa Seca">San Andrés Villa Seca</option>
+                                <option *ngIf="person.Departament == 'Retalhuleu'" value="Champerico">Champerico</option>
+                                <option *ngIf="person.Departament == 'Retalhuleu'" value="Nuevo San Carlos">Nuevo San Carlos</option>
+                                <option *ngIf="person.Departament == 'Retalhuleu'" value="El Asintal">El Asintal</option>
+
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San Marcos">San Marcos</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San Pedro Sacatepéquez">San Pedro Sacatepéquez</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Comitancillo">Comitancillo</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San Antonio Sacatepéquez">San Antonio Sacatepéquez</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San Miguel Ixtahuacan">San Miguel Ixtahuacan</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Concepción Tutuapa">Concepción Tutuapa</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Tacaná">Tacaná</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Sibinal">Sibinal</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Tajumulco">Tajumulco</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Tejutla">Tejutla</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San Rafael Pié de la Cuesta">San Rafael Pié de la Cuesta</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Nuevo Progreso">Nuevo Progreso</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="El Tumbador">El Tumbador</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San José El Rodeo">San José El Rodeo</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Malacatán">Malacatán</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Catarina">Catarina</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Ayutla">Ayutla</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Ocos">Ocos</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San Pablo">San Pablo</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San Pablo">San Pablo</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="El Quetzal">El Quetzal</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Ocos">La Reforma</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Pajapita">Pajapita</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Ixchiguan">Ixchiguan</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San José Ojetenán">San José Ojetenán</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San Cristóbal Cucho">San Cristóbal Cucho</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Sipacapa">Sipacapa</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Esquipulas Palo Gordo">Esquipulas Palo Gordo</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Río Blanco">Río Blanco</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San Lorenzo">San Lorenzo</option>
+
+                                <option *ngIf="person.Departament == 'Sololá'" value="Sololá">Sololá</option>
+                                <option *ngIf="person.Departament == 'Sololá'" value="San José Chayaca">San José Chayaca</option>
+                                <option *ngIf="person.Departament == 'Sololá'" value="Santa María Visitación">Santa María Visitación</option>
+                                <option *ngIf="person.Departament == 'Sololá'" value="Santa Lucía Utatlán">Santa Lucía Utatlán</option>
+                                <option *ngIf="person.Departament == 'Sololá'" value="Nahualá">Nahualá</option>
+                                <option *ngIf="person.Departament == 'Sololá'" value="Santa Catarina Ixtahuacán">Santa Catarina Ixtahuacán</option>
+                                <option *ngIf="person.Departament == 'Sololá'" value="Santa Clara La Laguna">Santa Clara La Laguna</option>
+                                <option *ngIf="person.Departament == 'Sololá'" value="Concepción">Concepción</option>
+                                <option *ngIf="person.Departament == 'Sololá'" value="San Andrés Semetabaj">San Andrés Semetabaj</option>
+                                <option *ngIf="person.Departament == 'Sololá'" value="Panajachel">Panajachel</option>
+                                <option *ngIf="person.Departament == 'Sololá'" value="Santa Catarina Palopó">Santa Catarina Palopó</option>
+                                <option *ngIf="person.Departament == 'Sololá'" value="San Antonio Palomó">San Antonio Palopó</option>
+                                <option *ngIf="person.Departament == 'Sololá'" value="San Lucas Tolimán">San Lucas Tolimán</option>
+                                <option *ngIf="person.Departament == 'Sololá'" value="Santa Cruz La Laguna">Santa Cruz La Laguna</option>
+
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San Pablo La Laguna">San Pablo La Laguna</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San Marcos La Laguna">San Marcos La Laguna</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San Juan La Laguna">San Juan La Laguna</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="San Pedro La Laguna">San Pedro La Laguna</option>
+                                <option *ngIf="person.Departament == 'San Marcos'" value="Santiago Atitlán">Santiago Atitlán</option>
+
+                                <option *ngIf="person.Departament == 'Totonicapán'" value="Totonicapán">Totonicapán</option>
+                                <option *ngIf="person.Departament == 'Totonicapán'" value="San Cristóbal Totonicapán">San Cristóbal Totonicapán</option>
+                                <option *ngIf="person.Departament == 'Totonicapán'" value="San Francisco El Alto">San Francisco El Alto</option>
+                                <option *ngIf="person.Departament == 'Totonicapán'" value="San Andrés Xecul">San Andrés Xecul</option>
+                                <option *ngIf="person.Departament == 'Totonicapán'" value="Momostenango">Momostenango</option>
+                                <option *ngIf="person.Departament == 'Totonicapán'" value="Santa María Chiquimula">Santa María Chiquimula</option>
+                                <option *ngIf="person.Departament == 'Totonicapán'" value="Santa Lucía La Reforma">Santa Lucía La Reforma</option>
+                                <option *ngIf="person.Departament == 'Totonicapán'" value="San Bartolo Aguas Calientes">San Bartolo Aguas Calientes</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Zone" type="text" class="form-control" name="Zone" placeholder="Zona" required>
+                            <select [(ngModel)]="person.Zone" name="Zone" class="form-control" style="background-color: #0D0D0D; color: whitesmoke">
+                                    <option value="" disabled> Selecciona tu zona </option>
+                                    <option  value="Zona 1">Zona 1</option>
+                                    <option  value="Zona 2">Zona 2</option>
+                                    <option  value="Zona 3">Zona 3</option>
+                                    <option  value="Zona 3">Zona 4</option>
+                                    <option  value="Zona 3">Zona 5</option>
+                                    <option  value="Zona 3">Zona 6</option>
+                                    <option  value="Zona 3">Zona 7</option>
+                                    <option  value="Zona 3">Zona 8</option>
+                                    <option  value="Zona 3">Zona 9</option>
+                                    <option  value="Zona 3">Zona 10</option>
+                                    <option  value="Zona 3">Zona 11</option>
+                                    <option  value="Zona 3">Zona 12</option>
+                                    <option  value="Zona 3">Zona 13</option>
+                                    <option  value="Zona 3">Zona 14</option>
+                                    <option  value="Zona 3">Zona 15</option>
+                                    <option  value="Zona 3">Zona 16</option>
+                                    <option  value="Zona 3">Zona 17</option>
+                                    <option  value="Zona 3">Zona 18</option>
+                                    <option  value="Zona 3">Zona 19</option>
+                                    <option  value="Zona 3">Zona 20</option>
+                                    <option  value="Zona 3">Zona 21</option>
+                                    <option  value="Zona 3">Zona 22</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-3">
                             <input [(ngModel)]="person.Colony" type="text" class="form-control" name="Colony" placeholder="Colonia o residencia" required>
                         </div>
-                        <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Avenue" type="text" class="form-control" name="Avenue" placeholder="Avenida" required>
+                        <div class="form-group col-md-1">
+                            <input [(ngModel)]="person.Avenue" type="number" class="form-control" name="Avenue" placeholder="Ave" required>
                         </div>
-                        <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Street" type="text" class="form-control" name="Street" placeholder="Calle" required>
+                        <div class="form-group col-md-1">
+                            <input [(ngModel)]="person.Street" type="number" class="form-control" name="Street" placeholder="Calle" required>
                         </div>
-                        <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Block" type="text" class="form-control" name="Block" placeholder="Manzana o sector"  required>
+                        <div class="form-group col-md-1">
+                            <input [(ngModel)]="person.Block" type="number" class="form-control" name="Block" placeholder="Block"  required>
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
                             <input [(ngModel)]="person.HouseNumber" type="text" class="form-control" name="HouseNumber" placeholder="Número de casa" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input [(ngModel)]="person.Specific" type="text" class="form-control" name="Specific" placeholder="Ingrese un dato más específico..." required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <button class="btn btn-outline-secondary" style="z-index: 4;" (click)="guardarDirecciones()"><i class='fas fa-home' style='font-size:15px; margin-right: 10px;' ></i>Agregar dirección a la lista</button>
+                        </div>
+                    </div>
+                    <label>Direcciones guardadas:</label>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <table class="table">
+                                <tr *ngFor='let d of direccionesGuardadas'>
+                                    <th scope="row" class="colorin">{{d}}</th>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -131,8 +550,9 @@
                             <label >Número de teléfono</label>
                             <div class="form-row">
                                 <div class="form-group col-md-5">
-                                    <select class="form-control text" required>
-                                        <option *ngFor="let c of countries" class="text" value="{{c.name}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
+                                    <select class="form-control text" [(ngModel)]="plusmobile" name="plusmobile" required>
+                                        <option value="" class="text" disabled> Extensión seleccionar aún </option>
+                                        <option *ngFor="let c of countries" class="text" value="{{c.callingCodes[0]}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
                                     </select>
                                 </div>
                                 <div class="form-group col-md-5">
@@ -144,8 +564,9 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-5">
-                                    <select class="form-control text" required>
-                                        <option *ngFor="let c of countries" class="text" value="{{c.name}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
+                                    <select class="form-control text" [(ngModel)]="plusphone" name="plusphone" required>
+                                        <option value="" class="text" disabled> Extensión seleccionar aún </option>
+                                        <option *ngFor="let c of countries" class="text" value="{{c.callingCodes[0]}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
                                     </select>
                                 </div>
                                 <div class="form-group col-md-5">
@@ -157,8 +578,9 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-5">
-                                    <select class="form-control text" required>
-                                        <option *ngFor="let c of countries" class="text" value="{{c.name}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
+                                    <select class="form-control text" [(ngModel)]="plusother" name="plusother" required>
+                                        <option value="" class="text" disabled> Extensión seleccionar aún </option>
+                                        <option *ngFor="let c of countries" class="text" value="{{c.callingCodes[0]}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
                                     </select>
                                 </div>
                                 <div class="form-group col-md-5">
