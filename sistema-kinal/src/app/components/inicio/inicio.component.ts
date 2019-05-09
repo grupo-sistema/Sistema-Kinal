@@ -42,7 +42,7 @@ export class InicioComponent implements OnInit {
 
   message() {
     if (
-      this.person.FirstName != "" || this.person.SecondName != "" || this.person.Surname != "" || this.person.SecondSurname != "" || this.person.Date != "" || this.person.Religion != "" || this.person.Gender != "" || this.person.Departament != "" || this.person.Municipality != "") {
+      this.person.FirstName != ""  && this.person.Surname != "" && this.person.Date != "" && this.person.Religion != "" && this.person.Gender != "" && this.person.Departament != "" && this.person.Municipality != "") {
       Swal.fire("Datos guardados correctamente","You clicked the button!","success");
     } else {
       Swal.fire("Debe llenar todos los campos necesarios para continuar");
@@ -114,6 +114,7 @@ export class InicioComponent implements OnInit {
       }
     }
   }
+
 
   guardarCorreos(){
     if(this.correosGuardados.length == 3){
