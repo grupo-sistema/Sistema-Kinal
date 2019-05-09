@@ -28,11 +28,7 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-<<<<<<< HEAD
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-=======
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
->>>>>>> 5afbfb3c20b81e00165d400fcf7f488457d00a9b
             ],
             "es5BrowserSupport": true
           },

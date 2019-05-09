@@ -152,6 +152,7 @@ export class InicioComponent implements OnInit {
   onSubmit() {
     if(this.hola){
         console.log(this.person);
+        this.person.MarriedSurname = ("De " + this.person.MarriedSurname);
         this.person.Mobile = this.mobilesGuardados;
         this.person.Phone = this.phonesGuardados;
         this.person.Other = this.othersGuardados;
