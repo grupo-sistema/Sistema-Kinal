@@ -9,14 +9,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { FamiliaComponent } from './components/familia/familia.component';
-import { UnidadesacademicasComponent } from './components/unidadesacademicas/unidadesacademicas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
     FamiliaComponent,
-    UnidadesacademicasComponent
   ],
   imports: [
     BrowserModule,
