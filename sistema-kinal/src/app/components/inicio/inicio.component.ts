@@ -160,6 +160,7 @@ export class InicioComponent implements OnInit {
           response => {
             if (response) {
               this.message();
+              this.limpiarData();
             } else {
               console.log("Error al guardar");
             }
@@ -172,6 +173,37 @@ export class InicioComponent implements OnInit {
           console.log(<any>error);
         }
     }
+  }
+
+  limpiarData(){
+    this.person.FirstName = "";
+    this.person.SecondName = "";
+    this.person.Surname = "";
+    this.person.SecondSurname = "";
+    this.person.MarriedSurname = "";
+    this.person.Date = "";
+    this.person.Religion = "";
+    this.person.Gender = "";
+    this.person.CivilStatus = "";
+    this.person.Address = "";
+    this.correosGuardados = [];
+    this.person.Departament = "";
+    this.person.Municipality = "";
+    this.person.Zone = "";
+    this.person.Colony = "";
+    this.person.Avenue = "";
+    this.person.Street = "";
+    this.person.Block = "";
+    this.person.HouseNumber = "";
+    this.person.Specific = "";
+    this.direccionesGuardadas = [];
+    this.mobilesGuardados = [];
+    this.phonesGuardados = [];
+    this.othersGuardados = [];
+    this.numerosGuardados = [];
+    this.plusmobile = "";
+    this.plusother = "";
+    this.plusphone = "";
   }
 
   //Combobox de paises solamente de america (Se pueden agregar mas)

@@ -550,7 +550,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-5">
                                     <select class="form-control text" [(ngModel)]="plusmobile" name="plusmobile" required>
-                                        <option value="" class="text" disabled> Extensión seleccionar aún </option>
+                                        <option value="" class="text" disabled> Extensión sin seleccionar aún </option>
                                         <option *ngFor="let c of countries" class="text" value="{{c.callingCodes[0]}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
                                     </select>
                                 </div>
@@ -564,7 +564,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-5">
                                     <select class="form-control text" [(ngModel)]="plusphone" name="plusphone" required>
-                                        <option value="" class="text" disabled> Extensión seleccionar aún </option>
+                                        <option value="" class="text" disabled> Extensión sin seleccionar aún </option>
                                         <option *ngFor="let c of countries" class="text" value="{{c.callingCodes[0]}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
                                     </select>
                                 </div>
@@ -578,7 +578,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-5">
                                     <select class="form-control text" [(ngModel)]="plusother" name="plusother" required>
-                                        <option value="" class="text" disabled> Extensión seleccionar aún </option>
+                                        <option value="" class="text" disabled> Extensión sin seleccionar aún </option>
                                         <option *ngFor="let c of countries" class="text" value="{{c.callingCodes[0]}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
                                     </select>
                                 </div>
