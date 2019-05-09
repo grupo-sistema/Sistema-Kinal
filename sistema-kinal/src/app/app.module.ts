@@ -9,12 +9,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { FamiliaComponent } from './components/familia/familia.component';
+import { CarrerasComponent } from './components/carreras/carreras.component';
+import { CursosComponent } from './components/cursos/cursos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
     FamiliaComponent,
+    CarrerasComponent,
+    CursosComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,28 @@
+.container{
+    padding-top: 50px;
+    padding-bottom: 7%;
+    margin: 0 0 0 100px; 
+}
+
+.titleMain{
+    font-size: 50px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.text{
+  color: black;
+}
+
+.backdiv{
+    padding: 25px;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+    .container{
+        padding-top: 75px;
+        margin: 0 0 0 0; 
+    }
+  } 
