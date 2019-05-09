@@ -14,9 +14,7 @@ function InsertStudent(req, res) {
   var telefono = [];
   if (
     params.FirstName &&
-    params.SecondName &&
     params.Surname &&
-    params.SecondSurname &&
     params.Date &&
     params.Religion &&
     params.Gender &&
@@ -27,10 +25,7 @@ function InsertStudent(req, res) {
     params.Avenue &&
     params.Street &&
     params.Block &&
-    params.HouseNumber &&
-    params.Mobile &&
-    params.Phone &&
-    params.Other
+    params.HouseNumber
   ) {
     student = {
       FirstName: params.FirstName,
