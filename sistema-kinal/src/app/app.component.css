@@ -22,7 +22,7 @@
 
 #sidebar ul li{
     list-style: none;
-    font-size: 12px;
+    font-size: 14px;
     padding: 20px 24px;
 }
 
@@ -92,4 +92,16 @@
     background: -ms-linear-gradient(left,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 25%,rgba(201,152,38,1) 50%,rgba(48,255,230,1) 75%,rgba(48,255,144,1) 100%); /* IE10+ */
     background: linear-gradient(to right,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 25%,rgba(201,152,38,1) 50%,rgba(48,255,230,1) 75%,rgba(48,255,144,1) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#30ff90', endColorstr='#30ff90',GradientType=1 ); /* IE6-9 */
+}
+
+.dropdown-menu{
+    background-color: black;
+}
+
+.espacio{
+    padding-top: 180%;
+}
+
+.letra{
+    font-size: 18px;
 }
