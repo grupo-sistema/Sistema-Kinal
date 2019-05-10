@@ -49,6 +49,17 @@ export class RestService {
     return this.http.post(this.endpoint + '/save-course', params,this.httpOptions).pipe(map(this.extractData));
   }
 
+  // ==============================================================================MODULO CURSOS=======================================
+  getCarrer(): Observable<any>{
+    return this.http.get(this.endpoint + '/list-carrer').pipe(map(this.extractData));
+  }
+
+  setCarrer(carrer_guardar){
+    console.log(this.mensaje);
+    var params = JSON.stringify(carrer_guardar);
+    return this.http.post(this.endpoint + '/save-carrer', params,this.httpOptions).pipe(map(this.extractData));
+  }
+
   // ==============================================================================MODULO FAMILIA=======================================
 
   setFamily(family_guardar){
@@ -57,10 +68,28 @@ export class RestService {
     return this.http.post(this.endpoint + '/save-family', params,this.httpOptions).pipe(map(this.extractData));
   }
 
-  updateFamily(family_update, id_family){
+  addMemberToFamily(role, id_user, id_family){
     console.log(this.mensaje);
-    var params = JSON.stringify(family_update);
-    return this.http.post(this.endpoint + '/update-family/' + id_family , params,this.httpOptions).pipe(map(this.extractData));
+    var campo = role;
+    {id_user}
+
+    if(campo == "Padre"){
+      return this.http.post(this.endpoint + '/insert-member/' + id_family, {Padre: id_user},this.httpOptions).pipe(map(this.extractData));
+    }else{
+      if(campo == "Madre"){
+        return this.http.post(this.endpoint + '/insert-member/' + id_family, {Madre: id_user},this.httpOptions).pipe(map(this.extractData));
+      }else{
+        if(campo == "Encargado"){
+          return this.http.post(this.endpoint + '/insert-member/' + id_family, {Encargado: id_user},this.httpOptions).pipe(map(this.extractData));
+        }else{
+          if(campo == "Hijo"){
+            return this.http.post(this.endpoint + '/insert-member/' + id_family, {Hijo: id_user},this.httpOptions).pipe(map(this.extractData));
+          }else{
+            
+          } 
+        } 
+      }
+    }
   }
 
   getFamily(): Observable<any>{
