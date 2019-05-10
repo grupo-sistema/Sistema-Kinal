@@ -30,7 +30,7 @@ function GuardarCarrera (req, res){
                             if(!studentSave){
                                 res.status(500).send({message: 'Error al guardar la carrera'});
                             }else{
-                                res.status(200).send({carrera: studentSave});
+                                res.status(200).send({carreras: studentSave});
                             }
                         }
                     }); 
@@ -41,12 +41,12 @@ function GuardarCarrera (req, res){
         }
 }
 function ListarCarrera (req, res){
-    Carrera.find/* Encuentra al usuario */({},(err,user)=>{
+    Carrera.find({},(err,carrer)=>{
         if(err){
           console.log(err);
             res.status(500).send({message: 'No se puede listar'});
         }else{
-                res.status(200).send({carrera: user});
+                res.status(200).send({Listado_de_carreras: carrer});
             }
     });
 }

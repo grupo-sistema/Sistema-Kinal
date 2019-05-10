@@ -49,6 +49,17 @@ export class RestService {
     return this.http.post(this.endpoint + '/save-course', params,this.httpOptions).pipe(map(this.extractData));
   }
 
+  // ==============================================================================MODULO CURSOS=======================================
+  getCarrer(): Observable<any>{
+    return this.http.get(this.endpoint + '/list-carrer').pipe(map(this.extractData));
+  }
+
+  setCarrer(carrer_guardar){
+    console.log(this.mensaje);
+    var params = JSON.stringify(carrer_guardar);
+    return this.http.post(this.endpoint + '/save-carrer', params,this.httpOptions).pipe(map(this.extractData));
+  }
+
   // ==============================================================================MODULO FAMILIA=======================================
 
   setFamily(family_guardar){

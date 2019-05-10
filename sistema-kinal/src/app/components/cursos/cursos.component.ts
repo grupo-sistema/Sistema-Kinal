@@ -33,7 +33,7 @@ cursos: Course[];
     this.rest.setCourse(this.course).subscribe(
       response => {
         if (response) {
-          console.log("guardo!")
+          this.getCourse();
         } else {
           console.log("Error al guardar");
         }
