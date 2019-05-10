@@ -75,8 +75,8 @@ export class FamiliaComponent implements OnInit {
     this.rest.setFamily(this.family).subscribe(
       response => {
         if (response) {
-          this.family.FamilyName = "";
           this.addFamilia = false;
+          this.family.FamilyName = "";
         } else {
           console.log("Error al guardar");
         }
@@ -90,3 +90,5 @@ export class FamiliaComponent implements OnInit {
     }
   }
 }
+
+
