@@ -105,7 +105,6 @@ export class FamiliaComponent implements OnInit {
     this.rest.setFamily(this.family).subscribe(
       response => {
         if (response) {
-          this.family.FamilyName = "";
           this.addFamilia = false;
           this.getFamily();
         } else {
@@ -121,3 +120,5 @@ export class FamiliaComponent implements OnInit {
     }
   }
 }
+
+
