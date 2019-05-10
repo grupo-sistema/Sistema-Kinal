@@ -26,3 +26,32 @@
         margin: 0 0 0 0; 
     }
   } 
+
+
+  .text{
+    color: black;
+}
+
+.gradient-color{
+    background-image: -o-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+    background-image: -moz-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+    background-image: -ms-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+    background-image: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+} 
+
+.text-gray{
+    color: rgb(158, 158, 158);
+    margin-bottom: 0px;
+}
+
+.titleMain{
+    font-size: 50px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.backdiv{
+    padding: 25px;
+    border-radius: 10px;
+}
