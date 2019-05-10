@@ -49,8 +49,4 @@ export class RestService {
   getFamily(): Observable<any>{
     return this.http.get(this.endpoint + '/list-family').pipe(map(this.extractData));
   }
-
-  insertToFamily(){
-
-  }
 }

@@ -16,6 +16,7 @@ export class FamiliaComponent implements OnInit {
   addFamilia;
   seleccionado;
   index;
+  index2;
 
   constructor(public rest: RestService) {
     this.rest.setFamily(this.family);
@@ -64,6 +65,10 @@ export class FamiliaComponent implements OnInit {
       console.log(res);
       this.familia = res.Listado_de_Familias
     })
+  }
+
+  addToFamily(indice2){
+    console.log(indice2)
   }
 
   onSubmit(){

@@ -9,14 +9,6 @@
     color: black;
 }
 
-.gradient-color{
-    background-image: -o-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
-    background-image: -moz-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
-    background-image: -webkit-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
-    background-image: -ms-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
-    background-image: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
-} 
-
 .text-gray{
     color: rgb(158, 158, 158);
     margin-bottom: 0px;
@@ -66,6 +58,26 @@ label{
 .margen2{
     margin-top: 31px;
     margin-left: 10px;
+}
+
+
+/* Tabla */
+.tableFixHead {
+    overflow: auto;
+    height: 250px;
+  }
+
+th {
+    background-image: -o-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+    background-image: -moz-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+    background-image: -ms-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+    background-image: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+}
+
+.tableFixHead thead th {
+    position: sticky;
+    top: -1px;
 }
 
 

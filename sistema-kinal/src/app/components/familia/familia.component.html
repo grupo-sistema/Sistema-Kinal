@@ -19,9 +19,10 @@
         </div>
       </form>
       <h2>Personas</h2>
-      <div class="table-responsive">
+      <hr style="background-color: ivory;">
+      <div class="table-responsive tableFixHead">
           <table class="table table-hover table-dark">
-              <thead class="gradient-color">
+              <thead>
                 <tr>
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
@@ -29,27 +30,15 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <td>Larry the Bird</td>
-                  <td>@twitter</td>
-                  <td>@mdo</td>
+                <tr *ngFor='let p of persona; let indice = index' (click)="getSeleccionado(indice)" data-toggle="modal" data-target="#exampleModal">
+                  <td>{{p.FirstName + " " + p.SecondName + " " + p.Surname + " " + p.SecondSurname}}</td>
+                  <td>{{p.Email}}</td>
+                  <td>{{p.telephone.Mobile}}</td>
                 </tr>
               </tbody>
             </table>
       </div>
-      
-        <hr style="background-color: ivory;">
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-4" *ngFor='let p of persona; let indice = index'>
             <div class="card mb-3" style="min-height: 223px; border-radius: 10px;">
               <div class="row no-gutters">
@@ -67,7 +56,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -92,9 +81,9 @@
           <!-- DROPDOWN PARA SELECCIONAR LA FAMILIA DE ESA PERSONA -->
           <div class="form-row">
             <label class="text" for="inputState">Familia</label>
-            <select class="form-control text" required>
+            <select [(ngModel)]="FamilyNameToAdd" name="FamilyNameToAdd" class="form-control text" required>
                 <option value="" class="text" disabled> ...</option>
-                <option *ngFor="let f of familia" class="text" value="{{f.FamilyName}}">{{f.FamilyName}}</option>         
+                <option *ngFor="let f of familia; let indice2 = index2" class="text" value="{{f.FamilyName}}">{{f.FamilyName}}</option>     
             </select>
           </div><br>
 
@@ -125,7 +114,7 @@
           <!-- DROPDOWN PARA SELECCIONAR EL ROL DE ESA PERSONA -->
           <div class="form-row">
             <label class="text" for="inputState">Rol</label>
-            <select id="inputState" class="form-control">
+            <select [(ngModel)]="Role" name="Role" id="inputState" class="form-control">
               <option disabled>...</option>
               <option class="text">Padre</option>
               <option class="text">Madre</option>
@@ -145,7 +134,7 @@
            <!-- BOTONES FOOTER DEL MODAL -->
           <div class="modal-footer" *ngIf="accion == true">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" (click)="message()">Guardar</button>
+            <button type="button" class="btn btn-primary" (click)="addToFamily(indice2)">Guardar</button>
           </div>
 
 
