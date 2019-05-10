@@ -13,11 +13,13 @@ app.use((req, res, next) => {
 	next();
 });
 
-var admin = require('./routes/persona');
+var person = require('./routes/persona');
+var family = require('./routes/familia')
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-app.use('/v1',admin);
+app.use('/v1', person);
+app.use('/v1', family);
 
 module.exports = app;

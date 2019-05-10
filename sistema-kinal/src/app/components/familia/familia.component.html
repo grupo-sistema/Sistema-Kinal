@@ -19,15 +19,54 @@
         </div>
       </form>
       <h2>Personas</h2>
+      <div class="table-responsive">
+          <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                  <th scope="col">Handle</th>
+                  <th scope="col">Handle</th>
+                  <th scope="col">Handle</th>
+                  <th scope="col">Handle</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <td colspan="2">Larry the Bird</td>
+                  <td>@twitter</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+      
         <hr style="background-color: ivory;">
         <div class="row">
-          <div class="col-6" *ngFor='let p of persona; let indice = index'>
-            <div class="card mb-3" style="max-width: 540px; min-height: 223px; border-radius: 10px;">
+          <div class="col-4" *ngFor='let p of persona; let indice = index'>
+            <div class="card mb-3" style="min-height: 223px; border-radius: 10px;">
               <div class="row no-gutters">
-                <div class="col-md-4">
-                  <img style="padding: 25px" src="https://i.pinimg.com/originals/b5/76/e9/b576e9ba4504eb94656d724b003d8b8b.png" class="card-img">
-                </div>
-                <div class="col-md-8">
+                <div class="col-md-12">
                   <div class="card-body">
                     <h5 class="card-title text">{{p.FirstName + " " + p.SecondName + " " + p.Surname + " " + p.SecondSurname}}</h5>
                     <p class="card-text text-gray"><i class="fa fa-home" style="font-size:16px; color: rgb(158, 158, 158); margin-right: 3px;"></i>
@@ -63,32 +102,17 @@
         <div class="form-group">
           <div class="col-md-12 col-sm-12">
 
-             <!-- INPUT PARA BUSCAR FAMILIA -->
-             <div class="input-group mb-3 backdiv">
-                <input class="form-control" name="search" type="text" placeholder="Ingresa la familia a buscar">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary text-gray" type="submit"><i class='fas fa-search text-gray'
-                    style='font-size:12px; margin-right: 5px;'></i>Buscar</button>
-                </div>
-              </div>
-  
+          <!-- DROPDOWN PARA SELECCIONAR LA FAMILIA DE ESA PERSONA -->
+          <div class="form-row">
+            <label class="text" for="inputState">Familia</label>
+            <select class="form-control text" required>
+                <option value="" class="text" disabled> ...</option>
+                <option *ngFor="let f of familia" class="text" value="{{f.FamilyName}}">{{f.FamilyName}}</option>         
+            </select>
+          </div><br>
 
-            <!-- FORM TABLA FAMILIA -->
-            <h4>Familias</h4>
-            <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                      <td scope="col" class="colorin">Apellidos</td>
-                  </thead>
-                    <tr>
-                      <th scope="row" class="colorin">Hernandez Boj</th>
-                    </tr>
-                </table>
-              </div>
-
-
-            <!-- CHECKBOX PARA CREAR UNA NUEVA FAMILIA -->
-            <div class="form-group col-sm-12 col-md-6">
+          <!-- CHECKBOX PARA CREAR UNA NUEVA FAMILIA -->
+          <div class="form-group col-sm-12 col-md-6" style="margin-top: -15px;">
               <div class="form-check">
                 <input [(ngModel)]="addFamilia" class="form-check-input" type="checkbox" id="Check1">
                 <label class="form-check-label text" for="gridCheck">
@@ -96,30 +120,20 @@
                 </label>
               </div>
             </div>
-
-
-            <!-- INPUTA PARA INGRESAR EL NOMBRE DE LA FAMILIA -->
-            <div class="form-row" *ngIf="addFamilia == true">
-              <div class="form-group col-sm-12 col-md-7">
-                <label>Primer y segundo apellido*</label>
-                <input name="PrimerApellido" type="text" class="form-control" required>
+  
+            <!-- INPUT PARA INGRESAR EL NOMBRE DE LA FAMILIA -->
+            <form (ngSubmit)="onSubmit()">
+              <div class="form-row" *ngIf="addFamilia == true">
+                  <div class="form-group col-sm-12 col-md-7">
+                    <label>Primer y segundo apellido*</label>
+                    <input [(ngModel)]="family.FamilyName" name="FamilyName" type="text" class="form-control" required>
+                  </div>
+                  <div class="form-group col-sm-12 col-md-6" class="margen2">
+                    <button class="btn btn-outline-secondary" type="submit"><i class='fas fa-plus'
+                        style='font-size:12px; margin-right: 5px; color: rgb(189, 189, 189)'></i> Registrar Familia</button>
+                  </div>
               </div>
-              <div class="form-group col-sm-12 col-md-6" class="margen2">
-                <button class="btn btn-outline-secondary" type="submit"><i class='fas fa-plus'
-                    style='font-size:12px; margin-right: 5px;'></i> Registrar Familia</button>
-              </div>
-            </div>
-          </div>
-
-
-          <!-- DROPDOWN PARA SELECCIONAR LA FAMILIA DE ESA PERSONA -->
-          <div class="form-row">
-            <label class="text" for="inputState">Familia</label>
-            <select id="inputState" class="form-control">
-              <option disabled>...</option>
-              <option class="text">Hernandez Boj</option>
-            </select>
-          </div><br>
+            </form>
 
           <!-- DROPDOWN PARA SELECCIONAR EL ROL DE ESA PERSONA -->
           <div class="form-row">

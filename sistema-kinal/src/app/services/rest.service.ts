@@ -22,6 +22,8 @@ export class RestService {
     return body || [ ] || { };
   }
 
+  // ==============================================================================MODULO PERSONA=======================================
+
   getPerson(): Observable<any>{
     return this.http.get(this.endpoint + '/list-person').pipe(map(this.extractData));
   }
@@ -34,5 +36,21 @@ export class RestService {
 
   searchPerson(search){
     return this.http.post(this.endpoint + '/search-person', {search}, this.httpOptions).pipe(map(this.extractData));
+  }
+
+  // ==============================================================================MODULO FAMILIA=======================================
+
+  setFamily(family_guardar){
+    console.log(this.mensaje);
+    var params = JSON.stringify(family_guardar);
+    return this.http.post(this.endpoint + '/save-family', params,this.httpOptions).pipe(map(this.extractData));
+  }
+
+  getFamily(): Observable<any>{
+    return this.http.get(this.endpoint + '/list-family').pipe(map(this.extractData));
+  }
+
+  insertToFamily(){
+
   }
 }

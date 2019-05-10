@@ -1,6 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { RestService } from'../../services/rest.service';
 import { Person } from 'src/app/models/person';
+import { Family } from 'src/app/models/family';
 
 @Component({
   selector: 'app-familia',
@@ -8,18 +9,27 @@ import { Person } from 'src/app/models/person';
   styleUrls: ['./familia.component.css']
 })
 export class FamiliaComponent implements OnInit {
+  family: Family;
+  familia: Family[];
   persona: Person[];
-  search: string;
+  search: string; 
+  addFamilia;
   seleccionado;
   index;
 
   constructor(public rest: RestService) {
+    this.rest.setFamily(this.family);
+    this.family = new Family(
+      "",[{}],[{}],[{}],[{}]
+    );
    }
 
   ngOnInit() {
     this.getPerson();
+    this.getFamily();
   }
 
+  //===============================================================Listado del inicio de personas=====================================
   getSeleccionado(indice){
     this.seleccionado = this.persona[indice];
     console.log(this.seleccionado);
@@ -44,6 +54,34 @@ export class FamiliaComponent implements OnInit {
       this.getPerson()      
     }else{
       this.persona = personaSearch;
+    }
+  }
+
+  //===============================================================Model de familia=====================================
+
+  getFamily(){
+    this.rest.getFamily().subscribe(res=>{
+      console.log(res);
+      this.familia = res.Listado_de_Familias
+    })
+  }
+
+  onSubmit(){
+    this.rest.setFamily(this.family).subscribe(
+      response => {
+        if (response) {
+          this.family.FamilyName = "";
+          this.addFamilia = false;
+        } else {
+          console.log("Error al guardar");
+        }
+      },
+      error => {
+        console.log(<any>error);
+      }
+    )
+    error => {
+      console.log(<any>error);
     }
   }
 }
