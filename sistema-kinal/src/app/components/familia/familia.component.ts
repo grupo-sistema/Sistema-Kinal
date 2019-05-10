@@ -12,16 +12,16 @@ export class FamiliaComponent implements OnInit {
   family: Family;
   familia: Family[];
   persona: Person[];
-  search: string; 
+  search: string;
+  Role: string; 
   addFamilia;
   seleccionado;
-  index;
-  index2;
+  FamilyNameToAdd;
 
   constructor(public rest: RestService) {
     this.rest.setFamily(this.family);
     this.family = new Family(
-      "",[{}],[{}],[{}],[{}]
+    "","",[{}],[{}],[{}],[{}]
     );
    }
 
@@ -67,8 +67,38 @@ export class FamiliaComponent implements OnInit {
     })
   }
 
-  addToFamily(indice2){
-    console.log(indice2)
+  updateFamily(){
+    this.rest.updateFamily(this.familia[this.FamilyNameToAdd],this.familia[this.FamilyNameToAdd]._id).subscribe(res=>{
+      console.log(res);
+    })
+  }
+
+  addToFamily(){
+    if(this.Role == undefined){
+      console.log("Debe seleccionar un rol");
+    }else{
+      if(this.Role == "Padre"){
+        this.familia[this.FamilyNameToAdd].Padre.push(this.seleccionado)
+        console.log(this.familia[this.FamilyNameToAdd]);
+      }else{
+        if(this.Role == "Madre"){
+          this.familia[this.FamilyNameToAdd].Madre.push(this.seleccionado)
+          console.log(this.familia[this.FamilyNameToAdd]);
+        }else{
+          if(this.Role == "Encargado"){
+            this.familia[this.FamilyNameToAdd].Encargado.push(this.seleccionado)
+            console.log(this.familia[this.FamilyNameToAdd]);
+          }else{
+            if(this.Role == "Hijo"){
+              this.familia[this.FamilyNameToAdd].Hijo.push(this.seleccionado)
+              console.log(this.familia[this.FamilyNameToAdd]);
+            }else{
+              console.log("No se que rayos hiciste para que te saliera este error...")
+            }
+          } 
+        }
+      }
+    }
   }
 
   onSubmit(){
@@ -77,6 +107,7 @@ export class FamiliaComponent implements OnInit {
         if (response) {
           this.family.FamilyName = "";
           this.addFamilia = false;
+          this.getFamily();
         } else {
           console.log("Error al guardar");
         }

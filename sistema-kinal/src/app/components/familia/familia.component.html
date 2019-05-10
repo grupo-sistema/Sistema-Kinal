@@ -83,7 +83,7 @@
             <label class="text" for="inputState">Familia</label>
             <select [(ngModel)]="FamilyNameToAdd" name="FamilyNameToAdd" class="form-control text" required>
                 <option value="" class="text" disabled> ...</option>
-                <option *ngFor="let f of familia; let indice2 = index2" class="text" value="{{f.FamilyName}}">{{f.FamilyName}}</option>     
+                <option *ngFor="let f of familia; let indice2 = index" class="text" value="{{indice2}}">{{f.FamilyName}}</option>
             </select>
           </div><br>
 
@@ -134,7 +134,7 @@
            <!-- BOTONES FOOTER DEL MODAL -->
           <div class="modal-footer" *ngIf="accion == true">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" (click)="addToFamily(indice2)">Guardar</button>
+            <button type="button" class="btn btn-primary" (click)="addToFamily()">Guardar</button>
           </div>
 
 
