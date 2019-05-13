@@ -1,5 +1,6 @@
 export class Person{
     constructor(
+        public _id: string,
         public FirstName: String,
         public SecondName: String,
         public Surname: String,

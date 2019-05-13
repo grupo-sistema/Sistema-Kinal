@@ -14,8 +14,8 @@
                         <input [(ngModel)]="person.FirstName" name="FirstName" type="text" class="form-control" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label>Segundo Nombre*</label>
-                        <input [(ngModel)]="person.SecondName" name="SecondName" type="text" class="form-control" required>
+                        <label>Segundo Nombre</label>
+                        <input [(ngModel)]="person.SecondName" name="SecondName" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-row">
@@ -24,8 +24,8 @@
                         <input [(ngModel)]="person.Surname" name="Surname" type="text" class="form-control" required>
                     </div>
                     <div class="form-group col-md-4">
-                        <label>Segundo Apellido*</label>
-                        <input [(ngModel)]="person.SecondSurname" name="SecondSurname" type="text" class="form-control" required>
+                        <label>Segundo Apellido</label>
+                        <input [(ngModel)]="person.SecondSurname" name="SecondSurname" type="text" class="form-control">
                     </div>
                     <div class="form-group col-md-4" *ngIf="mostrar == true" id="apellidocasada">
                         <label>Apellido Casada</label>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label>Estado Civil*</label>
-                        <select style="background-color: #0D0D0D; color: whitesmoke" class="form-control" (click)="validarAC()"  [(ngModel)]="person.CivilStatus" name="CivilStatus" required>
+                        <select style="background-color: #0D0D0D; color: whitesmoke" class="form-control" (click)="validarAC()"  [(ngModel)]="person.CivilStatus" name="CivilStatus">
                             <option value="" disabled> Sin seleccionar aún </option>
                             <option>Soltera</option>
                             <option>Casada</option>
@@ -75,14 +75,14 @@
                 <div class="form-group">
                     <div class="form-row">
                         <div class="form-group col-md-8">
-                            <label>Dirección de correo electrónico*</label>
+                            <label>Dirección de correo electrónico</label>
                             <div class="form-row">
                                 <div class="form-group col-md-8">
-                                    <input type="email" [(ngModel)]="email" name="email" class="form-control" aria-describedby="emailHelp" required>
+                                    <input type="email" [(ngModel)]="email" name="email" class="form-control"  aria-describedby="emailHelp">
                                     <small id="emailHelp" class="form-text text-muted">Nosotros nunca compartiremos tu dirección de email.</small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <button class="btn btn-outline-secondary"  style="z-index: 4;" (click)="guardarCorreos()"><i class='fas fa-address-card' style='font-size:12px; margin-right: 10px;' ></i>Agregar correo a la lista</button>
+                                    <button class="btn btn-outline-secondary"  style="z-index: 4;" (click)="validarEmail(email)"><i class='fas fa-address-card' style='font-size:12px; margin-right: 10px;' ></i>Agregar correo a la lista</button>
                                 </div>
                             </div>
                         </div>
@@ -511,22 +511,22 @@
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <input [(ngModel)]="person.Colony" type="text" class="form-control" name="Colony" placeholder="Colonia o residencia" required>
+                            <input [(ngModel)]="person.Colony" type="text" class="form-control" name="Colony" placeholder="Colonia o residencia" >
                         </div>
                         <div class="form-group col-md-1">
-                            <input [(ngModel)]="person.Avenue" type="number" class="form-control" name="Avenue" placeholder="Ave" required>
+                            <input [(ngModel)]="person.Avenue" type="number" class="form-control" name="Avenue" placeholder="Ave" >
                         </div>
                         <div class="form-group col-md-1">
-                            <input [(ngModel)]="person.Street" type="number" class="form-control" name="Street" placeholder="Calle" required>
+                            <input [(ngModel)]="person.Street" type="number" class="form-control" name="Street" placeholder="Calle" >
                         </div>
                         <div class="form-group col-md-1">
-                            <input [(ngModel)]="person.Block" type="number" class="form-control" name="Block" placeholder="Block"  required>
+                            <input [(ngModel)]="person.Block" type="number" class="form-control" name="Block" placeholder="Block"  >
                         </div>
                         <div class="form-group col-md-2">
-                            <input [(ngModel)]="person.HouseNumber" type="text" class="form-control" name="HouseNumber" placeholder="Número de casa" required>
+                            <input [(ngModel)]="person.HouseNumber" type="text" class="form-control" name="HouseNumber" placeholder="Número de casa" >
                         </div>
                         <div class="form-group col-md-4">
-                            <input [(ngModel)]="person.Specific" type="text" class="form-control" name="Specific" placeholder="Ingrese un dato más específico..." required>
+                            <input [(ngModel)]="person.Specific" type="text" class="form-control" name="Specific" placeholder="Ingrese un dato más específico..." >
                         </div>
                         <div class="form-group col-md-3">
                             <button class="btn btn-outline-secondary" style="z-index: 4;" (click)="guardarDirecciones()"><i class='fas fa-home' style='font-size:15px; margin-right: 10px;' ></i>Agregar dirección a la lista</button>
@@ -555,10 +555,10 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-5">
-                                    <input [(ngModel)]="mobile" name="mobile" type="number" class="form-control" placeholder="Célular" required>
+                                    <input [(ngModel)]="mobile" name="mobile" type="number" class="form-control" placeholder="Célular" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                                 </div>
                                 <div class="form-group col-md-2" >
-                                    <button class="btn btn-outline-secondary" style="z-index: 4;" (click)="guardarMobile()"><i class="material-icons" style="font-size:20px">add</i><i class="material-icons" style="font-size:20px;">phone_android</i></button>
+                                    <button class="btn btn-outline-secondary" style="z-index: 4;" (click)="guardarMobile()" placement="right" ngbPopover="No has metido datos."><i class="material-icons" style="font-size:20px">add</i><i class="material-icons" style="font-size:20px;">phone_android</i></button>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -569,7 +569,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-5">
-                                    <input [(ngModel)]="phone" type="number" class="form-control" name="phone" placeholder="Teléfono de casa" maxlength="8" required>
+                                    <input [(ngModel)]="phone" type="number" class="form-control" name="phone" placeholder="Teléfono de casa" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                                 </div>
                                 <div class="form-group col-md-2" >
                                     <button class="btn btn-outline-secondary" style="z-index: 4;" (click)="guardarPhone()"><i class="material-icons" style="font-size:20px">add</i><i class="material-icons" style="font-size:20px;">phone</i></button>
@@ -577,13 +577,13 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-5">
-                                    <select class="form-control text" [(ngModel)]="plusother" name="plusother" required>
+                                    <select class="form-control text" [(ngModel)]="plusother" name="plusother">
                                         <option value="" class="text" disabled> Extensión sin seleccionar aún </option>
                                         <option *ngFor="let c of countries" class="text" value="{{c.callingCodes[0]}}">{{"+" + "(" + c.callingCodes[0] +")" + " " + c.name}}</option>         
                                     </select>
                                 </div>
                                 <div class="form-group col-md-5">
-                                    <input [(ngModel)]="other" type="number" class="form-control" name="other" placeholder="Otros" maxlength="8">
+                                    <input [(ngModel)]="other" type="number" class="form-control" name="other" placeholder="Otros" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                                 </div>
                                 <div class="form-group col-md-2" >
                                     <button class="btn btn-outline-secondary" style="z-index: 4;" (click)="guardarOther()"><i class="material-icons" style="font-size:20px">add</i><i class="material-icons" style="font-size:20px;">phonelink</i></button>
@@ -613,17 +613,10 @@
                 <p *ngFor="let alert of alerts">
                     <ngb-alert [type]="alert.type" (close)="close(alert)" >{{ alert.message }}</ngb-alert>
                 </p>
-            <div *ngIf="hola == true">
-                <button type="submit" class="bubbly-button" style="z-index: 0;" (click)="message()">Enviar</button>
+            <div >
+                <button (click)="message()" type="submit"  class="bubbly-button" style="z-index: 0;">Enviar</button>
             </div>
             </form>
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-$(function () {
-  $('.example-popover').popover({
-    container: 'body'
-  })
-})</script>

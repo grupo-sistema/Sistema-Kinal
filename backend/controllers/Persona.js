@@ -19,13 +19,7 @@ function InsertStudent(req, res) {
     params.Religion &&
     params.Gender &&
     params.Departament &&
-    params.Municipality &&
-    params.Zone &&
-    params.Colony &&
-    params.Avenue &&
-    params.Street &&
-    params.Block &&
-    params.HouseNumber
+    params.Municipality
   ) {
     student = {
       FirstName: params.FirstName,

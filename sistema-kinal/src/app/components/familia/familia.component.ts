@@ -14,6 +14,7 @@ export class FamiliaComponent implements OnInit {
   persona: Person[];
   search: string;
   Role: string; 
+  rolesito: string;
   addFamilia;
   seleccionado;
   FamilyNameToAdd;
@@ -67,8 +68,8 @@ export class FamiliaComponent implements OnInit {
     })
   }
 
-  updateFamily(){
-    this.rest.updateFamily(this.familia[this.FamilyNameToAdd],this.familia[this.FamilyNameToAdd]._id).subscribe(res=>{
+  addMemberToFamily(){
+    this.rest.addMemberToFamily(this.rolesito, this.seleccionado._id, this.familia[this.FamilyNameToAdd]._id).subscribe(res=>{
       console.log(res);
     })
   }
@@ -78,20 +79,20 @@ export class FamiliaComponent implements OnInit {
       console.log("Debe seleccionar un rol");
     }else{
       if(this.Role == "Padre"){
-        this.familia[this.FamilyNameToAdd].Padre.push(this.seleccionado)
-        console.log(this.familia[this.FamilyNameToAdd]);
+        this.rolesito = "Padre"
+        this.addMemberToFamily()
       }else{
         if(this.Role == "Madre"){
-          this.familia[this.FamilyNameToAdd].Madre.push(this.seleccionado)
-          console.log(this.familia[this.FamilyNameToAdd]);
+          this.rolesito = "Madre"
+          this.addMemberToFamily()
         }else{
           if(this.Role == "Encargado"){
-            this.familia[this.FamilyNameToAdd].Encargado.push(this.seleccionado)
-            console.log(this.familia[this.FamilyNameToAdd]);
+            this.rolesito = "Encargado"
+            this.addMemberToFamily()
           }else{
             if(this.Role == "Hijo"){
-              this.familia[this.FamilyNameToAdd].Hijo.push(this.seleccionado)
-              console.log(this.familia[this.FamilyNameToAdd]);
+              this.rolesito = "Hijo"
+              this.addMemberToFamily()
             }else{
               console.log("No se que rayos hiciste para que te saliera este error...")
             }
