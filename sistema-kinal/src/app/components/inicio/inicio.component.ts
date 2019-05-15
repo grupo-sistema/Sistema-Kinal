@@ -164,7 +164,6 @@ export class InicioComponent implements OnInit {
   }
 
   onSubmit() {
-<<<<<<< HEAD
     if(this.hola){
         console.log(this.person);
         if(this.person.MarriedSurname != "" || undefined){
@@ -182,36 +181,11 @@ export class InicioComponent implements OnInit {
             } else {
               console.log("Error al guardar");
             }
-          },
+          }),
           error => {
             console.log(<any>error);
-=======
-    //if (this.hola) {
-      console.log(this.person);
-      this.person.MarriedSurname = ("De " + this.person.MarriedSurname);
-      this.person.Mobile = this.mobilesGuardados;
-      this.person.Phone = this.phonesGuardados;
-      this.person.Other = this.othersGuardados;
-      this.person.Email = this.correosGuardados;
-      
-      this.rest.setPerson(this.person).subscribe(
-        response => {
-          if (response) {
-            //this.message();
-            this.limpiarData();
-          } else {
-            console.log("Error al guardar");
->>>>>>> 1430490dccaa699ea50dd27f139b16eb039055c6
           }
-        },
-        error => {
-          console.log(<any>error);
-        }
-      )
-      error => {
-        console.log(<any>error);
-      }
-    //}
+    }
   }
 
   limpiarData() {
