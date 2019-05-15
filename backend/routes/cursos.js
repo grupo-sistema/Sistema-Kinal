@@ -1,7 +1,7 @@
 'use strict'
 
 var express = require('express');
-var CursoController = require('../controllers/cursos');
+var CursoController = require('../controllers/Cursos');
 
 var md_auth = require('../middlewares/authenticated');
 

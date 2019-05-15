@@ -1,7 +1,7 @@
 'use strict'
 
 var express = require('express');
-var CarreraController = require('../controllers/carrera');
+var CarreraController = require('../controllers/Carrera');
 
 var api = express.Router();
 

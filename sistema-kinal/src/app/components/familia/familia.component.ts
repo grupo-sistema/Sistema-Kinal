@@ -69,6 +69,11 @@ export class FamiliaComponent implements OnInit {
   }
 
   addMemberToFamily(){
+    if(this.familia[this.FamilyNameToAdd].Padre.length == 1){
+      console.log("Mmuy tarde papa")
+    }else{
+      console.log("wuuuu")
+    }
     this.rest.addMemberToFamily(this.rolesito, this.seleccionado._id, this.familia[this.FamilyNameToAdd]._id).subscribe(res=>{
       console.log(res);
     })
