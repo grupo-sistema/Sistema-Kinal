@@ -6,6 +6,9 @@ import { checkAndUpdateBinding } from "@angular/core/src/view/util";
 import { Message } from "@angular/compiler/src/i18n/i18n_ast";
 import { CodigosService } from "src/app/services/api/codigos.service";
 import { count } from 'rxjs/operators';
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
+import { timer } from 'rxjs';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: "app-inicio",
@@ -31,8 +34,9 @@ export class InicioComponent implements OnInit {
   countries = [];
   hola;
 
+
   constructor(public rest: RestService) {
-    this.rest.setPerson(this.person);
+    //this.rest.setPerson(this.person);
     this.person = new Person(
       "","","","","","","","","",[],"","","","","","","","","","","","",[],[],[]
     );
@@ -42,17 +46,18 @@ export class InicioComponent implements OnInit {
 
   message() {
     if (
-      this.person.FirstName != ""  && this.person.Surname != "" && this.person.Date != "" && this.person.Religion != "" && this.person.Gender != "" && this.person.Departament != "" && this.person.Municipality != "") {
-      Swal.fire("Datos guardados correctamente","You clicked the button!","success");
+      this.person.FirstName != "" && this.person.Surname != "" && this.person.Date != "" && this.person.Religion != "" && this.person.Gender != "" && this.person.Departament != "" && this.person.Municipality != "") {
+      Swal.fire("Datos guardados correctamente", "You clicked the button!", "success");
     } else {
       Swal.fire("Debe llenar todos los campos necesarios para continuar");
     }
   }
 
-  validarAC(){
-    if(this.person.Gender == "Femenino" && this.person.CivilStatus == "Casada"){
+
+  validarAC() {
+    if (this.person.Gender == "Femenino" && this.person.CivilStatus == "Casada") {
       this.mostrar = true;
-    }else{
+    } else {
       this.mostrar = false;
       this.person.MarriedSurname = "";
     }
@@ -115,32 +120,41 @@ export class InicioComponent implements OnInit {
     }
   }
 
+  validarEmail(valor) {
+    if (/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(valor)) {
+      console.log("La dirección de email " + valor + " es correcta.");
+      this.guardarCorreos();
+    } else {
+      Swal.fire("La dirección de email es incorrecta.");
+    }
+    console.log(valor)
+  }
 
-  guardarCorreos(){
-    if(this.correosGuardados.length == 3){
+  guardarCorreos() {
+    if (this.correosGuardados.length == 3) {
       console.log("Ya no puedes guardar mas correos")
     }
-    else{
-      if(this.email == "" || this.email == undefined){
+    else {
+      if (this.email == "" || this.email == undefined) {
         console.log("No has metido correos");
       } else {
         this.correosGuardados.push(this.email);
-        this.email = "";
         console.log(this.correosGuardados);
       }
     }
   }
 
-  guardarDirecciones(){
-    if(this.person.Departament == "" || this.person.Municipality == "" || this.person.Zone == "" || (this.person.Colony == "" || undefined) || (this.person.Avenue == "" || undefined) || (this.person.Street == "" || undefined) || (this.person.Block == "" || undefined) || (this.person.HouseNumber == "" || undefined) || (this.person.Specific == "" || undefined)){
+
+  guardarDirecciones() {
+    if (this.person.Departament == "" || this.person.Municipality == "" || this.person.Zone == "" || (this.person.Colony == "" || undefined) || (this.person.Avenue == "" || undefined) || (this.person.Street == "" || undefined) || (this.person.Block == "" || undefined) || (this.person.HouseNumber == "" || undefined) || (this.person.Specific == "" || undefined)) {
       console.log("Llena los datos que te faltan")
-    }else{
-      if(this.direccionesGuardadas.length == 3){
+    } else {
+      if (this.direccionesGuardadas.length == 3) {
         console.log("Ya no puedes guardar mas direcciones")
       }
-      else{
-          this.direccionesGuardadas.push(this.person.Departament + ", " + this.person.Municipality + ". " + this.person.Zone + " '" + this.person.Colony + "' " + this.person.Avenue + "Ave. " + this.person.Street + "calle. Bloque " + this.person.Block + " " + this.person.HouseNumber + ". '" + this.person.Specific + "' ");
-          console.log(this.direccionesGuardadas);
+      else {
+        this.direccionesGuardadas.push(this.person.Departament + ", " + this.person.Municipality + ". " + this.person.Zone + " '" + this.person.Colony + "' " + this.person.Avenue + "Ave. " + this.person.Street + "calle. Bloque " + this.person.Block + " " + this.person.HouseNumber + ". '" + this.person.Specific + "' ");
+        console.log(this.direccionesGuardadas);
       }
     }
   }
@@ -150,6 +164,7 @@ export class InicioComponent implements OnInit {
   }
 
   onSubmit() {
+<<<<<<< HEAD
     if(this.hola){
         console.log(this.person);
         if(this.person.MarriedSurname != "" || undefined){
@@ -170,15 +185,36 @@ export class InicioComponent implements OnInit {
           },
           error => {
             console.log(<any>error);
+=======
+    //if (this.hola) {
+      console.log(this.person);
+      this.person.MarriedSurname = ("De " + this.person.MarriedSurname);
+      this.person.Mobile = this.mobilesGuardados;
+      this.person.Phone = this.phonesGuardados;
+      this.person.Other = this.othersGuardados;
+      this.person.Email = this.correosGuardados;
+      
+      this.rest.setPerson(this.person).subscribe(
+        response => {
+          if (response) {
+            //this.message();
+            this.limpiarData();
+          } else {
+            console.log("Error al guardar");
+>>>>>>> 1430490dccaa699ea50dd27f139b16eb039055c6
           }
-        )
+        },
         error => {
           console.log(<any>error);
         }
-    }
+      )
+      error => {
+        console.log(<any>error);
+      }
+    //}
   }
 
-  limpiarData(){
+  limpiarData() {
     this.person.FirstName = "";
     this.person.SecondName = "";
     this.person.Surname = "";
@@ -215,7 +251,6 @@ export class InicioComponent implements OnInit {
       .then(response => response.json())
       .then(json => {
         this.countries = json;
-        console.log(this.countries);
       });
   }
 }
