@@ -2,6 +2,8 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { RestService } from'../../services/rest.service';
 import { Person } from 'src/app/models/person';
 import { Family } from 'src/app/models/family';
+import Swal from 'sweetalert2';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-familia',
@@ -37,6 +39,17 @@ export class FamiliaComponent implements OnInit {
     console.log(this.seleccionado);
   }
 
+  message(){
+    if(this.family.FamilyName == "" || this.family.FamilyName == undefined){
+      Swal.fire("Tiene que llenar el campo para poder registrar la familia");
+    }else{
+      if(this.family.FamilyName != "" || this.family.FamilyName != undefined){
+        console.log("sii");
+      }
+      
+    }
+  }
+
   getPerson(){
     this.rest.getPerson().subscribe(res=>{
       console.log(res);
@@ -70,7 +83,7 @@ export class FamiliaComponent implements OnInit {
 
   addMemberToFamily(){
     if(this.familia[this.FamilyNameToAdd].Padre.length == 1){
-      console.log("Mmuy tarde papa")
+      Swal.fire("Ya has ingresado ese rol para ese integrante de la familia")
     }else{
       console.log("wuuuu")
     }
@@ -81,23 +94,26 @@ export class FamiliaComponent implements OnInit {
 
   addToFamily(){
     if(this.Role == undefined){
-      console.log("Debe seleccionar un rol");
+      Swal.fire("Debe seleccionar un rol");
     }else{
+      if(this.FamilyNameToAdd == undefined){
+        Swal.fire("Debe seleccionar una familia");
+      }else{      
       if(this.Role == "Padre"){
         this.rolesito = "Padre"
-        this.addMemberToFamily()
+        this.addMemberToFamily();
       }else{
         if(this.Role == "Madre"){
           this.rolesito = "Madre"
-          this.addMemberToFamily()
+          this.addMemberToFamily();
         }else{
           if(this.Role == "Encargado"){
             this.rolesito = "Encargado"
-            this.addMemberToFamily()
+            this.addMemberToFamily();    
           }else{
             if(this.Role == "Hijo"){
               this.rolesito = "Hijo"
-              this.addMemberToFamily()
+              this.addMemberToFamily();
             }else{
               console.log("No se que rayos hiciste para que te saliera este error...")
             }
@@ -105,6 +121,7 @@ export class FamiliaComponent implements OnInit {
         }
       }
     }
+  }
   }
 
   onSubmit(){

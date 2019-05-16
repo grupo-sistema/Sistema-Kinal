@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Carrer } from 'src/app/models/carrer';
 import { RestService } from 'src/app/services/rest.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-carreras',
@@ -21,7 +22,7 @@ carrera: Carrer[];
   ngOnInit() {
     this.getCarrer();
   }
-
+  
   getCarrer(){
     this.rest.getCarrer().subscribe(res=>{
       console.log(res);
@@ -30,10 +31,12 @@ carrera: Carrer[];
   }
   
   onSubmit() {
+    if(this.carrer.Codigo != "" && this.carrer.Descripcion != "" && this.carrer.Nombre != ""){
     this.rest.setCarrer(this.carrer).subscribe(
       response => {
-        if (response) {
+        if (response) {  
           this.getCarrer();
+          this.limpiarData();
         } else {
           console.log("Error al guardar");
         }
@@ -45,5 +48,14 @@ carrera: Carrer[];
     error => {
       console.log(<any>error);
     }
+  }else{
+    Swal.fire("No puede dejar los campos vacios");
+  }
+  }
+
+  limpiarData(){
+    this.carrer.Nombre = "";
+    this.carrer.Descripcion = "";
+    this.carrer.Codigo = "";
   }
 }
