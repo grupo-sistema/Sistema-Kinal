@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RestService } from'../../services/rest.service';
 import { Person } from 'src/app/models/person';
 import { Family } from 'src/app/models/family';

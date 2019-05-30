@@ -18,6 +18,7 @@ var family = require('./routes/familia');
 var course = require('./routes/cursos');
 var carrer = require('./routes/carrera');
 var unity = require('./routes/unidades');
+var studyNet = require('./routes/redestudio');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -27,5 +28,6 @@ app.use('/v1', family);
 app.use('/v1', course);
 app.use('/v1', carrer);
 app.use('/v1', unity);
+app.use('/v1', studyNet);
 
 module.exports = app;

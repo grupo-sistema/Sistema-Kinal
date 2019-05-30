@@ -96,4 +96,16 @@ export class RestService {
     return this.http.get(this.endpoint + '/list-family').pipe(map(this.extractData));
   }
   
+  // ==============================================================================MODULO STUDY NETWORK=======================================
+  
+  getStudyNet(): Observable<any>{
+    return this.http.get(this.endpoint + '/list-study_net').pipe(map(this.extractData));
+  }
+
+  setStudyNet(studyNet_guardar){
+    console.log(this.mensaje);
+    var params = JSON.stringify(studyNet_guardar);
+    return this.http.post(this.endpoint + '/save-study_net', params,this.httpOptions).pipe(map(this.extractData));
+  }
+
 }
