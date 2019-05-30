@@ -5,6 +5,7 @@ import { FamiliaComponent } from './components/familia/familia.component';
 import { CursosComponent } from './components/cursos/cursos.component';
 import { CarrerasComponent } from './components/carreras/carreras.component';
 import { HomeComponent } from './components/home/home.component';
+import { RedesDeEstudioComponent } from './components/redes-de-estudio/redes-de-estudio.component';
 
 const routes: Routes = [
   {path:'inicio', component: InicioComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path:'cursos', component: CursosComponent},
   {path:'carreras', component: CarrerasComponent},
   {path:'home', component: HomeComponent},
+  {path:'redes', component: RedesDeEstudioComponent},
   {path:'', redirectTo:'home', pathMatch:'full'},
   {path:'**', component: InicioComponent}
 ];
