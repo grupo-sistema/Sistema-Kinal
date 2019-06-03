@@ -38,7 +38,7 @@ carrera: Carrer[];
           this.getCarrer();
           this.limpiarData();
         } else {
-          console.log("Error al guardar");
+          Swal.fire({type: 'error', title: 'Oops... Something went wrong!, please, try again',})
         }
       },
       error => {
@@ -49,7 +49,11 @@ carrera: Carrer[];
       console.log(<any>error);
     }
   }else{
-    Swal.fire("No puede dejar los campos vacios");
+    Swal.fire({
+      title: '¡Error!',
+      text: "Parece que has dejado algunos campos vacios, revisa de nuevo",
+      type: 'warning',
+    })
   }
   }
 

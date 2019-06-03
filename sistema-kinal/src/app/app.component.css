@@ -24,6 +24,7 @@
     list-style: none;
     font-size: 14px;
     padding: 20px 24px;
+    
 }
 
 #sidebar ul li a{
@@ -50,6 +51,18 @@
     background-color: whitesmoke;
     display: block;
     margin-top: 4px;
+}
+
+.dropdown-menu{
+    background-color: black;
+} 
+
+.espacio{
+    padding-top: 125%;
+}
+
+.letra{
+    font-size: 18px;
 }
 
 /* Gradient  */
@@ -94,14 +107,3 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#30ff90', endColorstr='#30ff90',GradientType=1 ); /* IE6-9 */
 }
 
-.dropdown-menu{
-    background-color: black;
-}
-
-.espacio{
-    padding-top: 125%;
-}
-
-.letra{
-    font-size: 18px;
-}

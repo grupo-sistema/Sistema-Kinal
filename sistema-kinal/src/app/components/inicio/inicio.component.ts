@@ -49,9 +49,13 @@ export class InicioComponent implements OnInit {
   message() {
     if (
       this.person.FirstName != "" && this.person.Surname != "" && this.person.Date != "" && this.person.Religion != "" && this.person.Gender != "" && this.person.Departament != "" && this.person.Municipality != "") {
-      Swal.fire("Datos guardados correctamente", "You clicked the button!", "success");
+      Swal.fire("Datos guardados correctamente", "Perfecto!", "success");
     } else {
-      Swal.fire("Debe llenar todos los campos necesarios para continuar");
+      Swal.fire({
+        title: '¡Error!',
+        text: "Parece que has dejado algunos campos vacios, revisa de nuevo",
+        type: 'warning',
+      })
     }
   }
 
