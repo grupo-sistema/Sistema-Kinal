@@ -16,7 +16,7 @@ function GuardarRed (req, res){
         ]}).exec((err, busqueda) =>{
             if(err) return res.status(500).send({message: 'Error en la peticion'});
             if(busqueda && busqueda.length >= 1){
-                return res.status(500).send({message: 'Ya se encuentra registrado la Red de Estudio con una misma duración'});
+                return res.status(200).send({message: 'Ya se encuentra registrado la Red de Estudio con una misma duración'});
             }else{
                 if(params.Finalizacion.localeCompare(params.Inicio) == 1){
                     if(params.Inicio != params.Finalizacion){
@@ -32,10 +32,10 @@ function GuardarRed (req, res){
                             }
                         });
                     }else{
-                        res.status(500).send({message: 'La red de estudio no puede terminar el mismo dia de inicio'});
+                        res.status(200).send({message: 'La red de estudio no puede terminar el mismo dia de inicio'});
                     }
                 }else{
-                    res.status(500).send({message: 'La red de estudio no puede terminar antes de empezar'});
+                    res.status(200).send({message: 'La red de estudio no puede terminar antes de empezar'});
                 }
             }
         })

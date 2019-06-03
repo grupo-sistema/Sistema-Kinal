@@ -50,7 +50,11 @@ cursos: Course[];
       console.log(<any>error);
     }
   }else{
-    Swal.fire("No puede dejar los campos vacios");
+    Swal.fire({
+      title: '¡Error!',
+      text: "Parece que has dejado algunos campos vacios, revisa de nuevo",
+      type: 'warning',
+    })
   }
   }
 

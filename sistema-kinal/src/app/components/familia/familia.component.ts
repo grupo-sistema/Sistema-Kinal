@@ -41,7 +41,11 @@ export class FamiliaComponent implements OnInit {
 
   message(){
     if(this.family.FamilyName == "" || this.family.FamilyName == undefined){
-      Swal.fire("Tiene que llenar el campo para poder registrar la familia");
+      Swal.fire({
+        title: '¡Error!',
+        text: "Parece que has dejado el campo vacio, revisa de nuevo",
+        type: 'warning',
+      })
     }else{
       if(this.family.FamilyName != "" || this.family.FamilyName != undefined){
         console.log("sii");

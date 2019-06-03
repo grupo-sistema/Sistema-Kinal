@@ -102,7 +102,7 @@ export class RestService {
     return this.http.get(this.endpoint + '/list-study_net').pipe(map(this.extractData));
   }
 
-  setStudyNet(studyNet_guardar){
+  setStudyNet(studyNet_guardar): Observable<any>{
     console.log(this.mensaje);
     var params = JSON.stringify(studyNet_guardar);
     return this.http.post(this.endpoint + '/save-study_net', params,this.httpOptions).pipe(map(this.extractData));

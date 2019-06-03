@@ -46,15 +46,39 @@ export class RedesDeEstudioComponent implements OnInit {
   onSubmit() {
     if(this.study_net.Carrera != "" && this.study_net.NombreRed != "" && this.study_net.Inicio != "" && this.study_net.Finalizacion != ""){
       if(this.study_net.Inicio == this.study_net.Finalizacion){
-        Swal.fire("Las fechas ingresadas son las mismas, corrija");
+        Swal.fire({type: 'error', title: 'Oops...', text: 'La red de estudio no puede terminar el mismo dia de inicio',
+        })
       }else{
         this.rest.setStudyNet(this.study_net).subscribe(
-          response => {
-            if (response) {  
-              this.getStudyNet();
-              this.limpiarData();
-            } else {
-              console.log("Error al guardar");
+          res => {
+            if(res.message == 'Ya se encuentra registrado la Red de Estudio con una misma duración'){
+              Swal.fire({type: 'error', title: 'Oops...', text: 'Al parecer ya tienes una red de estudio con la misma duracion',
+              })
+              // Swal.fire({
+              //   title: 'Ya guardaste una red asi antes, proba con otra',
+              //   width: 600,
+              //   padding: '3em',
+              //   background: '#fff url(https://steamuserimages-a.akamaihd.net/ugc/939446829393952254/8399D7DB1BF3130ED0CB6AF35300F46F0B3DB109/)',
+              //   backdrop: `
+              //     rgba(0,0,123,0.4)
+              //     url("http://24.media.tumblr.com/8210fd413c5ce209678ef82d65731443/tumblr_mjphnqLpNy1s5jjtzo1_400.gif")
+              //     center left
+              //     no-repeat
+              //   `
+              // })
+            }else{
+                if(res.message == 'La red de estudio no puede terminar antes de empezar'){
+                  Swal.fire({ type: 'error', title: 'Oops...', text: 'La red de estudio no puede terminar antes de empezar',
+                  })
+                }else{
+                  if (res) {  
+                    this.getStudyNet();
+                    this.limpiarData();
+                  } else {
+                    Swal.fire("Error al guardar, intente de nuevo");
+                  }
+                }
+              
             }
           },
           error => {
@@ -66,7 +90,8 @@ export class RedesDeEstudioComponent implements OnInit {
         }
       }    
     }else{
-      Swal.fire("No puede dejar los campos vacios");
+      Swal.fire({ title: '¡Error!', text: "Parece que has dejado algunos campos vacios, revisa de nuevo", type: 'warning',
+      })
     }
   }
 
