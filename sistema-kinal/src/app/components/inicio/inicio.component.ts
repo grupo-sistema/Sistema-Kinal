@@ -146,14 +146,6 @@ export class InicioComponent implements OnInit {
     }
   }
 
-  getPerson(){
-    this.rest.getPerson().subscribe(res=>{
-      console.log(res);
-      this.persona = res.Usuarios_del_sistema
-      console.log("naambre");
-    })
-  }
-
   guardarDirecciones() {
     if (this.person.Departament == "" || this.person.Municipality == "" || this.person.Zone == "" || (this.person.Colony == "" || undefined) || (this.person.Avenue == "" || undefined) || (this.person.Street == "" || undefined) || (this.person.Block == "" || undefined) || (this.person.HouseNumber == "" || undefined) || (this.person.Specific == "" || undefined)) {
       Swal.fire("Ingresa todos los campos para formar una dirección valida")
@@ -187,7 +179,6 @@ export class InicioComponent implements OnInit {
             if (response) {
               this.message();
               this.limpiarData();
-              this.getPerson();
             } else {
               console.log("Error al guardar");
             }

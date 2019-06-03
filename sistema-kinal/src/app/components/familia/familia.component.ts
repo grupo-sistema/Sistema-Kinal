@@ -130,6 +130,7 @@ export class FamiliaComponent implements OnInit {
         if (response) {
           this.addFamilia = false;
           this.getFamily();
+          this.limpiarData();
         } else {
           console.log("Error al guardar");
         }
@@ -141,6 +142,9 @@ export class FamiliaComponent implements OnInit {
     error => {
       console.log(<any>error);
     }
+  }
+  limpiarData(){
+    this.family.FamilyName = "";
   }
 }
 

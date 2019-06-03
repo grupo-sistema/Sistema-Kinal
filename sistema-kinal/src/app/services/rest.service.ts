@@ -17,22 +17,22 @@ export class RestService {
 
   constructor(private http: HttpClient) {}
 
-  private extractData(res: Response){
-    let body = res;
-    return body || [ ] || { };
-  }
+    private extractData(res: Response){
+      let body = res;
+      return body || [ ] || { };
+    }
 
-  // ==============================================================================MODULO PERSONA=======================================
+    // ==============================================================================MODULO PERSONA=======================================
 
-  getPerson(): Observable<any>{
-    return this.http.get(this.endpoint + '/list-person').pipe(map(this.extractData));
-  }
+    getPerson(): Observable<any>{
+      return this.http.get(this.endpoint + '/list-person').pipe(map(this.extractData));
+    }
 
-  setPerson(person_guardar){
-    console.log(this.mensaje);
-    var params = JSON.stringify(person_guardar);
-    return this.http.post(this.endpoint + '/save-person', params,this.httpOptions).pipe(map(this.extractData));
-  }
+    setPerson(person_guardar){
+      console.log(this.mensaje);
+      var params = JSON.stringify(person_guardar);
+      return this.http.post(this.endpoint + '/save-person', params,this.httpOptions).pipe(map(this.extractData));
+    }
 
   searchPerson(search){
     return this.http.post(this.endpoint + '/search-person', {search}, this.httpOptions).pipe(map(this.extractData));
