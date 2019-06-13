@@ -12,15 +12,7 @@ function InsertStudent(req, res) {
   var params = req.body;
   var direccion = [];
   var telefono = [];
-  if (
-    params.FirstName &&
-    params.Surname &&
-    params.Date &&
-    params.Religion &&
-    params.Gender &&
-    params.Departament &&
-    params.Municipality
-  ) {
+  if (params.FirstName && params.Surname && params.Date && params.Religion && params.Gender && params.Departament && params.Municipality) {
     student = {
       FirstName: params.FirstName,
       SecondName: params.SecondName,
@@ -62,7 +54,7 @@ function InsertStudent(req, res) {
                   }
               
                 } else {
-                  res.status(500).send({ message: "No puede guardar datos duplicados" });
+                  res.status(200).send({ message: "No puede guardar datos duplicados" });
                 }
             });
           }

@@ -179,8 +179,10 @@ export class InicioComponent implements OnInit {
         this.person.Other = this.othersGuardados;
         this.person.Email = this.correosGuardados;
         this.rest.setPerson(this.person).subscribe(
-          response => {
-            if (response) {
+          res => {
+            if(res.message == "No puede guardar datos duplicados")
+            Swal.fire({ type: 'warning', title: 'Oops...', text: 'No puede guardar datos duplicados', })
+            if (res) {
               this.message();
               this.limpiarData();
             } else {

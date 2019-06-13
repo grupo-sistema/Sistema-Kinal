@@ -14,7 +14,7 @@ function InsertFamilyName(req, res){
             ]}).exec((err, busqueda) =>{
                 if(err) return res.status(500).send({message: 'Error en la peticion del usuario'});
                 if(busqueda && busqueda.length >= 1){
-                    return res.status(500).send({message: 'La Familia ya esta registrada'}); 
+                    return res.status(200).send({message: 'La Familia ya esta registrada'}); 
                 }else{
                     family.save((err, familiaGuardada)=>{
                         if(err) return res.status(500).send({message: 'Error al guardar la familia'});    
@@ -51,7 +51,7 @@ function InsertFamilyMember(req, res){
                         }else{
                             if(Persona_a_cargo){
                                 if(Familyfound.Encargado.length != 0){
-                                    res.status(404).send({message: 'La familia ya contiene un encargado'});     
+                                    res.status(200).send({message: 'La familia ya contiene un encargado'});     
                                 }else{
                                     Familyfound.Encargado.push(Persona_a_cargo)
                                     Familyfound.save();
@@ -75,7 +75,7 @@ function InsertFamilyMember(req, res){
                         }else{
                             if(Persona_a_cargo){
                                 if(Familyfound.Madre.length != 0){
-                                    res.status(404).send({message: 'La familia ya contiene una mama'});     
+                                    res.status(200).send({message: 'La familia ya contiene una mamá'});     
                                 }else{
                                     Familyfound.Madre.push(Persona_a_cargo)
                                     Familyfound.save();
@@ -99,7 +99,7 @@ function InsertFamilyMember(req, res){
                         }else{
                             if(Persona_a_cargo){
                                 if(Familyfound.Padre.length != 0){
-                                    res.status(404).send({message: 'La familia ya contiene un papa'});     
+                                    res.status(200).send({message: 'La familia ya contiene un papa'});     
                                 }else{
                                      Familyfound.Padre.push(Persona_a_cargo)
                                      Familyfound.save();
