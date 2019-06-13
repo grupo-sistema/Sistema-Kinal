@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+     <div class="col-md-12 col-sm-10">
+        <h1 class="titleMain">Asignacion a Cursos</h1>
+     </div>
+  </div>
+  <div class="row backdiv">
+     <div class="col-md-12 col-sm-12">
+        <form>
+           <div class="form-row">
+              <div class="form-group col-md-4">
+                 <label>Estudiante</label>
+                 <!--COMBO BOX-->
+                 <select name="Estudiante" class="form-control">
+                    <option class="text" value="" disabled>Selecciona un Estudiante</option>
+                    <option class="text">Marvin Quishtan</option>
+                 </select>
+              </div>
+              <div class="form-group col-md-4">
+                 <label>Unidad Acádemica</label>
+                 <!--COMBO BOX-->
+                 <!--<select name="UnidadAcademica" class="form-control" (click)="validarAC()" [(ngModel)]="asignacionCurso.UnidadAcademica">-->
+                 <select name="UnidadAcademica" class="form-control">
+                    <option class="text" value="" disabled>Selecciona la unidad Academica</option>
+                    <option class="text">Básicos</option>
+                    <option class="text">Diversificado</option>
+                 </select>
+              </div>
+              <div class="form-group col-md-4">
+                 <label>Cuota</label>
+                 <input name="Cuota" type="text" class="form-control">
+              </div>
+              <div class="form-group col-md-4">
+                 <label>Grado</label>
+                 <!--COMBO BOX-->
+                 <select name="Grado" class="form-control">
+                    <option class="text" value="" disabled>Selecciona el grado</option>
+                    <option class="text">Cuarto Perito</option>
+                    <option class="text">Quinto Perito</option>
+                    <option class="text">Sexto Perito</option>
+                 </select>
+              </div>
+              <!--ESTE SOLO DEBE DE SALIR SIN EN LA UNIDAD ACADEMICA SELECCIONA DIVERSIFICADO-->
+              <!--<div class="form-group col-md-4" *ngIf="mostrar == true" id="Carrera">-->
+              <div class="form-group col-md-4" id="Carrera">
+                 <label>Carrera</label>
+                 <!--COMBO BOX-->
+                 <select name="Carrera" class="form-control">
+                    <option class="text" value="" disabled>Selecciona la Carrera</option>
+                    <option class="text">Informatica</option>
+                    <option class="text">Electronica</option>
+                 </select>
+              </div>
+              <div class="form-group col-md-2" class="espacio">
+                 <button class="btn  btn-outline-secondary btn-lg" style="z-index: 4; font-size: 16px;" type="submit"><i class="fas fa-archive"
+                       style="padding-right: 5px;"></i>Asignar</button>
+              </div>
+           </div>
+        </form>
+     </div>
+  </div>
+  <br>
+
+  <h2>Asignaciones de Cursos</h2>
+  <hr style="background-color: ivory;">
+  <div class="table-responsive tableFixHead">
+     <table class="table table-hover table-dark">
+        <thead class="gradient-color">
+           <tr>
+              <th scope="col">Estudiante</th>
+              <th scope="col">Unidad Academica</th>
+              <th scope="col">Grado</th>
+              <th scope="col">Cuota</th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr>
+              <td>Marvin Quishtan</td>
+              <td>Basicos</td>
+              <td>Primero Básico</td>
+              <td>400.00</td>
+           </tr>
+        </tbody>
+     </table>
+  </div>
+
+</div>

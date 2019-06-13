@@ -15,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RedesDeEstudioComponent } from './components/redes-de-estudio/redes-de-estudio.component';
 import { InstructoresComponent } from './components/instructores/instructores.component';
 import { JornadaSeccionComponent } from './components/jornada-seccion/jornada-seccion.component';
+import { AsignacionCursosComponent } from './components/asignacion-cursos/asignacion-cursos.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { JornadaSeccionComponent } from './components/jornada-seccion/jornada-se
     RedesDeEstudioComponent,
     InstructoresComponent,
     JornadaSeccionComponent,
+    AsignacionCursosComponent,
   ],
   imports: [
     BrowserModule,

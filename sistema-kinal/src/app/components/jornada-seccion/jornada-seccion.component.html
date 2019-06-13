@@ -11,14 +11,21 @@
           <div class="col-md-12 col-sm-12">
             <form (ngSubmit)="onSubmit()">
               <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                   <label class="label2">Jornada:</label>
                   <select name="Jornada" id="inputState" class="form-control">
                       <option class="text">Elige una jornada</option>
                       <option class="text">Matutina</option>
                   </select>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
+                  <label class="label2">Grado:</label>
+                  <select name="Jornada" id="inputState" class="form-control">
+                      <option class="text">Elige un grado</option>
+                      <option class="text">Primero Básico</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
                   <label class="label2">Seccion:</label>
                   <select name="Seccion" id="inputState" class="form-control">
                     <option class="text">Elige una sección</option>
@@ -62,6 +69,7 @@
           <thead>
             <tr>
               <th scope="col">Jornada</th>
+              <th scope="col">Grado</th>
               <th scope="col">Sección</th>
               <th scope="col">Curso</th>
               <th scope="col">Carrera</th>
@@ -71,6 +79,7 @@
           <tbody>
             <tr>
               <td>Matutina</td>
+              <td>Primero Básico</td>
               <td>A</td>
               <td>Taller</td>
               <td>Informática</td>
