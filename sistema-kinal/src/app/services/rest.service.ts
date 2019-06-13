@@ -71,7 +71,7 @@ export class RestService {
   addMemberToFamily(role, id_user, id_family){
     console.log(this.mensaje);
     var campo = role;
-    {id_user}
+    {id_user} 
 
     if(campo == "Padre"){
       return this.http.post(this.endpoint + '/insert-member/' + id_family, {Padre: id_user},this.httpOptions).pipe(map(this.extractData));
@@ -106,6 +106,17 @@ export class RestService {
     console.log(this.mensaje);
     var params = JSON.stringify(studyNet_guardar);
     return this.http.post(this.endpoint + '/save-study_net', params,this.httpOptions).pipe(map(this.extractData));
+  }
+
+  // ==============================================================================MODULO INSTRUCTOR=======================================
+  getInstructor(): Observable<any>{
+    return this.http.get(this.endpoint + '/list-instructor').pipe(map(this.extractData));
+  }
+
+  setInstructor(instructor_guardar){
+    console.log(this.mensaje);
+    var params = JSON.stringify(instructor_guardar);
+    return this.http.post(this.endpoint + '/save-instructor', params,this.httpOptions).pipe(map(this.extractData));
   }
 
 }

@@ -4,7 +4,6 @@ import { Study_Network } from 'src/app/models/study_network';
 import { RestService } from 'src/app/services/rest.service';
 import Swal from 'sweetalert2';
 
-
 @Component({
   selector: 'app-redes-de-estudio',
   templateUrl: './redes-de-estudio.component.html',
@@ -54,18 +53,6 @@ export class RedesDeEstudioComponent implements OnInit {
             if(res.message == 'Ya se encuentra registrado la Red de Estudio con una misma duración'){
               Swal.fire({type: 'error', title: 'Oops...', text: 'Al parecer ya tienes una red de estudio con la misma duracion',
               })
-              // Swal.fire({
-              //   title: 'Ya guardaste una red asi antes, proba con otra',
-              //   width: 600,
-              //   padding: '3em',
-              //   background: '#fff url(https://steamuserimages-a.akamaihd.net/ugc/939446829393952254/8399D7DB1BF3130ED0CB6AF35300F46F0B3DB109/)',
-              //   backdrop: `
-              //     rgba(0,0,123,0.4)
-              //     url("http://24.media.tumblr.com/8210fd413c5ce209678ef82d65731443/tumblr_mjphnqLpNy1s5jjtzo1_400.gif")
-              //     center left
-              //     no-repeat
-              //   `
-              // })
             }else{
                 if(res.message == 'La red de estudio no puede terminar antes de empezar'){
                   Swal.fire({ type: 'error', title: 'Oops...', text: 'La red de estudio no puede terminar antes de empezar',

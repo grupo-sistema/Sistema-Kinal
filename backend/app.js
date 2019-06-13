@@ -17,8 +17,10 @@ var person = require('./routes/persona');
 var family = require('./routes/familia');
 var course = require('./routes/cursos');
 var carrer = require('./routes/carrera');
-var unity = require('./routes/unidades');
 var studyNet = require('./routes/redestudio');
+var section = require('./routes/seccion');
+var grade = require('./routes/grado');
+var instructor = require('./routes/instructor');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -27,7 +29,9 @@ app.use('/v1', person);
 app.use('/v1', family);
 app.use('/v1', course);
 app.use('/v1', carrer);
-app.use('/v1', unity);
 app.use('/v1', studyNet);
+app.use('/v1', section);
+app.use('/v1', grade);
+app.use('/v1', instructor);
 
 module.exports = app;

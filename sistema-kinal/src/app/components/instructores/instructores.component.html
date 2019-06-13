@@ -7,21 +7,17 @@
   <div class="row backdiv">
      <div class="col-md-12 col-sm-12">
         <form (ngSubmit)="onSubmit()">
-           <div class="form-row">
-              <div class="form-group col-md-3">
-                  <label>Código de instructor</label>
-                  <input name="Codigo" type="text" class="form-control">
-              </div>
-              <div class="form-group col-md-4">
+           <div class="form-row"> 
+              <div class="form-group col-md-6">
                   <label>Nombre del instructor</label> <!--COMBO BOX-->
-                  <select name="Instructor"  class="form-control">
-                     <option class="text">Selecciona un Instructor</option>
-                     <option class="text">Josué Noj</option>
+                  <select [(ngModel)]="instructor.Instructor" name="Instructor" class="form-control">
+                     <option value="" class="text" disabled> ...</option>
+                     <option *ngFor="let p of persona" class="text" value="{{p.FirstName}}" >{{p.FirstName + " " + p.SecondName + " " + p.Surname + " " + p.SecondSurname}}</option>
                  </select>
               </div>
               <div class="form-group col-md-4" >
                   <label>Profesión</label>
-                  <input name="Profesion" type="text" class="form-control"> 
+                  <input [(ngModel)]="instructor.Profesion" name="Profesion" type="text" class="form-control"> 
               </div>
               <div class="form-group col-md-2" class="espacio">
                  <button class="btn btn-outline-secondary" style="z-index: 4;" type="submit"><i class="fas fa-archive"></i>  Enviar</button>
@@ -44,11 +40,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-           <td>123456</td>
-           <td>Josué Noj</td>
-           <td>Profesor en Informática</td>
-        </tr>
+         <tr *ngFor='let i of instructores'>
+            <td>{{i.Codigo}}</td>
+            <td>{{i.Instructor}}</td>
+            <td>{{i.Profesion}}</td>
+          </tr>
       </tbody>
     </table>
 </div>

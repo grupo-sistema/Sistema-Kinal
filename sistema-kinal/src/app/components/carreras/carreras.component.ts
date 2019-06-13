@@ -19,7 +19,7 @@ carrera: Carrer[];
     );
   }
 
-  ngOnInit() {
+  ngOnInit() { 
     this.getCarrer();
   }
   
