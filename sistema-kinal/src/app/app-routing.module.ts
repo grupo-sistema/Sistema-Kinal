@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RedesDeEstudioComponent } from './components/redes-de-estudio/redes-de-estudio.component';
 import { InstructoresComponent } from './components/instructores/instructores.component';
 import { JornadaSeccionComponent } from './components/jornada-seccion/jornada-seccion.component';
+import { AsignacionCursosComponent } from './components/asignacion-cursos/asignacion-cursos.component';
 
 const routes: Routes = [
   {path:'inicio', component: InicioComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'redes', component: RedesDeEstudioComponent},
   {path:'instructores', component: InstructoresComponent},
   {path:'jornada', component: JornadaSeccionComponent},
+  {path:'asignacionCursos', component: AsignacionCursosComponent},
   {path:'', redirectTo:'home', pathMatch:'full'},
   {path:'**', component: InicioComponent}
 ];

@@ -15,12 +15,12 @@ function GuardarCursos (req, res){
         Descripcion: params.Descripcion
     }
     Cursos.find({$or:[
-        {Nombre: cursos.Nombre}
+        {Nombre: cursos.Nombre, Codigo: cursos.Codigo}
     ]}).exec((err, busqueda) =>{
         if(err) return res.status(500).send({message: 'Error en la peticion del usuario'});
     
                 if(busqueda && busqueda.length >= 1){
-                    return res.status(500).send({message: 'el curso ya esta registrado'}); 
+                    return res.status(200).send({message: 'el curso ya esta registrado'}); 
                 }else{
                     Cursos.insertMany(cursos, function(err,studentSave){
                         if(err){

@@ -16,10 +16,10 @@ export class RedesDeEstudioComponent implements OnInit {
   dateinicio: Date;
   datefinal: Date;
 
-  constructor(public rest: RestService) { 
+  constructor(public rest: RestService) {
     this.rest.setStudyNet(this.study_net);
     this.study_net = new Study_Network(
-      "","","",""
+      "", "", "", ""
     )
   }
 
@@ -28,44 +28,47 @@ export class RedesDeEstudioComponent implements OnInit {
     this.getStudyNet();
   }
 
-  getStudyNet(){
-    this.rest.getStudyNet().subscribe(res=>{
+  getStudyNet() {
+    this.rest.getStudyNet().subscribe(res => {
       console.log(res);
       this.redEstudio = res.Listado_Redes_Estudio
     })
   }
 
-  getCarrer(){
-    this.rest.getCarrer().subscribe(res=>{
+  getCarrer() {
+    this.rest.getCarrer().subscribe(res => {
       console.log(res);
       this.carrera = res.Listado_de_carreras
     })
   }
 
   onSubmit() {
-    if(this.study_net.Carrera != "" && this.study_net.NombreRed != "" && this.study_net.Inicio != "" && this.study_net.Finalizacion != ""){
-      if(this.study_net.Inicio == this.study_net.Finalizacion){
-        Swal.fire({type: 'error', title: 'Oops...', text: 'La red de estudio no puede terminar el mismo dia de inicio',
+    if (this.study_net.Carrera != "" && this.study_net.NombreRed != "" && this.study_net.Inicio != "" && this.study_net.Finalizacion != "") {
+      if (this.study_net.Inicio == this.study_net.Finalizacion) {
+        Swal.fire({
+          type: 'error', title: 'Oops...', text: 'La red de estudio no puede terminar el mismo dia de inicio',
         })
-      }else{
+      } else {
         this.rest.setStudyNet(this.study_net).subscribe(
           res => {
-            if(res.message == 'Ya se encuentra registrado la Red de Estudio con una misma duración'){
-              Swal.fire({type: 'error', title: 'Oops...', text: 'Al parecer ya tienes una red de estudio con la misma duracion',
+            if (res.message == 'Ya se encuentra registrado la Red de Estudio con una misma duración') {
+              Swal.fire({
+                type: 'error', title: 'Oops...', text: 'Al parecer ya tienes una red de estudio con la misma duracion',
               })
-            }else{
-                if(res.message == 'La red de estudio no puede terminar antes de empezar'){
-                  Swal.fire({ type: 'error', title: 'Oops...', text: 'La red de estudio no puede terminar antes de empezar',
-                  })
-                }else{
-                  if (res) {  
-                    this.getStudyNet();
-                    this.limpiarData();
-                  } else {
-                    Swal.fire("Error al guardar, intente de nuevo");
-                  }
+            } else {
+              if (res.message == 'La red de estudio no puede terminar antes de empezar') {
+                Swal.fire({
+                  type: 'error', title: 'Oops...', text: 'La red de estudio no puede terminar antes de empezar',
+                })
+              } else {
+                if (res) {
+                  this.getStudyNet();
+                  this.limpiarData();
+                } else {
+                  Swal.fire("Error al guardar, intente de nuevo");
                 }
-              
+              }
+
             }
           },
           error => {
@@ -75,22 +78,23 @@ export class RedesDeEstudioComponent implements OnInit {
         error => {
           console.log(<any>error);
         }
-      }    
-    }else{
-      Swal.fire({ title: '¡Error!', text: "Parece que has dejado algunos campos vacios, revisa de nuevo", type: 'warning',
+      }
+    } else {
+      Swal.fire({
+        title: '¡Error!', text: "Parece que has dejado algunos campos vacios, revisa de nuevo", type: 'warning',
       })
     }
   }
 
-  network(){
-      this.study_net.NombreRed = this.study_net.Carrera;
+  network() {
+    this.study_net.NombreRed = this.study_net.Carrera;
   }
 
-  limpiarData(){
+  limpiarData() {
     this.study_net.Carrera = "";
     this.study_net.NombreRed = "";
     this.study_net.Inicio = "";
     this.study_net.Finalizacion = "";
   }
-  
+
 }

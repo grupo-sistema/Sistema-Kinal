@@ -17,22 +17,22 @@ export class RestService {
 
   constructor(private http: HttpClient) {}
 
-  private extractData(res: Response){
-    let body = res;
-    return body || [ ] || { };
-  }
+    private extractData(res: Response){
+      let body = res;
+      return body || [ ] || { };
+    }
 
-  // ==============================================================================MODULO PERSONA=======================================
+    // ==============================================================================MODULO PERSONA=======================================
 
-  getPerson(): Observable<any>{
-    return this.http.get(this.endpoint + '/list-person').pipe(map(this.extractData));
-  }
+    getPerson(): Observable<any>{
+      return this.http.get(this.endpoint + '/list-person').pipe(map(this.extractData));
+    }
 
-  setPerson(person_guardar){
-    console.log(this.mensaje);
-    var params = JSON.stringify(person_guardar);
-    return this.http.post(this.endpoint + '/save-person', params,this.httpOptions).pipe(map(this.extractData));
-  }
+    setPerson(person_guardar): Observable<any>{
+      console.log(this.mensaje);
+      var params = JSON.stringify(person_guardar);
+      return this.http.post(this.endpoint + '/save-person', params,this.httpOptions).pipe(map(this.extractData));
+    }
 
   searchPerson(search){
     return this.http.post(this.endpoint + '/search-person', {search}, this.httpOptions).pipe(map(this.extractData));
@@ -43,7 +43,7 @@ export class RestService {
     return this.http.get(this.endpoint + '/list-course').pipe(map(this.extractData));
   }
 
-  setCourse(course_guardar){
+  setCourse(course_guardar): Observable<any>{
     console.log(this.mensaje);
     var params = JSON.stringify(course_guardar);
     return this.http.post(this.endpoint + '/save-course', params,this.httpOptions).pipe(map(this.extractData));
@@ -54,7 +54,7 @@ export class RestService {
     return this.http.get(this.endpoint + '/list-carrer').pipe(map(this.extractData));
   }
 
-  setCarrer(carrer_guardar){
+  setCarrer(carrer_guardar): Observable<any>{
     console.log(this.mensaje);
     var params = JSON.stringify(carrer_guardar);
     return this.http.post(this.endpoint + '/save-carrer', params,this.httpOptions).pipe(map(this.extractData));
@@ -62,7 +62,7 @@ export class RestService {
 
   // ==============================================================================MODULO FAMILIA=======================================
 
-  setFamily(family_guardar){
+  setFamily(family_guardar):Observable<any>{
     console.log(this.mensaje);
     var params = JSON.stringify(family_guardar);
     return this.http.post(this.endpoint + '/save-family', params,this.httpOptions).pipe(map(this.extractData));
