@@ -1,0 +1,108 @@
+
+.container{
+    padding-top: 50px;
+    padding-bottom: 7%;
+    margin: 0 0 0 100px; 
+}
+
+.text{
+    color: black;
+}
+
+.text-gray{
+    color: rgb(158, 158, 158);
+    margin-bottom: 0px;
+}
+
+.titleMain{
+    font-size: 50px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.backdiv{
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.cajita{
+    border:1px solid whitesmoke;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    padding-bottom: -20px;
+}
+
+@media (max-width: 600px) {
+    .container{
+        padding-top: 75px;
+        margin: 0 0 0 0; 
+    }
+    .card:hover{
+        transform: scale(0);
+        transition: transform 0s;
+      }
+  } 
+
+h4{
+    color: black;
+}
+
+.margen{
+    margin: 10px;
+}
+
+label{
+    color: black;
+}
+
+.margen2{
+    margin-top: 31px;
+    margin-left: 10px;
+}
+
+
+/* Tabla */
+.tableFixHead {
+    overflow: auto;
+    height: 250px;
+  }
+
+th {
+    background-image: -o-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+    background-image: -moz-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+    background-image: -ms-linear-gradient(bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+    background-image: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgb(23, 8, 23) 100%);
+}
+
+.tableFixHead thead th {
+    position: sticky;
+    top: -1px;
+}
+
+
+/* CONTENIDO CSS DE LA TABLA DE FAMILIAS DENTRO DEL MODAL */
+
+.colorin{
+  color: black;
+}
+
+/* EFECTO ZOOM */
+
+.card:hover{
+  transform: scale(1.05);
+  transition: transform 0.2s;
+}
+
+.espacio{
+    padding-top: 30px;
+    padding-left: 15px;
+}
+
+.espacio2{
+    padding-left: 15px;
+}
+
+.label2{
+    color: white;
+}

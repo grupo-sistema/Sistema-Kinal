@@ -13,6 +13,8 @@ import { CarrerasComponent } from './components/carreras/carreras.component';
 import { CursosComponent } from './components/cursos/cursos.component';
 import { HomeComponent } from './components/home/home.component';
 import { RedesDeEstudioComponent } from './components/redes-de-estudio/redes-de-estudio.component';
+import { InstructoresComponent } from './components/instructores/instructores.component';
+import { JornadaSeccionComponent } from './components/jornada-seccion/jornada-seccion.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { RedesDeEstudioComponent } from './components/redes-de-estudio/redes-de-
     CursosComponent,
     HomeComponent,
     RedesDeEstudioComponent,
+    InstructoresComponent,
+    JornadaSeccionComponent,
   ],
   imports: [
     BrowserModule,
