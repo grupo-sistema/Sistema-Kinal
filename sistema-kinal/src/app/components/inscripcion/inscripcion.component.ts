@@ -25,9 +25,9 @@ export class InscripcionComponent implements OnInit {
   constructor(public rest: RestService) {
     this.rest.setInscription(this.inscription);
     this.inscription = new Inscription(
-      "","","","","",""
+      "", "", "", "", "", ""
     );
-   }
+  }
 
   ngOnInit() {
     this.getInscription();
@@ -42,14 +42,18 @@ export class InscripcionComponent implements OnInit {
     if ((this.inscription.Carrera != "" || this.inscription.Carrera != undefined) && (this.inscription.UnidadAcademica != "" || this.inscription.UnidadAcademica != undefined) && (this.inscription.Jornada != "" || this.inscription.Jornada != undefined) && (this.inscription.Grado != "" || this.inscription.Grado != undefined) && (this.inscription.Cuota != "" || this.inscription.Cuota != undefined) && (this.inscription.Estudiante != "" || this.inscription.Estudiante != undefined)) {
       this.rest.setInscription(this.inscription).subscribe(
         res => {
-          if (res.message == "Inscripcion ya registrada")
-            Swal.fire({ type: 'warning', title: 'Oops...', text: 'La incripción ya ha sido registrada anteriormente', })
-          else {
-            if (res) {
-              this.getInscription();
-              this.limpiarData();
-            } else {
-              Swal.fire({ type: 'error', title: 'Oops... Something went wrong!, please, try again', })
+          if (res.message == "Debe introducir los campos correctamente") {
+            Swal.fire({ type: 'warning', title: 'Oops...', text: 'No ha introducido datos en todos los campos', })
+          } else {
+            if (res.message == "Inscripcion ya registrada")
+              Swal.fire({ type: 'warning', title: 'Oops...', text: 'La incripción ya ha sido registrada anteriormente', })
+            else {
+              if (res) {
+                this.getInscription();
+                this.limpiarData();
+              } else {
+                Swal.fire({ type: 'error', title: 'Oops... Something went wrong!, please, try again', })
+              }
             }
           }
         },
