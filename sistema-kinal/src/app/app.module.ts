@@ -14,8 +14,8 @@ import { CursosComponent } from './components/cursos/cursos.component';
 import { HomeComponent } from './components/home/home.component';
 import { RedesDeEstudioComponent } from './components/redes-de-estudio/redes-de-estudio.component';
 import { InstructoresComponent } from './components/instructores/instructores.component';
-import { JornadaSeccionComponent } from './components/jornada-seccion/jornada-seccion.component';
-import { AsignacionCursosComponent } from './components/asignacion-cursos/asignacion-cursos.component';
+import { AsignacionComponent } from './components/asignacion/asignacion.component';
+import { InscripcionComponent } from './components/inscripcion/inscripcion.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +27,8 @@ import { AsignacionCursosComponent } from './components/asignacion-cursos/asigna
     HomeComponent,
     RedesDeEstudioComponent,
     InstructoresComponent,
-    JornadaSeccionComponent,
-    AsignacionCursosComponent,
+    AsignacionComponent,
+    InscripcionComponent,
   ],
   imports: [
     BrowserModule,

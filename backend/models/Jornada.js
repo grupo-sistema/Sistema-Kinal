@@ -5,4 +5,4 @@ var Schema = mongoose.Schema;
 var JornadaSchema = Schema({
     Jornada: String
 });
-module.exports = mongoose.model('Jornadas', JornadaSchema)
+module.exports = mongoose.model('Jornada', JornadaSchema)

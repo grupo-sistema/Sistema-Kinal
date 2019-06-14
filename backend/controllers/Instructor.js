@@ -4,17 +4,22 @@ var Instructor = require('../models/Instructor');
 function GuardarInstructor (req, res){
     var instructor = new Instructor();
     var params = req.body;
-
-   console.log(params);
+    var numCod;
 
     if(params.Instructor && params.Profesion){
-        instructor = {
-            Instructor: params.Instructor,
-            Profesion: params.Profesion
-        }
-        Instructor.find({$or: [
-            {Instructor: instructor.Instructor}
-        ]}).exec((err, busqueda)=>{
+        Instructor.find({},(err,carrer)=>{
+            if(err){
+              console.log(err);
+            }else{
+                numCod = carrer.length + 1;
+                instructor = {
+                    Codigo: "K" + numCod + params.Instructor.charAt(0) + params.Profesion.charAt(0), 
+                    Instructor: params.Instructor,
+                    Profesion: params.Profesion
+                }
+                }
+        });  
+        Instructor.find({Instructor: params.Instructor}).exec((err, busqueda)=>{
             if(err) return res.status(500).send({message: 'Error en la peticion del usuario'});
     
                 if(busqueda && busqueda.length >= 1){
@@ -37,6 +42,7 @@ function GuardarInstructor (req, res){
         res.status(404).send({message: 'Error, debe introducir todos los campos'});
     }
 }
+
 function ListarInstructor (req, res){
     Instructor.find({},(err,instructor)=>{
         if(err){

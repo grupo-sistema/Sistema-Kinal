@@ -21,6 +21,10 @@ var studyNet = require('./routes/redestudio');
 var section = require('./routes/seccion');
 var grade = require('./routes/grado');
 var instructor = require('./routes/instructor');
+var unity = require('./routes/unidades');
+var jornada = require('./routes/jornada');
+var inscripcion = require ('./routes/inscripcion');
+var asignacion = require ('./routes/asignacion')
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -33,5 +37,9 @@ app.use('/v1', studyNet);
 app.use('/v1', section);
 app.use('/v1', grade);
 app.use('/v1', instructor);
+app.use('/v1', unity);
+app.use('/v1', jornada);
+app.use('/v1', inscripcion);
+app.use('/v1', asignacion);
 
 module.exports = app;
