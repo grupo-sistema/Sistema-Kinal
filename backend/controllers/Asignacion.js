@@ -16,12 +16,52 @@ function GuardarAsignacion (req, res){
             Instructor: params.Instructor
         }
         Asignacion.find({$and: [
-            {Carrera: params.Carrera},
             {Grado: params.Grado},
             {Jornada: params.Jornada},
             {Seccion: params.Seccion},
-            {Curso: params.Curso},
             {Instructor: params.Instructor}
+        ]}).exec((err, busqueda) =>{
+            if(err) return res.status(500).send({message: 'Error en la petición del usuario'});
+    
+                if(busqueda && busqueda.length >= 1){
+                    return res.status(200).send({message: 'Esta asignación ha sido registrada'}); 
+                }else{
+                    Asignacion.insertMany(asignacion, function(err,studentSave){
+                        if(err){
+                            res.status(500).send({message: 'No se han guardado los datos correctamente'});
+                        }else{
+                            if(!studentSave){
+                                res.status(500).send({message: 'Error al registrar la asignación'});
+                            }else{
+                                res.status(200).send({asignacion: studentSave});
+                            }
+                        }
+                    }); 
+                }
+        })
+        }else{
+        res.status(200).send({message: 'Debe introducir los campos correctamente'});
+        }
+}
+
+function GuardarAsignacionBasicos (req, res){
+    var asignacion = new Asignacion();
+    var params = req.body;
+
+    console.log(asignacion)
+    if(params.Grado && params.Jornada && params.Seccion && params.Instructor){
+        asignacion = {
+            Carrera: params.Carrera,
+            Grado: params.Grado,
+            Jornada: params.Jornada,
+            Seccion: params.Seccion,
+            Curso: params.Curso,
+            Instructor: params.Instructor
+        }
+        Asignacion.find({$and: [
+            {Grado: params.Grado},
+            {Jornada: params.Jornada},
+            {Seccion: params.Seccion}
         ]}).exec((err, busqueda) =>{
             if(err) return res.status(500).send({message: 'Error en la petición del usuario'});
     
@@ -59,5 +99,6 @@ function ListarAsignacion (req, res){
 
 module.exports = {
     GuardarAsignacion,
+    GuardarAsignacionBasicos,
     ListarAsignacion
     }

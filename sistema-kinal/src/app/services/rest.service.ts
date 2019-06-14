@@ -130,6 +130,12 @@ export class RestService {
     return this.http.post(this.endpoint + '/save-asignation', params,this.httpOptions).pipe(map(this.extractData));
   }
 
+  setAsignationBasicos(asignationb_guardar): Observable<any>{
+    console.log(this.mensaje);
+    var params = JSON.stringify(asignationb_guardar);
+    return this.http.post(this.endpoint + '/save-asignationbasicos', params,this.httpOptions).pipe(map(this.extractData));
+  }
+
   // ==============================================================================MODULO ASIGNACION=======================================
   getInscription(): Observable<any>{
     return this.http.get(this.endpoint + '/list-inscription').pipe(map(this.extractData));

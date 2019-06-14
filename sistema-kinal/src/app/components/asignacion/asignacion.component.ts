@@ -43,38 +43,76 @@ export class AsignacionComponent implements OnInit {
   }
 
   onSubmit() {
-    if ((this.asignation.Grado != "" || this.asignation.Grado != undefined) && (this.asignation.Seccion != "" || this.asignation.Seccion != undefined) && (this.asignation.Instructor != "" || this.asignation.Instructor != undefined)) {
-      this.rest.setAsignation(this.asignation).subscribe(
-        res => {
-          if (res.message == "Debe introducir los campos correctamente") {
-            Swal.fire({ type: 'warning', title: 'Oops...', text: 'No ha llenado todos los campos, revise de nuevo', })
-          } else {
-            if (res.message == "Esta asignación ha sido registrada")
-              Swal.fire({ type: 'warning', title: 'Oops...', text: 'La asignación ya ha sido registrada anteriormente', })
-            else {
-              if (res) {
-                this.getAsignation();
-                this.limpiarData();
-              } else {
-                Swal.fire({ type: 'error', title: 'Oops... Something went wrong!, please, try again', })
+
+    if(this.asignation.Grado == "1ero Básico" || this.asignation.Grado == "2do Básico" || this.asignation.Grado == "3ero Básico"){
+      this.asignation.Jornada = "Matutina"
+      if ((this.asignation.Grado != "" || this.asignation.Grado != undefined) && (this.asignation.Seccion != "" || this.asignation.Seccion != undefined) && (this.asignation.Instructor != "" || this.asignation.Instructor != undefined)) {
+        this.rest.setAsignationBasicos(this.asignation).subscribe(
+          res => {
+            if (res.message == "Debe introducir los campos correctamente") {
+              Swal.fire({ type: 'warning', title: 'Oops...', text: 'No ha llenado todos los campos, revise de nuevo', })
+            } else {
+              if (res.message == "Esta asignación ha sido registrada")
+                Swal.fire({ type: 'warning', title: 'Oops...', text: 'La asignación ya ha sido registrada anteriormente', })
+              else {
+                if (res) {
+                  this.getAsignation();
+                  this.limpiarData();
+                } else {
+                  Swal.fire({ type: 'error', title: 'Oops... Something went wrong!, please, try again', })
+                }
               }
             }
+          },
+          error => {
+            console.log(<any>error);
           }
-        },
+        )
         error => {
           console.log(<any>error);
         }
-      )
-      error => {
-        console.log(<any>error);
+      } else {
+        Swal.fire({
+          title: '¡Error!',
+          text: "Parece que has dejado algunos campos vacios, revisa de nuevo",
+          type: 'warning',
+        })
       }
-    } else {
-      Swal.fire({
-        title: '¡Error!',
-        text: "Parece que has dejado algunos campos vacios, revisa de nuevo",
-        type: 'warning',
-      })
+    }else{
+      if ((this.asignation.Carrera != "" || this.asignation.Carrera != undefined) && (this.asignation.Curso != "" || this.asignation.Curso != undefined) && (this.asignation.Jornada != "" || this.asignation.Jornada != undefined) && (this.asignation.Grado != "" || this.asignation.Grado != undefined) && (this.asignation.Seccion != "" || this.asignation.Seccion != undefined) && (this.asignation.Instructor != "" || this.asignation.Instructor != undefined)) {
+        this.rest.setAsignation(this.asignation).subscribe(
+          res => {
+            if (res.message == "Debe introducir los campos correctamente") {
+              Swal.fire({ type: 'warning', title: 'Oops...', text: 'No ha llenado todos los campos, revise de nuevo', })
+            } else {
+              if (res.message == "Esta asignación ha sido registrada")
+                Swal.fire({ type: 'warning', title: 'Oops...', text: 'La asignación ya ha sido registrada anteriormente', })
+              else {
+                if (res) {
+                  this.getAsignation();
+                  this.limpiarData();
+                } else {
+                  Swal.fire({ type: 'error', title: 'Oops... Something went wrong!, please, try again', })
+                }
+              }
+            }
+          },
+          error => {
+            console.log(<any>error);
+          }
+        )
+        error => {
+          console.log(<any>error);
+        }
+      } else {
+        Swal.fire({
+          title: '¡Error!',
+          text: "Parece que has dejado algunos campos vacios, revisa de nuevo",
+          type: 'warning',
+        })
+      }
     }
+
   }
 
   limpiarData() {
