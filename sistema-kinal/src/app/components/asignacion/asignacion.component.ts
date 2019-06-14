@@ -43,7 +43,7 @@ export class AsignacionComponent implements OnInit {
   }
 
   onSubmit() {
-    if ((this.asignation.Carrera != "" || this.asignation.Carrera != undefined) && (this.asignation.Curso != "" || this.asignation.Curso != undefined) && (this.asignation.Jornada != "" || this.asignation.Jornada != undefined) && (this.asignation.Grado != "" || this.asignation.Grado != undefined) && (this.asignation.Seccion != "" || this.asignation.Seccion != undefined) && (this.asignation.Instructor != "" || this.asignation.Instructor != undefined)) {
+    if ((this.asignation.Grado != "" || this.asignation.Grado != undefined) && (this.asignation.Seccion != "" || this.asignation.Seccion != undefined) && (this.asignation.Instructor != "" || this.asignation.Instructor != undefined)) {
       this.rest.setAsignation(this.asignation).subscribe(
         res => {
           if (res.message == "Esta asignación ha sido registrada")
