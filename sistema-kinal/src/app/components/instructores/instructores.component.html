@@ -12,7 +12,7 @@
                   <label>Nombre del instructor</label> <!--COMBO BOX-->
                   <select [(ngModel)]="instructor.Instructor" name="Instructor" class="form-control">
                      <option value="" class="text" disabled> ...</option>
-                     <option *ngFor="let p of persona" class="text" value="{{p.FirstName}}" >{{p.FirstName + " " + p.SecondName + " " + p.Surname + " " + p.SecondSurname}}</option>
+                     <option *ngFor="let p of persona" class="text" value="{{p.FirstName + ' ' + p.SecondName + ' ' + p.Surname + ' ' + p.SecondSurname}}" >{{p.FirstName + " " + p.SecondName + " " + p.Surname + " " + p.SecondSurname}}</option>
                  </select>
               </div>
               <div class="form-group col-md-4" >
