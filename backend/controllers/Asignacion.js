@@ -42,7 +42,7 @@ function GuardarAsignacion (req, res){
                 }
         })
         }else{
-        res.status(404).send({message: 'Debe introducir los campos correctamente'});
+        res.status(200).send({message: 'Debe introducir los campos correctamente'});
         }
 }
 
