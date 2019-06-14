@@ -8,7 +8,9 @@ function GuardarAsignacion (req, res){
     console.log(asignacion)
     if(params.Grado && params.Jornada && params.Seccion && params.Instructor){
         asignacion = {
-            Carrera: params.Carrera,
+            NombreRed: params.NombreRed,
+            Inicio: params.Inicio,
+            Finalizacion: params.Finalizacion,
             Grado: params.Grado,
             Jornada: params.Jornada,
             Seccion: params.Seccion,
@@ -51,7 +53,9 @@ function GuardarAsignacionBasicos (req, res){
     console.log(asignacion)
     if(params.Grado && params.Jornada && params.Seccion && params.Instructor){
         asignacion = {
-            Carrera: params.Carrera,
+            NombreRed: params.NombreRed,
+            Inicio: params.Inicio,
+            Finalizacion: params.Finalizacion,
             Grado: params.Grado,
             Jornada: params.Jornada,
             Seccion: params.Seccion,

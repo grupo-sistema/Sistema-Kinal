@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Carrer } from 'src/app/models/carrer';
+import { Study_Network } from 'src/app/models/study_network';
 import { Jornada } from 'src/app/models/jornada';
 import { Grade } from 'src/app/models/grade';
 import { Asignation } from 'src/app/models/asignation';
@@ -8,7 +8,7 @@ import { Course } from 'src/app/models/course';
 import { Instructor } from 'src/app/models/instructor';
 import { RestService } from 'src/app/services/rest.service';
 import Swal from 'sweetalert2';
-
+import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-asignacion',
@@ -22,14 +22,15 @@ export class AsignacionComponent implements OnInit {
   grados: Grade[];
   secciones: Seccion[];
   cursos: Course;
-  carreras: Carrer[];
+  redes: Study_Network[];
   instructores: Instructor[];
+  seleccionado;
   mostrar = false;
 
   constructor(public rest: RestService) {
     this.rest.setAsignation(this.asignation);
     this.asignation = new Asignation(
-      "", "", "", "", "", ""
+      "", "", "", "", "", "", "", ""
     );
   }
 
@@ -39,7 +40,6 @@ export class AsignacionComponent implements OnInit {
     }else{
       if(this.asignation.Grado == "4to Diversificado" || this.asignation.Grado == "5to Diversificado" || this.asignation.Grado == "6to Diversificado"){
         this.mostrar = true;
-        this.asignation.Grado = "";
       }
     }
 
@@ -47,7 +47,7 @@ export class AsignacionComponent implements OnInit {
 
   ngOnInit() {
     this.getAsignation();
-    this.getCarrer();
+    this.getStudyNet();
     this.getCourse();
     this.getInstructor();
     this.getGrade();
@@ -56,6 +56,7 @@ export class AsignacionComponent implements OnInit {
   }
 
   onSubmit() {
+    var red = this.getSeleccionado(this.seleccionado);
 
     if(this.asignation.Grado == "1ero Básico" || this.asignation.Grado == "2do Básico" || this.asignation.Grado == "3ero Básico"){
       this.asignation.Jornada = "Matutina"
@@ -92,44 +93,55 @@ export class AsignacionComponent implements OnInit {
         })
       }
     }else{
-      if ((this.asignation.Carrera != "" || this.asignation.Carrera != undefined) && (this.asignation.Curso != "" || this.asignation.Curso != undefined) && (this.asignation.Jornada != "" || this.asignation.Jornada != undefined) && (this.asignation.Grado != "" || this.asignation.Grado != undefined) && (this.asignation.Seccion != "" || this.asignation.Seccion != undefined) && (this.asignation.Instructor != "" || this.asignation.Instructor != undefined)) {
-        this.rest.setAsignation(this.asignation).subscribe(
-          res => {
-            if (res.message == "Debe introducir los campos correctamente") {
-              Swal.fire({ type: 'warning', title: 'Oops...', text: 'No ha llenado todos los campos, revise de nuevo', })
-            } else {
-              if (res.message == "Esta asignación ha sido registrada")
-                Swal.fire({ type: 'warning', title: 'Oops...', text: 'La asignación ya ha sido registrada anteriormente', })
-              else {
-                if (res) {
-                  this.getAsignation();
-                  this.limpiarData();
-                } else {
-                  Swal.fire({ type: 'error', title: 'Oops... Something went wrong!, please, try again', })
+      if(this.seleccionado == "" || this.seleccionado == undefined){
+        Swal.fire({ type: 'warning', title: 'Oops...', text: 'No ha seleccionado una red, revise de nuevo', })
+      }else{
+        this.asignation.NombreRed = red.NombreRed;
+        this.asignation.Inicio = red.Inicio;
+        this.asignation.Finalizacion = red.Finalizacion;
+        if ((this.asignation.NombreRed != "" || this.asignation.NombreRed != undefined) && (this.asignation.Curso != "" || this.asignation.Curso != undefined) && (this.asignation.Jornada != "" || this.asignation.Jornada != undefined) && (this.asignation.Grado != "" || this.asignation.Grado != undefined) && (this.asignation.Seccion != "" || this.asignation.Seccion != undefined) && (this.asignation.Instructor != "" || this.asignation.Instructor != undefined)) {
+          this.rest.setAsignation(this.asignation).subscribe(
+            res => {
+              if (res.message == "Debe introducir los campos correctamente") {
+                Swal.fire({ type: 'warning', title: 'Oops...', text: 'No ha llenado todos los campos, revise de nuevo', })
+              } else {
+                if (res.message == "Esta asignación ha sido registrada")
+                  Swal.fire({ type: 'warning', title: 'Oops...', text: 'La asignación ya ha sido registrada anteriormente', })
+                else {
+                  if (res) {
+                    this.getAsignation();
+                    this.limpiarData();
+                  } else {
+                    Swal.fire({ type: 'error', title: 'Oops... Something went wrong!, please, try again', })
+                  }
                 }
               }
+            },
+            error => {
+              console.log(<any>error);
             }
-          },
+          )
           error => {
             console.log(<any>error);
           }
-        )
-        error => {
-          console.log(<any>error);
+        } else {
+          Swal.fire({
+            title: '¡Error!',
+            text: "Parece que has dejado algunos campos vacios, revisa de nuevo",
+            type: 'warning',
+          })
         }
-      } else {
-        Swal.fire({
-          title: '¡Error!',
-          text: "Parece que has dejado algunos campos vacios, revisa de nuevo",
-          type: 'warning',
-        })
       }
     }
 
   }
 
+  getSeleccionado(indice) {
+    return this.redes.filter((red) => red.NombreRed === indice)[0];
+  }
+
   limpiarData() {
-    this.asignation.Carrera = "";
+    this.asignation.NombreRed = "";
     this.asignation.Curso = "";
     this.asignation.Jornada = "";
     this.asignation.Grado = "";
@@ -145,9 +157,10 @@ export class AsignacionComponent implements OnInit {
     })
   }
 
-  getCarrer() {
-    this.rest.getCarrer().subscribe(res => {
-      this.carreras = res.Listado_de_carreras
+  getStudyNet() {
+    this.rest.getStudyNet().subscribe(res => {
+      console.log(res);
+      this.redes = res.Listado_Redes_Estudio
     })
   }
 

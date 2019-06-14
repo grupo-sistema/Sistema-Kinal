@@ -3,7 +3,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var AsignacionSchema = Schema({
-    Carrera: String,
+    NombreRed: String,
+    Inicio: String,
+    Finalizacion: String,
     Grado: String,
     Jornada: String,
     Seccion: String,

@@ -1,6 +1,8 @@
 export class Asignation{
     constructor(
-        public Carrera: String,
+        public NombreRed: String,
+        public Inicio: String,
+        public Finalizacion: String,
         public Grado: String,
         public Jornada: String,
         public Seccion: String,

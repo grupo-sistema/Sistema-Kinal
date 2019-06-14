@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 col-sm-10">
-      <h1 class="titleMain">Asignacion a cursos</h1>
+      <h1 class="titleMain">Asignacion a redes de estudio</h1>
     </div>
   </div>
   <div class="row">
@@ -40,10 +40,10 @@
                 </select>
                 </div>
                 <div class="form-group col-md-3" *ngIf="mostrar == true">
-                  <label class="label2">Carrera:</label>
-                  <select [(ngModel)]="asignation.Carrera"  name="Carrera" id="inputState" class="form-control">
+                  <label class="label2">Red de estudio:</label>
+                  <select [(ngModel)]="seleccionado"  name="NombreRed" id="inputState" class="form-control">
                     <option value="" class="text" disabled> ...</option>
-                    <option *ngFor="let c of carreras" class="text" value="{{c.Nombre}}" >{{c.Nombre}}</option>
+                    <option *ngFor="let r of redes;" class="text" value={{r.NombreRed}}>{{r.NombreRed + " " + r.Inicio + "/" + r.Finalizacion}}</option>
                 </select>
                 </div>
                 <div class="form-group col-md-4" *ngIf="mostrar == true">
@@ -72,7 +72,9 @@
               <th scope="col">Grado</th>
               <th scope="col">Sección</th>
               <th scope="col">Curso</th>
-              <th scope="col">Carrera</th>
+              <th scope="col">Red estudio</th>
+              <th scope="col">Inicio</th>
+              <th scope="col">Finalizacion</th>
               <th scope="col">Instructor</th>
             </tr>
           </thead>
@@ -82,7 +84,9 @@
               <td>{{a.Grado}}</td>
               <td>{{a.Seccion}}</td>
               <td>{{a.Curso}}</td>
-              <td>{{a.Carrera}}</td>
+              <td>{{a.NombreRed}}</td>
+              <td>{{a.Inicio}}</td>
+              <td>{{a.Finalizacion}}</td>
               <td>{{a.Instructor}}</td>
             </tr>
           </tbody>
