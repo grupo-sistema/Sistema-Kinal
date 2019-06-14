@@ -109,53 +109,52 @@ export class RestService {
     }
 
   // ==============================================================================MODULO INSTRUCTOR=======================================
-    getInstructor(): Observable<any>{
-      return this.http.get(this.endpoint + '/list-instructor').pipe(map(this.extractData));
-    }
+  getInstructor(): Observable<any>{
+    return this.http.get(this.endpoint + '/list-instructor').pipe(map(this.extractData));
+  }
 
-    setInstructor(instructor_guardar): Observable<any>{
-      console.log(this.mensaje);
-      var params = JSON.stringify(instructor_guardar);
-      return this.http.post(this.endpoint + '/save-instructor', params,this.httpOptions).pipe(map(this.extractData));
-    }
+  setInstructor(instructor_guardar):Observable<any>{
+    console.log(this.mensaje);
+    var params = JSON.stringify(instructor_guardar);
+    return this.http.post(this.endpoint + '/save-instructor', params,this.httpOptions).pipe(map(this.extractData));
+  }
+
+  // ==============================================================================MODULO ASIGNACION======================================= 
+  getAsignation(): Observable<any>{
+    return this.http.get(this.endpoint + '/list-asignation').pipe(map(this.extractData));
+  }
+
+  setAsignation(asignation_guardar): Observable<any>{
+    console.log(this.mensaje);
+    var params = JSON.stringify(asignation_guardar);
+    return this.http.post(this.endpoint + '/save-asignation', params,this.httpOptions).pipe(map(this.extractData));
+  }
 
   // ==============================================================================MODULO ASIGNACION=======================================
-    getAsignation(): Observable<any>{
-      return this.http.get(this.endpoint + '/list-asignation').pipe(map(this.extractData));
-    }
+  getInscription(): Observable<any>{
+    return this.http.get(this.endpoint + '/list-inscription').pipe(map(this.extractData));
+  }
 
-    setAsignation(asignation_guardar): Observable<any>{
-      console.log(this.mensaje);
-      var params = JSON.stringify(asignation_guardar);
-      return this.http.post(this.endpoint + '/save-asignation', params,this.httpOptions).pipe(map(this.extractData));
-    }
+  setInscription(inscription_guardar): Observable<any>{
+    console.log(this.mensaje);
+    var params = JSON.stringify(inscription_guardar);
+    return this.http.post(this.endpoint + '/save-inscription', params,this.httpOptions).pipe(map(this.extractData));
+  }
+// ==============================================================================MODULO SECCION, GRADO, JORNADA, UNIDAD=======================================
+  getSection(): Observable<any>{
+    return this.http.get(this.endpoint + '/list-section').pipe(map(this.extractData));
+  }
 
-  // ==============================================================================MODULO ASIGNACION=======================================
-    getInscription(): Observable<any>{
-      return this.http.get(this.endpoint + '/list-inscription').pipe(map(this.extractData));
-    }
+  getGrade(): Observable<any>{
+    return this.http.get(this.endpoint + '/list-grade').pipe(map(this.extractData));
+  }
 
-    setInscription(inscription_guardar): Observable<any>{
-      console.log(this.mensaje);
-      var params = JSON.stringify(inscription_guardar);
-      return this.http.post(this.endpoint + '/save-inscription', params,this.httpOptions).pipe(map(this.extractData));
-    }
+  getJornada(): Observable<any>{
+    return this.http.get(this.endpoint + '/list-jornada').pipe(map(this.extractData));
+  }
 
-  // ==============================================================================MODULO SECCION, GRADO, JORNADA, UNIDAD=======================================
-    getSection(): Observable<any>{
-      return this.http.get(this.endpoint + '/list-section').pipe(map(this.extractData));
-    }
-
-    getGrade(): Observable<any>{
-      return this.http.get(this.endpoint + '/list-grade').pipe(map(this.extractData));
-    }
-
-    getJornada(): Observable<any>{
-      return this.http.get(this.endpoint + '/list-jornada').pipe(map(this.extractData));
-    }
-
-    getUnity(): Observable<any>{
-      return this.http.get(this.endpoint + '/list-unity').pipe(map(this.extractData));
-    }
+  getUnity(): Observable<any>{
+    return this.http.get(this.endpoint + '/list-unity').pipe(map(this.extractData));
+  }
 
 }

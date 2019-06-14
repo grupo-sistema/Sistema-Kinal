@@ -613,7 +613,7 @@
                 <p *ngFor="let alert of alerts">
                     <ngb-alert [type]="alert.type" (close)="close(alert)" >{{ alert.message }}</ngb-alert>
                 </p>
-            <div >
+            <div *ngIf="hola == true">
                 <button type="submit" (click)="message()" class="bubbly-button" style="z-index: 0;">Enviar</button>
             </div>
             </form>

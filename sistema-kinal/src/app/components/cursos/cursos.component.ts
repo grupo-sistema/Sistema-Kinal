@@ -38,8 +38,6 @@ export class CursosComponent implements OnInit {
           if (res.message == "el curso ya esta registrado")
             Swal.fire({ type: 'warning', title: 'Oops...', text: 'El curso ya se encuentra registrado', })
           else {
-
-
             if (res) {
               this.getCourse();
               this.limpiarData();

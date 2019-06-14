@@ -12,7 +12,7 @@ function InsertStudent(req, res) {
   var params = req.body;
   var direccion = [];
   var telefono = [];
-  if (params.FirstName && params.Surname && params.Date && params.Religion && params.Gender && params.Departament && params.Municipality) {
+  if (params.FirstName && params.Surname || params.Date || params.Religion || params.Gender || params.Departament || params.Municipality) {
     student = {
       FirstName: params.FirstName,
       SecondName: params.SecondName,
@@ -24,7 +24,7 @@ function InsertStudent(req, res) {
       Religion: params.Religion,
       Gender: params.Gender,
       Email: params.Email,
-      Address : (direccion ={
+      Address: (direccion = {
         Departament: params.Departament,
         Municipality: params.Municipality,
         Zone: params.Zone,
@@ -34,34 +34,32 @@ function InsertStudent(req, res) {
         Block: params.Block,
         HouseNumber: params.HouseNumber,
         Specific: params.Specific
-    }),
+      }),
       telephone: (telefono = {
         Mobile: params.Mobile,
         Phone: params.Phone,
         Other: params.Other
       })
     };
-    Persona.findOne({ FirstName: student.FirstName.toLowerCase() },(err, issetAdmin) => {
+    Persona.find({FirstName: student.FirstName, SecondName: student.SecondName, Surname: student.Surname}).exec((err, busqueda) => {
+      if (busqueda && busqueda.length >= 1) {
+        return res.status(200).send({ message: "La persona ya está agregada" })
+      } else {
+        Persona.insertMany(student, function (err, peopleSave) {
           if (err) {
-            res.status(500).send({ message: "No se han guardado los datos correctamente" });
+            res.status(500).send({ message: "No puede guardar la persona" });
           } else {
-            Persona.insertMany(student, function(err, peopleSave) {
-                if (!issetAdmin) {
-                  if (!peopleSave) {
-                    res.status(500).send({ message: "Error al guardar al alumno" });
-                  } else {
-                    res.status(200).send({ Persona_guardada: peopleSave });
-                  }
-              
-                } else {
-                  res.status(200).send({ message: "No puede guardar datos duplicados" });
-                }
-            });
+            if (!peopleSave) {
+              res.status(500).send({ message: "Error al guardar la persona" });
+            } else {
+              res.status(200).send({ Persona_guardada: peopleSave });
+            }
           }
+        });
       }
-    );
+    })
   } else {
-    res.status(404).send({ message: "Debe introducir los campos correctamente" });
+    res.status(200).send({ message: "Debe introducir los campos correctamente" });
   }
 }
 //================================================Listar Persona============================================
@@ -72,7 +70,7 @@ function reportStudent(req, res) {
       console.log(err);
       res.status(500).send({ message: "No se puede listar" });
     } else {
-      res.status(200).send({Usuarios_del_sistema: user });
+      res.status(200).send({ Usuarios_del_sistema: user });
     }
   });
 }
@@ -150,17 +148,17 @@ function deleteStudent(req, res) {
 
 //================================================Buscar Persona============================================
 
-function searchPerson(req, res){
+function searchPerson(req, res) {
   var params = req.body;
 
-  Persona.find({$or: [{FirstName: params.search },{SecondName: params.search},{Surname: params.search}]}, (err, encontrado)=>{
-    if(err){
-      res.status(404).send({message: 'Error general'})
-    }else{
-      if(!encontrado){
-        res.status(200).send({message: 'No hay registros'});
-      }else{
-        res.status(200).send({Usuario_encontrado: encontrado});
+  Persona.find({ $or: [{ FirstName: params.search }, { SecondName: params.search }, { Surname: params.search }] }, (err, encontrado) => {
+    if (err) {
+      res.status(404).send({ message: 'Error general' })
+    } else {
+      if (!encontrado) {
+        res.status(200).send({ message: 'No hay registros' });
+      } else {
+        res.status(200).send({ Usuario_encontrado: encontrado });
       }
     }
   });
@@ -172,17 +170,17 @@ function InsertEmail(req, res) {
   var personID = req.params.id;
   var params = req.body;
 
-  if (params.Correo){
-    Persona.findById({_id: personID}, (err,encontrado)=>{
-      if(err){
-        res.status(500).send({message: "Error"});
-      }else{
-        if(!encontrado){
-          res.status(404).send({message: "No existe esa persona"});
-        }else{
-          encontrado.Email.push({Correo: params.Correo});
+  if (params.Correo) {
+    Persona.findById({ _id: personID }, (err, encontrado) => {
+      if (err) {
+        res.status(500).send({ message: "Error" });
+      } else {
+        if (!encontrado) {
+          res.status(404).send({ message: "No existe esa persona" });
+        } else {
+          encontrado.Email.push({ Correo: params.Correo });
           encontrado.save();
-          res.status(200).send({Correo_Ingresado: encontrado});
+          res.status(200).send({ Correo_Ingresado: encontrado });
         }
       }
     })

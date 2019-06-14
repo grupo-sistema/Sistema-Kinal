@@ -8,6 +8,7 @@ var Cursos = require('../models/Cursos');
 function GuardarCursos (req, res){
     var cursos = new Cursos();
     var params = req.body; 
+    
     if(params.Nombre && params.Codigo && params.Descripcion){
     cursos = {
         Nombre: params.Nombre,
