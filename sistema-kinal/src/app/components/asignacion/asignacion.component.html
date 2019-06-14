@@ -13,7 +13,7 @@
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label class="label2">Grado:</label>
-                  <select [(ngModel)]="asignation.Grado"  name="Grado" id="inputState" class="form-control">
+                  <select [(ngModel)]="asignation.Grado" (click)="ValidacionGrado()"  name="Grado" id="inputState" class="form-control">
                     <option value="" class="text" disabled> ...</option>
                     <option *ngFor="let g of grados" class="text" value="{{g.Grado}}" >{{g.Grado}}</option>
                   </select>
@@ -32,21 +32,21 @@
                     <option *ngFor="let i of instructores" class="text" value="{{i.Instructor}}" >{{i.Instructor}}</option>
                 </select>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-3" *ngIf="mostrar == true">
                   <label class="label2">Curso:</label>
                   <select [(ngModel)]="asignation.Curso"  name="Curso" id="inputState" class="form-control">
                     <option value="" class="text" disabled> ...</option>
                     <option *ngFor="let c of cursos" class="text" value="{{c.Nombre}}" >{{c.Nombre}}</option>
                 </select>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-3" *ngIf="mostrar == true">
                   <label class="label2">Carrera:</label>
                   <select [(ngModel)]="asignation.Carrera"  name="Carrera" id="inputState" class="form-control">
                     <option value="" class="text" disabled> ...</option>
                     <option *ngFor="let c of carreras" class="text" value="{{c.Nombre}}" >{{c.Nombre}}</option>
                 </select>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" *ngIf="mostrar == true">
                   <label class="label2">Jornada:</label>
                   <select [(ngModel)]="asignation.Jornada"  name="Jornada" id="inputState" class="form-control">
                     <option value="" class="text" disabled> ...</option>

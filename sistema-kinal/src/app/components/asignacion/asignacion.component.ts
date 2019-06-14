@@ -24,12 +24,25 @@ export class AsignacionComponent implements OnInit {
   cursos: Course;
   carreras: Carrer[];
   instructores: Instructor[];
+  mostrar = false;
 
   constructor(public rest: RestService) {
     this.rest.setAsignation(this.asignation);
     this.asignation = new Asignation(
       "", "", "", "", "", ""
     );
+  }
+
+  ValidacionGrado(){
+    if(this.asignation.Grado == "1ero Básico" || this.asignation.Grado == "2do Básico" || this.asignation.Grado == "3ero Básico"){
+      this.mostrar = false;
+    }else{
+      if(this.asignation.Grado == "4to Perito" || this.asignation.Grado == "5to Perito" || this.asignation.Grado == "6to Perito"){
+        this.mostrar = true;
+        this.asignation.Grado = "";
+      }
+    }
+
   }
 
   ngOnInit() {
