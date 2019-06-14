@@ -40,7 +40,7 @@ export class InicioComponent implements OnInit {
   constructor(public rest: RestService) {
     //this.rest.setPerson(this.person);
     this.person = new Person(
-      "","","","","","","","","",[],"","","","","","","","","","","","",[],[],[]
+      "", "", "", "", "", "", "", "", "", [], "", "", "", "", "", "", "", "", "", "", "", "", [], [], []
     );
   }
 
@@ -51,11 +51,7 @@ export class InicioComponent implements OnInit {
       this.person.FirstName != "" && this.person.Surname != "" && this.person.Date != "" && this.person.Religion != "" && this.person.Gender != "" && this.person.Departament != "" && this.person.Municipality != "") {
       Swal.fire("Datos guardados correctamente", "Perfecto!", "success");
     } else {
-      Swal.fire({
-        title: '¡Error!',
-        text: "Parece que has dejado algunos campos vacios, revisa de nuevo",
-        type: 'warning',
-      })
+      
     }
   }
 
@@ -169,29 +165,37 @@ export class InicioComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.hola){
-        console.log(this.person);
-        if(this.person.MarriedSurname != "" || undefined){
-          this.person.MarriedSurname = ("De " + this.person.MarriedSurname);
-        }
-        this.person.Mobile = this.mobilesGuardados;
-        this.person.Phone = this.phonesGuardados;
-        this.person.Other = this.othersGuardados;
-        this.person.Email = this.correosGuardados;
-        this.rest.setPerson(this.person).subscribe(
-          res => {
-            if(res.message == "No puede guardar datos duplicados")
-            Swal.fire({ type: 'warning', title: 'Oops...', text: 'No puede guardar datos duplicados', })
-            if (res) {
-              this.message();
-              this.limpiarData();
-            } else {
-              console.log("Error al guardar");
+    if (this.hola) {
+      console.log(this.person);
+      if (this.person.MarriedSurname != "") {
+        this.person.MarriedSurname = ("De " + this.person.MarriedSurname);
+      }else if(this.person.Email == [] || undefined){
+        this.person.Email = ["No cuenta con un correo electrónico"] 
+      }
+      this.person.Mobile = this.mobilesGuardados;
+      this.person.Phone = this.phonesGuardados;
+      this.person.Other = this.othersGuardados;
+      this.person.Email = this.correosGuardados;
+      this.rest.setPerson(this.person).subscribe(
+        res => {
+          if (res.message == "La persona ya está agregada")
+            Swal.fire({ type: 'warning', title: 'Oops...', text: 'La persona ya está agregada', timer:1500, showConfirmButton:false })
+          else {
+            if (res.message == "Debe introducir los campos correctamente")
+              Swal.fire({ type: 'error', title: 'Oops...', text: 'No puede dejar campos vacios', })
+            else {
+              if (res) {
+                this.message();
+                this.limpiarData();
+              } else {
+                console.log("Error al guardar");
+              }
             }
-          }),
-          error => {
-            console.log(<any>error);
           }
+        }),
+        error => {
+          console.log(<any>error);
+        }
     }
   }
 

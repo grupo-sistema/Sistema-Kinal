@@ -113,7 +113,7 @@ export class RestService {
     return this.http.get(this.endpoint + '/list-instructor').pipe(map(this.extractData));
   }
 
-  setInstructor(instructor_guardar){
+  setInstructor(instructor_guardar):Observable<any>{
     console.log(this.mensaje);
     var params = JSON.stringify(instructor_guardar);
     return this.http.post(this.endpoint + '/save-instructor', params,this.httpOptions).pipe(map(this.extractData));

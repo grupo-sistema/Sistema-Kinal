@@ -18,7 +18,7 @@ function GuardarInstructor (req, res){
             if(err) return res.status(500).send({message: 'Error en la peticion del usuario'});
     
                 if(busqueda && busqueda.length >= 1){
-                    return res.status(500).send({message: 'instructor ya registrado'}); 
+                    return res.status(200).send({message: 'instructor ya registrado'}); 
                 }else{
                     Instructor.insertMany(instructor, function(err,instructorSave){
                         if(err){
