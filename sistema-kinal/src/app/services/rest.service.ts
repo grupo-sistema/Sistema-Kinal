@@ -146,6 +146,13 @@ export class RestService {
     var params = JSON.stringify(inscription_guardar);
     return this.http.post(this.endpoint + '/save-inscription', params,this.httpOptions).pipe(map(this.extractData));
   }
+
+  setInscriptionets(inscriptione_guardar): Observable<any>{
+    console.log(this.mensaje);
+    var params = JSON.stringify(inscriptione_guardar);
+    return this.http.post(this.endpoint + '/save-inscriptionets', params,this.httpOptions).pipe(map(this.extractData));
+  }
+
 // ==============================================================================MODULO SECCION, GRADO, JORNADA, UNIDAD=======================================
   getSection(): Observable<any>{
     return this.http.get(this.endpoint + '/list-section').pipe(map(this.extractData));

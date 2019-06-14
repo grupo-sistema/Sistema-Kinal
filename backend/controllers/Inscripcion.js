@@ -12,7 +12,8 @@ function GuardarInscripcion (req, res){
         Cuota: params.Cuota,
         Grado: params.Grado,
         Carrera: params.Carrera,
-        Jornada: params.Jornada
+        Jornada: params.Jornada,
+        Curso: params.Curso
     }
     Inscripcion.find({$and:[
         {Estudiante: params.Estudiante},
@@ -20,7 +21,54 @@ function GuardarInscripcion (req, res){
         {Cuota: params.Cuota},
         {Grado: params.Grado},
         {Carrera: params.Carrera},
-        {Jornada: params.Jornada}
+        {Jornada: params.Jornada},
+        {Curso: params.Curso}
+    ]}).exec((err, busqueda) =>{
+        if(err) return res.status(500).send({message: 'Error en la peticion del usuario'});
+    
+                if(busqueda && busqueda.length >= 1){
+                    return res.status(200).send({message: 'Inscripcion ya registrada'}); 
+                }else{
+                    Inscripcion.insertMany(inscripcion, function(err,studentSave){
+                        if(err){
+                            res.status(500).send({message: 'No se han guardado los datos correctamente'});
+                        }else{
+                            if(!studentSave){
+                                res.status(500).send({message: 'Error al registrar inscripcion'});
+                            }else{
+                                res.status(200).send({Inscritos: studentSave});
+                            }
+                        }
+                    }); 
+                }
+    })
+    }else{
+    res.status(200).send({message: 'Debe introducir los campos correctamente'});
+    }
+}
+
+function GuardarInscripcionets (req, res){
+    var inscripcion = new Inscripcion();
+    var params = req.body; 
+
+    if(params.Estudiante && params.UnidadAcademica && params.Cuota){
+    inscripcion = {
+        Estudiante: params.Estudiante,
+        UnidadAcademica: params.UnidadAcademica,
+        Cuota: params.Cuota,
+        Grado: params.Grado,
+        Carrera: params.Carrera,
+        Jornada: params.Jornada,
+        Curso: params.Curso
+    }
+    Inscripcion.find({$and:[
+        {Estudiante: params.Estudiante},
+        {UnidadAcademica: params.UnidadAcademica},
+        {Cuota: params.Cuota},
+        {Grado: params.Grado},
+        {Carrera: params.Carrera},
+        {Jornada: params.Jornada},
+        {Curso: params.Curso}
     ]}).exec((err, busqueda) =>{
         if(err) return res.status(500).send({message: 'Error en la peticion del usuario'});
     
@@ -57,5 +105,6 @@ function ListarInscripciones (req, res){
 }
 module.exports = {
     GuardarInscripcion,
+    GuardarInscripcionets,
     ListarInscripciones
     }

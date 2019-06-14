@@ -37,7 +37,7 @@ export class AsignacionComponent implements OnInit {
     if(this.asignation.Grado == "1ero Básico" || this.asignation.Grado == "2do Básico" || this.asignation.Grado == "3ero Básico"){
       this.mostrar = false;
     }else{
-      if(this.asignation.Grado == "4to Perito" || this.asignation.Grado == "5to Perito" || this.asignation.Grado == "6to Perito"){
+      if(this.asignation.Grado == "4to Diversificado" || this.asignation.Grado == "5to Diversificado" || this.asignation.Grado == "6to Diversificado"){
         this.mostrar = true;
         this.asignation.Grado = "";
       }

@@ -5,6 +5,7 @@ export class Inscription{
         public Cuota: String,
         public Grado: String,
         public Carrera: String,
-        public Jornada: String
+        public Jornada: String,
+        public Curso: String
     ){}
 }
