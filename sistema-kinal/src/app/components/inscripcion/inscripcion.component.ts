@@ -21,6 +21,7 @@ export class InscripcionComponent implements OnInit {
   grados: Grade[];
   carreras: Carrer[];
   jornadas: Jornada[];
+  mostrar = false;
 
   constructor(public rest: RestService) {
     this.rest.setInscription(this.inscription);
@@ -28,6 +29,17 @@ export class InscripcionComponent implements OnInit {
       "","","","","",""
     );
    }
+
+   validarGrado() {
+    if (this.inscription.Grado == "Primero Basico" || this.inscription.Grado == "Segundo Básico" || this.inscription.Grado == "Tercero Básico"){
+      this.mostrar = false;
+    } else {
+      if (this.inscription.Grado == "Cuarto Perito" || this.inscription.Grado == "Quinto Perito" || this.inscription.Grado == "Sexto Perito"){
+      this.mostrar = true;
+      this.inscription.Grado = "";
+      }
+    }
+  }
 
   ngOnInit() {
     this.getInscription();

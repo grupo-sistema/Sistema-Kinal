@@ -18,8 +18,6 @@
               </div>
               <div class="form-group col-md-4">
                  <label>Unidad Acádemica</label> 
-                 <!--COMBO BOX-->
-                 <!--<select name="UnidadAcademica" class="form-control" (click)="validarAC()" [(ngModel)]="asignacionCurso.UnidadAcademica">-->
                  <select [(ngModel)]="inscription.UnidadAcademica" name="UnidadAcademica" class="form-control">
                   <option value="" class="text" disabled> ...</option>
                   <option *ngFor="let u of unidades" class="text" value="{{u.Nombre}}" >{{u.Nombre}}</option>
@@ -31,25 +29,20 @@
               </div>
               <div class="form-group col-md-4">
                  <label>Grado</label>
-                 <!--COMBO BOX-->
-                 <select [(ngModel)]="inscription.Grado" name="Grado" class="form-control">
+                 <select [(ngModel)]="inscription.Grado" (click)="validarGrado()" name="Grado" class="form-control">
                   <option value="" class="text" disabled> ...</option>
                   <option *ngFor="let g of grados" class="text" value="{{g.Grado}}" >{{g.Grado}}</option>
                  </select>
               </div>
-              <!--ESTE SOLO DEBE DE SALIR SIN EN LA UNIDAD ACADEMICA SELECCIONA DIVERSIFICADO-->
-              <!--<div class="form-group col-md-4" *ngIf="mostrar == true" id="Carrera">-->
-              <div class="form-group col-md-4" id="Carrera">
+              <div class="form-group col-md-4" id="Carrera" *ngIf="mostrar == true">
                  <label>Carrera</label>
-                 <!--COMBO BOX-->
                  <select [(ngModel)]="inscription.Carrera" name="Carrera" class="form-control">
                   <option value="" class="text" disabled> ...</option>
                   <option *ngFor="let c of carreras" class="text" value="{{c.Nombre}}" >{{c.Nombre}}</option>
                  </select>
               </div>
               <!--ESTE SOLO DEBE DE SALIR SIN EN LA UNIDAD ACADEMICA SELECCIONA DIVERSIFICADO-->
-              <!--<div class="form-group col-md-4" *ngIf="mostrar == true" id="Jornada">-->
-               <div class="form-group col-md-4" id="Carrera">
+               <div class="form-group col-md-4" id="Carrera" *ngIf="mostrar == true">
                   <label>Jornada</label>
                   <!--COMBO BOX-->
                   <select [(ngModel)]="inscription.Jornada" name="Jornada" class="form-control">
