@@ -10,7 +10,7 @@
            <div class="form-row">
                <div class="form-group col-md-4">
                   <label>Unidad Acádemica</label> 
-                  <select [(ngModel)]="inscription.UnidadAcademica" name="UnidadAcademica" class="form-control">
+                  <select [(ngModel)]="inscription.UnidadAcademica" (click)="validarETS()" name="UnidadAcademica" class="form-control">
                      <option value="" class="text" disabled> ...</option>
                      <option *ngFor="let u of unidades" class="text" value="{{u.Codigo}}" >{{u.Nombre}}</option>
                   </select>
@@ -27,21 +27,21 @@
                  <label>Cuota</label>
                  <input [(ngModel)]="inscription.Cuota" name="Cuota" type="number" class="form-control">
               </div>
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-4"  *ngIf="inputGrado == true">
                  <label>Grado</label>
                  <select [(ngModel)]="inscription.Grado" (click)="validarGrado()" name="Grado" class="form-control">
                   <option value="" class="text" disabled> ...</option>
                   <option *ngFor="let g of grados" class="text" value="{{g.Grado}}" >{{g.Grado}}</option>
                  </select>
               </div>
-              <div class="form-group col-md-4" *ngIf="mostrar == true">
+              <div class="form-group col-md-4" *ngIf="inputCurso == true">
                <label class="label2">Curso:</label>
                <select [(ngModel)]="inscription.Curso"  name="Curso" id="inputState" class="form-control">
                  <option value="" class="text" disabled> ...</option>
                  <option *ngFor="let c of cursos" class="text" value="{{c.Nombre}}" >{{c.Nombre}}</option>
              </select>
              </div>
-              <div class="form-group col-md-4" id="Carrera" *ngIf="mostrar == true">
+              <div class="form-group col-md-4" id="Carrera" *ngIf="inputCarrera == true">
                  <label>Carrera</label>
                  <select [(ngModel)]="inscription.Carrera" name="Carrera" class="form-control">
                   <option value="" class="text" disabled> ...</option>
@@ -49,7 +49,7 @@
                  </select>
               </div>
               <!--ESTE SOLO DEBE DE SALIR SIN EN LA UNIDAD ACADEMICA SELECCIONA DIVERSIFICADO-->
-               <div class="form-group col-md-4" id="Carrera" *ngIf="mostrar == true">
+               <div class="form-group col-md-4" id="Jornada" *ngIf="inputJornada == true">
                   <label>Jornada</label>
                   <!--COMBO BOX-->
                   <select [(ngModel)]="inscription.Jornada" name="Jornada" class="form-control">

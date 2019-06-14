@@ -8,6 +8,7 @@ import { Unity } from 'src/app/models/unity';
 import { RestService } from 'src/app/services/rest.service';
 import Swal from 'sweetalert2';
 import { Course } from 'src/app/models/course';
+import { bypassSanitizationTrustStyle } from '@angular/core/src/sanitization/bypass';
 
 @Component({
   selector: 'app-inscripcion',
@@ -24,6 +25,10 @@ export class InscripcionComponent implements OnInit {
   carreras: Carrer[];
   jornadas: Jornada[];
   mostrar = false;
+  inputCurso = false;
+  inputGrado = false;
+  inputCarrera = false;
+  inputJornada = false;
 
   constructor(public rest: RestService) {
     this.rest.setInscription(this.inscription);
@@ -32,12 +37,38 @@ export class InscripcionComponent implements OnInit {
     );
   }
 
+  validarETS(){
+    if(this.inscription.UnidadAcademica == "ETS"){
+      this.inputCurso = true;
+      this.inputGrado = false;
+      this.inputCarrera = false;
+      this.inputJornada = false;
+      this.inscription.Carrera = "";
+      this.inscription.Estudiante = "";
+      this.inscription.Cuota = "";
+      this.inscription.Curso = "";
+    }else{
+      if(this.inscription.UnidadAcademica == "CETLK"){
+        this.inputGrado = true;
+        this.inputCurso = false;
+        this.inscription.Grado = "";
+        this.inscription.Estudiante = "";
+        this.inscription.Cuota = "";
+      }
+    }
+  }
+
    validarGrado() {
     if (this.inscription.Grado == "1ero Básico" || this.inscription.Grado == "2do Básico" || this.inscription.Grado == "3ero Básico"){
-      this.mostrar = false;
+      this.inputCurso = false;
+      this.inputCarrera = false;
+      this.inputJornada = false;
     } else {
       if (this.inscription.Grado == "4to Diversificado" || this.inscription.Grado == "5to Diversificado" || this.inscription.Grado == "6to Diversificado"){
-      this.mostrar = true;
+      this.inputCarrera = true;
+      this.inputJornada = true;
+      this.inscription.Carrera = "";
+      this.inscription.Jornada = "";
       }
     }
   }
