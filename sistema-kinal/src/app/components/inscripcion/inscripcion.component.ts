@@ -31,10 +31,10 @@ export class InscripcionComponent implements OnInit {
   }
 
    validarGrado() {
-    if (this.inscription.Grado == "Primero Basico" || this.inscription.Grado == "Segundo Básico" || this.inscription.Grado == "Tercero Básico"){
+    if (this.inscription.Grado == "1ero Básico" || this.inscription.Grado == "2do Básico" || this.inscription.Grado == "3ero Básico"){
       this.mostrar = false;
     } else {
-      if (this.inscription.Grado == "Cuarto Perito" || this.inscription.Grado == "Quinto Perito" || this.inscription.Grado == "Sexto Perito"){
+      if (this.inscription.Grado == "4to Perito" || this.inscription.Grado == "5to Perito" || this.inscription.Grado == "6to Perito"){
       this.mostrar = true;
       this.inscription.Grado = "";
       }
