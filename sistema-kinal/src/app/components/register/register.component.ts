@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit {
           else {
             if (res) {
               this.limpiarData();
+              this.windowLogin();
             } else {
               Swal.fire({ type: 'error', title: 'Oops... Something went wrong!, please, try again', })
             }
