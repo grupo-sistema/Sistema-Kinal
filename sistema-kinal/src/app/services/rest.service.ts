@@ -153,6 +153,18 @@ export class RestService {
     return this.http.post(this.endpoint + '/save-inscriptionets', params,this.httpOptions).pipe(map(this.extractData));
   }
 
+// ==============================================================================MODULO LOGIN Y REGISTRO=======================================
+
+  setRegistro(registro_guardar): Observable<any>{
+    var params = JSON.stringify(registro_guardar);
+    return this.http.post(this.endpoint + '/agregar-usuario', params,this.httpOptions).pipe(map(this.extractData));
+  }
+
+  login(datos_login): Observable<any>{
+    var params = JSON.stringify(datos_login);
+    return this.http.post(this.endpoint + '/login', params,this.httpOptions).pipe(map(this.extractData));
+  }
+
 // ==============================================================================MODULO SECCION, GRADO, JORNADA, UNIDAD=======================================
   getSection(): Observable<any>{
     return this.http.get(this.endpoint + '/list-section').pipe(map(this.extractData));
