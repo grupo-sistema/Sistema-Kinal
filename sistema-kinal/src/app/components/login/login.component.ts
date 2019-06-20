@@ -21,6 +21,14 @@ export class LoginComponent implements OnInit {
   }
   }
 
+  windowPerson(): void{
+    if(true){
+    this.router.navigate(['/inicio'])
+  }else{
+  
+  }
+  }
+
   windowRegister(): void{
     if(true){
     this.router.navigate(['/register'])
