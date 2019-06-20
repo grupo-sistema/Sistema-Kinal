@@ -1,0 +1,77 @@
+.transparente{
+    opacity: 0.8;
+    -moz-opacity: 0.5;
+    filter: alpha(opacity=80); 
+    -khtml-opacity: 1.5;
+    }
+
+.container{
+    padding-top: 50px;
+    padding-bottom: 7%;
+    margin: 0 0 0 100px; 
+}
+
+.titleMain{
+    font-size: 50px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.text{
+  color: black;
+}
+
+.backdiv{
+    padding: 7px;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    width: 550px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media (max-width: 600px) {
+    .container{
+        padding-top: 75px;
+        margin: 0 0 0 0; 
+    }
+  } 
+
+
+  .text{
+    color: black;
+}
+
+.text-gray{
+    color: rgb(158, 158, 158);
+    margin-bottom: 0px;
+}
+
+.titleMain{
+    font-size: 50px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+
+
+.espacio{
+    padding-top: 30px;
+}
+
+.centrar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Fondo{
+    height:100%;
+    width:100%;
+    background: url('https://i.imgur.com/R3cpQ9R.gif') no-repeat center center;
+    background-size:100% 100%;
+    position: absolute;
+  }

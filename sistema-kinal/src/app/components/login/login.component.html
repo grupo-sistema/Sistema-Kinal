@@ -1,0 +1,70 @@
+<div class="Fondo"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-sm-10">
+      <h1 class="text-center" style="color: white; padding-top: 5px;">¡BIENVENIDO!</h1>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-md-6 mx-auto mt-5">
+      <form>
+        <div class="form-group">
+          <label for="email" style="color: #FEFE">Usuario</label>
+          <input type="email" name="email" id="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="password" style="color: #FEFE">Contraseña</label>
+          <input type="password" name="password" id="password" class="form-control">
+        </div>
+        <div class="form-group col-md-2" class="espacio" class="transparente">
+          <button class="btn btn-primary btn-block btn-lg" style="z-index: 4;" type="submit" (click)="windowHome()"><i
+              class="fas fa-sign-in-alt"></i>
+            INICIAR SESIÓN</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-6 mx-auto mt-3 text-center">
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
+        <label class="custom-control-label" for="customCheck1" style="color: #FEFE">¿Olvidaste tu contraseña?</label>
+      </div>
+    </div>
+    <br>
+    <div class="centrar transparente" style="letter-spacing: 1px;">
+      <div class="row backdiv">
+        <div>
+          <form class="centrar">
+            <div class="form-row">
+              <div class="form-group">
+                <button class="btn btn-lg" href="https://accounts.google.com/Login?hl=es" style="color:white"><i
+                    class="fab fa-google-plus" style="color: white"></i> Google</button>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-lg" href="https://twitter.com/login?lang=es" style="color:white"><i
+                    class="fab fa-twitter-square" style="color: white"></i> Twitter</button>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-lg" href="https://twitter.com/login?lang=es" style="color:white"><i
+                    class="fab fa-facebook-f" style="color: white"></i> Facebook</button>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-lg" href="https://vine.co/" style="color:white"><i class="fab fa-vine"
+                    style="color: white"></i> Vine</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row transparente">
+      <div class="col-md-6 mx-auto mt-5">
+        <label class="text-center mt-1 centrar" style="color: #FEFE">¿No te has registrado?</label>
+        <button class="btn btn-primary btn-block btn-lg" style="z-index: 4;" type="submit" (click)="windowRegister()"><i
+            class="fas fa-sign-in-alt" ></i>
+          REGISTRATE</button>
+      </div>
+    </div>
+  </div>
+</div>

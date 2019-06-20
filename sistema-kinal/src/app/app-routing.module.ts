@@ -9,6 +9,8 @@ import { RedesDeEstudioComponent } from './components/redes-de-estudio/redes-de-
 import { InstructoresComponent } from './components/instructores/instructores.component';
 import { InscripcionComponent } from './components/inscripcion/inscripcion.component';
 import { AsignacionComponent } from './components/asignacion/asignacion.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {path:'inicio', component: InicioComponent},
@@ -20,6 +22,8 @@ const routes: Routes = [
   {path:'instructores', component: InstructoresComponent},
   {path:'inscripcion', component: InscripcionComponent},
   {path:'asignacion', component: AsignacionComponent},
+  {path:'login', component: LoginComponent},
+  {path:'register', component: RegisterComponent},
   {path:'', redirectTo:'home', pathMatch:'full'},
   {path:'**', component: InicioComponent}
 ];

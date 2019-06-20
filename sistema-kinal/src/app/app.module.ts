@@ -16,6 +16,8 @@ import { RedesDeEstudioComponent } from './components/redes-de-estudio/redes-de-
 import { InstructoresComponent } from './components/instructores/instructores.component';
 import { AsignacionComponent } from './components/asignacion/asignacion.component';
 import { InscripcionComponent } from './components/inscripcion/inscripcion.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { InscripcionComponent } from './components/inscripcion/inscripcion.compo
     InstructoresComponent,
     AsignacionComponent,
     InscripcionComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
