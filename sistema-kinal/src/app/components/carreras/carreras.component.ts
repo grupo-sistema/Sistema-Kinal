@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class CarrerasComponent implements OnInit {
   carrer: Carrer;
-  carrera: Carrer[];
+  carrera: Carrer[]; 
 
   constructor(public rest: RestService) {
     this.rest.setCarrer(this.carrer);

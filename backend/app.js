@@ -25,6 +25,7 @@ var unity = require('./routes/unidades');
 var jornada = require('./routes/jornada');
 var inscripcion = require ('./routes/inscripcion');
 var asignacion = require ('./routes/asignacion')
+var usuario = require ('./routes/usuario')
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -41,5 +42,6 @@ app.use('/v1', unity);
 app.use('/v1', jornada);
 app.use('/v1', inscripcion);
 app.use('/v1', asignacion);
+app.use('/v1', usuario);
 
 module.exports = app;

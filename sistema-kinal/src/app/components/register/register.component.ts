@@ -26,12 +26,21 @@ export class RegisterComponent implements OnInit {
     if (this.usuario.Nombre != "" && this.usuario.Email != "" && this.usuario.Password != "" && this.usuario.Usuario != "" && (this.usuario.Rol != "" || this.usuario.Rol != undefined)) {
       this.rest.setRegistro(this.usuario).subscribe(
         res => {
-          if (res.message == "el usuario ya está registrado")
-            Swal.fire({ type: 'warning', title: 'Oops...', text: 'La carrera ya se encuentra registrada', })
+          if (res.message == "El usuario ya existe en el sistema")
+          Swal.fire({
+            type: 'warning',
+            title: 'Creo que ha habido un problema',
+            text: 'El correo o el nombre de usuario ya se encuentra registrado'
+          })
           else {
             if (res) {
               this.limpiarData();
               this.windowLogin();
+              Swal.fire(
+                'Cuenta registrada!',
+                'Ya puedes empezar a navegar!',
+                'success'
+              )
             } else {
               Swal.fire({ type: 'error', title: 'Oops... Something went wrong!, please, try again', })
             }
