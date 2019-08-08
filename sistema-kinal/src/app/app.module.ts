@@ -4,6 +4,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
 //Componentes
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { AsignacionComponent } from './components/asignacion/asignacion.componen
 import { InscripcionComponent } from './components/inscripcion/inscripcion.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { RelacionesComponent } from './components/relaciones/relaciones.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { RegisterComponent } from './components/register/register.component';
     InscripcionComponent,
     LoginComponent,
     RegisterComponent,
+    RelacionesComponent,
   ],
   imports: [
     BrowserModule,

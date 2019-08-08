@@ -80,6 +80,15 @@ th {
     top: -1px;
 }
 
+.link-relations{
+    margin-top: 25px;
+    text-align: end;
+}
+
+.link-relations a{
+    color: whitesmoke
+}
+
 
 /* CONTENIDO CSS DE LA TABLA DE FAMILIAS DENTRO DEL MODAL */
 

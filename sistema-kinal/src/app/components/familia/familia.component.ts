@@ -24,7 +24,7 @@ export class FamiliaComponent implements OnInit {
   constructor(public rest: RestService) {
     this.rest.setFamily(this.family);
     this.family = new Family(
-      "", "", [{}], [{}], [{}], [{}]
+      "", "", [], [], [], []
     );
   }
 
@@ -86,7 +86,19 @@ export class FamiliaComponent implements OnInit {
   }
 
   addMemberToFamily() {
-    if (this.familia[this.FamilyNameToAdd].Padre.length == 1) {
+    if (this.familia[this.FamilyNameToAdd].Padre.length != 0) {
+      Swal.fire("Ya has ingresado un rol para ese integrante de la familia")
+    } else {
+      console.log("wuuuu")
+      Swal.fire({ type: 'success', text: 'Rol guardado', showConfirmButton: false, timer: 1500 });
+    }
+    if (this.familia[this.FamilyNameToAdd].Madre.length != 0) {
+      Swal.fire("Ya has ingresado un rol para ese integrante de la familia")
+    } else {
+      console.log("wuuuu")
+      Swal.fire({ type: 'success', text: 'Rol guardado', showConfirmButton: false, timer: 1500 });
+    }
+    if (this.familia[this.FamilyNameToAdd].Encargado.length != 0) {
       Swal.fire("Ya has ingresado un rol para ese integrante de la familia")
     } else {
       console.log("wuuuu")

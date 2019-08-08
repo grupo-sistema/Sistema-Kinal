@@ -11,6 +11,7 @@ import { InscripcionComponent } from './components/inscripcion/inscripcion.compo
 import { AsignacionComponent } from './components/asignacion/asignacion.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { RelacionesComponent } from './components/relaciones/relaciones.component';
 
 const routes: Routes = [
   {path:'inicio', component: InicioComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:'asignacion', component: AsignacionComponent},
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},
+  {path:'relaciones', component: RelacionesComponent},
   {path:'', redirectTo:'home', pathMatch:'full'},
   {path:'**', component: HomeComponent}
 ];

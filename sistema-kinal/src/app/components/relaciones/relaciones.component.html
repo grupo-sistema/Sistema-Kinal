@@ -1,0 +1,49 @@
+<div class="container">
+   <div class="row">
+      <div>
+            <button type="button" (click)="windowFamilia()" class="btn btn-outline-light"><i class='fas fa-reply-all mr-2'></i>Regresar</button>
+      </div>
+   </div>
+  <div class="row">
+     <div class="col-md-12 col-sm-10">
+        <h1 class="titleMain">Árbol de relaciones de familias</h1>
+        <hr style="background-color: ivory;">
+     </div>
+  </div> 
+  <div class="row cuadro" *ngFor='let f of familia'>
+      <div class="Nombre Familia mt-4">
+         <h3>Familia {{f.FamilyName}}</h3>
+      </div>
+     <div class="col-md-12 col-sm-10">
+         <div class="family-tree">
+            <div class="tree-nodo">
+              <div class="tree-ejemplar">
+                <p>Encargado</p>
+              </div>
+            </div>
+            <div class="tree-nodo">
+              <div class="tree-padres">
+                <p>Padre: {{f.Padre.FirstName}}</p>
+              </div>
+              <div class="tree-padres">
+                <p>Madre: {{f.Madre.FirstName}}</p>
+              </div>
+            </div>
+            <div class="tree-nodo">
+              <div class="tree-abuelos">
+                <p>Hijo: {{f.Hijo.FirstName}}</p>
+              </div>
+              <div class="tree-abuelos">
+                <p>Hijo: {{f.Hijo.FirstName}}</p>
+              </div>
+              <div class="tree-abuelos">
+                <p>Hijo: {{f.Hijo.FirstName}}</p>
+              </div>
+              <div class="tree-abuelos">
+                <p>Hijo: {{f.Hijo.FirstName}}</p>
+              </div>
+            </div>
+          </div>
+     </div>
+  </div>
+</div>
